@@ -545,31 +545,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HoangLong\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages": {}
+    "C:\\Users\\vu\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
+      "projectUniqueName": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
       "projectName": "TASK.Application",
-      "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
-      "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\obj\\",
+      "projectPath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
+      "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
+      "outputPath": "D:\\ASC\\Project\\TASK.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\HoangLong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.1.config",
+        "C:\\Users\\vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -577,8 +576,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
-              "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj"
+            "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
+              "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj"
             }
           }
         }
