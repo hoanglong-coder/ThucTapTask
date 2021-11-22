@@ -1,0 +1,11 @@
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\bin\Debug\net5.0\TASK.Data.deps.json
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\bin\Debug\net5.0\TASK.Data.dll
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\bin\Debug\net5.0\ref\TASK.Data.dll
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\bin\Debug\net5.0\TASK.Data.pdb
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.AssemblyInfoInputs.cache
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.AssemblyInfo.cs
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.csproj.CoreCompileInputs.cache
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.dll
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\ref\TASK.Data.dll
+C:\Users\HoangLong\source\repos\TASK_PROJECT\TASK.Data\obj\Debug\net5.0\TASK.Data.pdb
