@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TASK.Data.Entities
+namespace TASK.Data.Enums
 {
-    public class Role
+    public enum Status
     {
+        
     }
 }

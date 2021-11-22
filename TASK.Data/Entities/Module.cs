@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Entities
 {
-    [Table("Quyen")]
-    public class Quyen
+    [Table("Module")]
+    public class Module
     {
         [Key]
-        public int MaQuyen { get; set; }
+        public int MaModule { set; get; }
 
         [Required]
+        [Column(TypeName = "Nvarchar")]
         [StringLength(50)]
-        [Column(TypeName ="Nvarchar")]
-        public string TenQuyen { get; set; }
+        public string TenModule { set; get; }
     }
 }

@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Entities
 {
-    [Table("Quyen")]
-    public class Quyen
+    [Table("DuAn")]
+    public class DuAn
     {
         [Key]
-        public int MaQuyen { get; set; }
+        [StringLength(50)]
+        public string MaDuAn { set; get; }
 
         [Required]
-        [StringLength(50)]
-        [Column(TypeName ="Nvarchar")]
-        public string TenQuyen { get; set; }
+        [StringLength(250)]
+        [Column(TypeName = "Nvarchar")]
+        public string TenDuAn { set; get; }
+
+        public int TrangThai { set; get; }
     }
 }
