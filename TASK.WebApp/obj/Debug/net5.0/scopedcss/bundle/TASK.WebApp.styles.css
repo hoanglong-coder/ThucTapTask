@@ -79,86 +79,19 @@ html[b-9mg2jv3lsg] {
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label[b-9mg2jv3lsg]::before {
     background-color: #c0392b !important;
 }
-/* /Shared/MainLayout.razor.rz.scp.css */
-.page[b-9leok6dbm0] {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.main[b-9leok6dbm0] {
-    flex: 1;
-}
-
-.sidebar[b-9leok6dbm0] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
-}
-
-.top-row[b-9leok6dbm0] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-}
-
-    .top-row[b-9leok6dbm0]  a, .top-row .btn-link[b-9leok6dbm0] {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-    }
-
-    .top-row a:first-child[b-9leok6dbm0] {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-@media (max-width: 640.98px) {
-    .top-row:not(.auth)[b-9leok6dbm0] {
-        display: none;
-    }
-
-    .top-row.auth[b-9leok6dbm0] {
-        justify-content: space-between;
-    }
-
-    .top-row a[b-9leok6dbm0], .top-row .btn-link[b-9leok6dbm0] {
-        margin-left: 0;
-    }
-}
-
-@media (min-width: 641px) {
-    .page[b-9leok6dbm0] {
-        flex-direction: row;
-    }
-
-    .sidebar[b-9leok6dbm0] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row[b-9leok6dbm0] {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .main > div[b-9leok6dbm0] {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
-}
 /* /Shared/MainLayoutTask.razor.rz.scp.css */
-
+.content[b-ddu2sm3c4m] {
+    min-height: calc(100vh - 120px);
+}
 .footer[b-ddu2sm3c4m] {
-    position: fixed;
+    position: sticky;
     left: 0;
     bottom: 0;
     width: 100%;
 }
-body[b-ddu2sm3c4m] {
+/* /Shared/PageLoading.razor.rz.scp.css */
+
+body[b-6qe6q51lv8] {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -166,7 +99,7 @@ body[b-ddu2sm3c4m] {
     background: radial-gradient(#9b59b6, #8e44ad);
 }
 
-.wrapper[b-ddu2sm3c4m] {
+.wrapper[b-6qe6q51lv8] {
     width: 200px;
     height: 60px;
     position: absolute;
@@ -175,7 +108,7 @@ body[b-ddu2sm3c4m] {
     transform: translate(-50%, -50%);
 }
 
-.circle[b-ddu2sm3c4m] {
+.circle[b-6qe6q51lv8] {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -183,10 +116,10 @@ body[b-ddu2sm3c4m] {
     background-color: blue;
     left: 15%;
     transform-origin: 50%;
-    animation: circle-b-ddu2sm3c4m .5s alternate infinite ease;
+    animation: circle-b-6qe6q51lv8 .5s alternate infinite ease;
 }
 
-@keyframes circle-b-ddu2sm3c4m {
+@keyframes circle-b-6qe6q51lv8 {
     0% {
         top: 60px;
         height: 5px;
@@ -205,18 +138,18 @@ body[b-ddu2sm3c4m] {
     }
 }
 
-.circle:nth-child(2)[b-ddu2sm3c4m] {
+.circle:nth-child(2)[b-6qe6q51lv8] {
     left: 45%;
     animation-delay: .2s;
 }
 
-.circle:nth-child(3)[b-ddu2sm3c4m] {
+.circle:nth-child(3)[b-6qe6q51lv8] {
     left: auto;
     right: 15%;
     animation-delay: .3s;
 }
 
-.shadow[b-ddu2sm3c4m] {
+.shadow[b-6qe6q51lv8] {
     width: 20px;
     height: 4px;
     border-radius: 50%;
@@ -227,10 +160,10 @@ body[b-ddu2sm3c4m] {
     z-index: -1;
     left: 15%;
     filter: blur(1px);
-    animation: shadow-b-ddu2sm3c4m .5s alternate infinite ease;
+    animation: shadow-b-6qe6q51lv8 .5s alternate infinite ease;
 }
 
-@keyframes shadow-b-ddu2sm3c4m {
+@keyframes shadow-b-6qe6q51lv8 {
     0% {
         transform: scaleX(1.5);
     }
@@ -246,18 +179,18 @@ body[b-ddu2sm3c4m] {
     }
 }
 
-.shadow:nth-child(4)[b-ddu2sm3c4m] {
+.shadow:nth-child(4)[b-6qe6q51lv8] {
     left: 45%;
     animation-delay: .2s
 }
 
-.shadow:nth-child(5)[b-ddu2sm3c4m] {
+.shadow:nth-child(5)[b-6qe6q51lv8] {
     left: auto;
     right: 15%;
     animation-delay: .3s;
 }
 
-.wrapper span[b-ddu2sm3c4m] {
+.wrapper span[b-6qe6q51lv8] {
     position: absolute;
     top: 75px;
     font-family: 'Lato';
@@ -274,7 +207,7 @@ body[b-ddu2sm3c4m] {
 
 
 /*  footer   */
-footer[b-ddu2sm3c4m] {
+footer[b-6qe6q51lv8] {
     background-color: #222;
     color: #fff;
     font-size: 14px;
@@ -286,42 +219,42 @@ footer[b-ddu2sm3c4m] {
     z-index: 999;
 }
 
-    footer p[b-ddu2sm3c4m] {
+    footer p[b-6qe6q51lv8] {
         margin: 10px 0;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida  Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
-    footer .fa-heart[b-ddu2sm3c4m] {
+    footer .fa-heart[b-6qe6q51lv8] {
         color: red;
     }
 
-    footer .fa-dev[b-ddu2sm3c4m] {
+    footer .fa-dev[b-6qe6q51lv8] {
         color: #fff;
     }
 
-    footer .fa-twitter-square[b-ddu2sm3c4m] {
+    footer .fa-twitter-square[b-6qe6q51lv8] {
         color: #1da0f1;
     }
 
-    footer .fa-instagram[b-ddu2sm3c4m] {
+    footer .fa-instagram[b-6qe6q51lv8] {
         color: #f0007c;
     }
 
-fotter .fa-linkedin[b-ddu2sm3c4m] {
+fotter .fa-linkedin[b-6qe6q51lv8] {
     color: #0073b1;
 }
 
-footer .fa-codepen[b-ddu2sm3c4m] {
+footer .fa-codepen[b-6qe6q51lv8] {
     color: #fff
 }
 
-footer a[b-ddu2sm3c4m] {
+footer a[b-6qe6q51lv8] {
     color: #3c97bf;
     text-decoration: none;
     margin-right: 5px;
 }
 
-.youtubeBtn[b-ddu2sm3c4m] {
+.youtubeBtn[b-6qe6q51lv8] {
     position: fixed;
     left: 50%;
     transform: translatex(-50%);
@@ -333,29 +266,29 @@ footer a[b-ddu2sm3c4m] {
     display: inline-block;
 }
 
-    .youtubeBtn i[b-ddu2sm3c4m] {
+    .youtubeBtn i[b-6qe6q51lv8] {
         font-size: 20px;
         float: left;
     }
 
-    .youtubeBtn a[b-ddu2sm3c4m] {
+    .youtubeBtn a[b-6qe6q51lv8] {
         color: blue;
-        animation: youtubeAnim-b-ddu2sm3c4m 1000ms linear infinite;
+        animation: youtubeAnim-b-6qe6q51lv8 1000ms linear infinite;
         float: right;
     }
 
-        .youtubeBtn a:hover[b-ddu2sm3c4m] {
+        .youtubeBtn a:hover[b-6qe6q51lv8] {
             color: #c9110f;
             transition: all .3s ease-in-out;
             text-shadow: none;
         }
 
-    .youtubeBtn i:active[b-ddu2sm3c4m] {
+    .youtubeBtn i:active[b-6qe6q51lv8] {
         transform: scale(.9);
         transition: all .3s ease-in-out;
     }
 
-    .youtubeBtn span[b-ddu2sm3c4m] {
+    .youtubeBtn span[b-6qe6q51lv8] {
         font-family: 'Lato';
         font-weight: bold;
         color: blue;
@@ -366,7 +299,7 @@ footer a[b-ddu2sm3c4m] {
         padding-left: 5px;
     }
 
-@keyframes youtubeAnim-b-ddu2sm3c4m {
+@keyframes youtubeAnim-b-6qe6q51lv8 {
     0%,100% {
         color: #c9110f;
     }

@@ -13,7 +13,7 @@ namespace TASK.WebApp.Pages.Login
        public void OnLogin()
        {
 
-            muav.NavigateTo("/dashboard");
+            muav.NavigateTo("/choosetask");
        }
     }
 }

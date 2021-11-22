@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj": {}
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\TASK.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj": {
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\TASK.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj",
+        "projectUniqueName": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\TASK.Api.csproj",
         "projectName": "TASK.Api",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj",
+        "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\TASK.Api.csproj",
         "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\obj\\",
+        "outputPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
@@ -33,11 +33,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj"
+              "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\TASK.Application.csproj": {
+                "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\TASK.Application.csproj"
               },
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj"
+              "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj": {
+                "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj"
               }
             }
           }
@@ -89,14 +89,14 @@
         }
       }
     },
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj": {
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\TASK.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
+        "projectUniqueName": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\TASK.Application.csproj",
         "projectName": "TASK.Application",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
+        "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\TASK.Application.csproj",
         "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\obj\\",
+        "outputPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
@@ -118,8 +118,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj"
+              "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj": {
+                "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj"
               }
             }
           }
@@ -152,14 +152,14 @@
         }
       }
     },
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj",
+        "projectUniqueName": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj",
         "projectName": "TASK.Data",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj",
+        "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\TASK.Data.csproj",
         "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\obj\\",
+        "outputPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"

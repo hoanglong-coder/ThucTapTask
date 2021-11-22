@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0+v4o2bvv7A3VvHRD9zP6kuiCNlwWiV/v8N3ctAIHNSFqAuKNn91Xb60R0PDl9w4C8X3ir6iW37CL4jbHaEgMw==",
+  "dgSpecHash": "zG/p4zrabfwxri8DrkHMTQk/f20mKOC7Fm8IHqdKRZpmtN3eMLrunnhZEPsdwaUUV/t24nN1KPo6SZPfIeeqJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj",
+  "projectFilePath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.Api\\TASK.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HoangLong\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\HoangLong\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VDqwA8LIu3lfkSb1M0dG/A/8qnLsNxtOnPxvnFLpieksPr7hC0PXq8x0xXwj19KxZdsMhHv+OkcoIr1jmRm1Tg==",
+  "dgSpecHash": "BzVouwqarkNANGVLX3gSsXCWBSJdZ/MX9vlTIQ0AYO52xoS5+XM4WYFYyy6lbu/+VzxbOR6Jv2jJwDBT+KZZvQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\TASK.WebApp.csproj",
+  "projectFilePath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\TASK.WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HoangLong\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.8\\microsoft.aspnetcore.authorization.5.0.8.nupkg.sha512",
     "C:\\Users\\HoangLong\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.8\\microsoft.aspnetcore.components.5.0.8.nupkg.sha512",

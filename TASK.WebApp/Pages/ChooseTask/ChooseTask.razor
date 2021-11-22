@@ -1,0 +1,52 @@
+﻿
+@page "/choosetask"
+@layout BaseLayout
+
+@if (checkLogin == 0)
+{
+    <PageLoading />
+}
+else
+{<div class="container">
+        <center class="mt-4">
+            <h1><img src="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" alt="Logo" style="margin-right:10px" />ASC TASK PLANNING</h1>
+            <center><h5>HỆ THỐNG QUẢN LÝ CÔNG VIỆC</h5></center>
+        </center>
+
+    </div>
+    <div class="container">
+        <RadzenMenu Style="background-color: rgb(243,245,247);margin:auto;margin-top:81px">
+            <div class="row" style="margin:auto">
+                <div class="col-4">
+                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
+                        <div style="font-size: 20px; margin: auto">
+                            <i class="fas fa-school fa-10x"></i>
+                        </div>
+                        <RadzenLink Path="/dashboard" Text="Dự án 1" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
+                    </RadzenCard>
+                </div>
+                <div class="col-4">
+                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
+                        <div style="font-size: 20px;margin:auto">
+                            <i class="fas fa-tasks fa-10x"></i>
+                        </div>
+                        <RadzenLink Path="/dashboard" Text="Dự án 2" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
+                    </RadzenCard>
+                </div>
+                <div class="col-4">
+                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
+                        <div style="font-size: 20px; margin: auto">
+                            <i class="fas fa-graduation-cap fa-10x"></i>
+                        </div>
+                        <RadzenLink Path="/dashboard" Text="Dự án 3" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
+                    </RadzenCard>
+                </div>
+            </div>
+        </RadzenMenu>
+    </div>
+}
+
+
+
+
+

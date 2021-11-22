@@ -104,13 +104,13 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 76 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
+#line 33 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
       
     public int checkLogin { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(4000);
+        await Task.Delay(100);
         checkLogin = 1;
     }
 

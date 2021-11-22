@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\TASK.WebApp.csproj": {}
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\TASK.WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\TASK.WebApp.csproj": {
+    "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\TASK.WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\TASK.WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\TASK.WebApp.csproj",
         "projectName": "TASK.WebApp",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\TASK.WebApp.csproj",
+        "projectPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\TASK.WebApp.csproj",
         "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.WebApp\\obj\\",
+        "outputPath": "C:\\Users\\HoangLong\\Documents\\GitHub\\ThucTapTask\\TASK.WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
