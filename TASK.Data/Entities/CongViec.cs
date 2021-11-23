@@ -11,7 +11,7 @@ namespace TASK.Data.Entities
     public class CongViec
     {
         public int MaCongViec { set; get; }
-        public int MaModule { set; get; }
+        public int? MaModule { set; get; }
         public virtual Module Module { set; get; }
         public string IssueURL { set; get; }
         public string TenIssue { set; get; }
@@ -20,11 +20,11 @@ namespace TASK.Data.Entities
         public int ThoiGianLam { set; get; }
         public DateTime TuNgay { set; get; }
         public DateTime DenNgay { set; get; }
-        public int MaThangLamViec { set; get; }
+        public int? MaThangLamViec { set; get; }
         public TuanLamViec TuanLamViec { set; get; }
-        public int MaTuanChiTiet { set; get; }
+        public int? MaTuanChiTiet { set; get; }
         public ChiTietTuan ChiTietTuan { set; get; }
-        public string MaUser { get; set; }
+        public Guid? MaUser { get; set; }
         public virtual User User { set; get; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }

@@ -10,11 +10,11 @@ namespace TASK.Data.Entities
 {
     public class ChiTietDuAn
     {
-        public int MaDuAn { get; set; }
+        public int? MaDuAn { get; set; }
         public virtual DuAn DuAn { set; get; }
-        public string MaUser { get; set; }
+        public Guid? MaUser { get; set; }
         public virtual User User { set; get; }
-        public int MaQuyen { set; get; }
+        public int? MaQuyen { set; get; }
         public virtual Quyen Quyen { set; get; }
     }
 }
