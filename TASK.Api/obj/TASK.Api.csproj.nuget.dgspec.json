@@ -1,31 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj": {}
+    "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj": {
+    "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj",
+        "projectUniqueName": "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj",
         "projectName": "TASK.Api",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\TASK.Api.csproj",
-        "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Api\\obj\\",
+        "projectPath": "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj",
+        "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
+        "outputPath": "D:\\ASC\\Project\\TASK.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HoangLong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.1.config",
+          "C:\\Users\\vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -33,11 +32,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj"
+              "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj": {
+                "projectPath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj"
               },
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj"
+              "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
+                "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj"
               }
             }
           }
@@ -52,7 +51,23 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.12, )"
             },
@@ -71,12 +86,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.12, 5.0.12]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -89,28 +98,27 @@
         }
       }
     },
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj": {
+    "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
+        "projectUniqueName": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
         "projectName": "TASK.Application",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\TASK.Application.csproj",
-        "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Application\\obj\\",
+        "projectPath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
+        "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
+        "outputPath": "D:\\ASC\\Project\\TASK.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HoangLong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.1.config",
+          "C:\\Users\\vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -118,8 +126,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
-                "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj"
+              "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
+                "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj"
               }
             }
           }
@@ -152,28 +160,27 @@
         }
       }
     },
-    "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj": {
+    "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj",
+        "projectUniqueName": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
         "projectName": "TASK.Data",
-        "projectPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\TASK.Data.csproj",
-        "packagesPath": "C:\\Users\\HoangLong\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HoangLong\\source\\repos\\TASK_PROJECT\\TASK.Data\\obj\\",
+        "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
+        "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
+        "outputPath": "D:\\ASC\\Project\\TASK.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HoangLong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.1.config",
+          "C:\\Users\\vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -194,6 +201,22 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.12, )"
             }
