@@ -8,32 +8,17 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Entities
 {
-    [Table("ToDo")]
     public class ToDo
     {
-        [Key]
-        [StringLength(50)]
         public string MaTodo { set; get; }
-
-        [Required]
-        [StringLength(50)]
         public string MaUser { set; get; }
-
-        [Required]
+        public User User { set; get; }
         public DateTime NgayGiao { set; get; }
-
-        [Required]
         public DateTime NgayDenHang { set; get; }
-
-        [Column(TypeName = "Nvarchar")]
         public string NoiDung { set; get; }
-
-        [Column(TypeName = "Nvarchar")]
         public string GhiChu { set; get; }
-
-        [Required]
         public int TrangThai { set; get; }
-
+        public string MaDuAn { set; get; }
         public DuAn DuAn { set; get; }
     }
 }

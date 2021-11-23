@@ -10,11 +10,8 @@ namespace TASK.Data.Entities
 {
     public class Quyen
     {
-        [Key]
-        public Guid MaQuyen { get; set; }
-
-        [StringLength(50)]
-        [Column(TypeName ="Nvarchar")]
+        public int MaQuyen { get; set; }
         public string TenQuyen { get; set; }
+        public List<ChiTietDuAn> ChiTietDuAns { get; set; }
     }
 }

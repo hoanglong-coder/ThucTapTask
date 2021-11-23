@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Entities
 {
-    [Table("ChiTietDuAn")]
     public class ChiTietDuAn
     {
-        [Key]
-        public DuAn MaDuAn { set; get; }
-
-        [Key]
+        public string MaDuAn { get; set; }
+        public DuAn DuAn { set; get; }
+        public string MaUser { get; set; }
         public User User { set; get; }
-
+        public int MaQuyen { set; get; }
         public Quyen Quyen { set; get; }
     }
 }
