@@ -10,15 +10,15 @@ namespace TASK.Data.Entities
 {
     public class ToDo
     {
-        public string MaTodo { set; get; }
+        public int MaTodo { set; get; }
         public string MaUser { set; get; }
-        public User User { set; get; }
+        public virtual User User { set; get; }
         public DateTime NgayGiao { set; get; }
         public DateTime NgayDenHang { set; get; }
         public string NoiDung { set; get; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }
         public string MaDuAn { set; get; }
-        public DuAn DuAn { set; get; }
+        public virtual DuAn DuAn { set; get; }
     }
 }

@@ -17,6 +17,8 @@ namespace TASK.Data.Configuration
 
             builder.HasKey(x => x.MaCongViec);
 
+            builder.Property(x => x.MaCongViec).UseIdentityColumn(1, 1);
+
             builder.HasOne(t => t.Module).WithMany(pc => pc.CongViecs)
                 .HasForeignKey(pc => pc.MaModule);
 

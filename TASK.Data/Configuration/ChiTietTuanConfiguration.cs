@@ -17,6 +17,8 @@ namespace TASK.Data.Configuration
 
             builder.HasKey(x => x.MaTuanChiTiet);
 
+            builder.Property(x => x.MaTuanChiTiet).UseIdentityColumn(1, 1);
+
             builder.Property(x => x.TenTuan).IsRequired().HasMaxLength(50).HasColumnType("nvarchar");
 
             builder.Property(x => x.TuNgay).IsRequired();

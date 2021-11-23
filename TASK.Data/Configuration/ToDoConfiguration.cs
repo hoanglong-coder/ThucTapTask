@@ -17,6 +17,8 @@ namespace TASK.Data.Configuration
 
             builder.HasKey(x => x.MaTodo);
 
+            builder.Property(x => x.MaTodo).UseIdentityColumn(1, 1);
+
             builder.HasOne(t => t.User).WithMany(pc => pc.ToDos)
                 .HasForeignKey(pc => pc.MaUser);
 

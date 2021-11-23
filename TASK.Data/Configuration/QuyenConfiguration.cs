@@ -17,6 +17,8 @@ namespace TASK.Data.Configuration
 
             builder.HasKey(x => x.MaQuyen);
 
+            builder.Property(x => x.MaQuyen).UseIdentityColumn(1, 1);
+
             builder.Property(x => x.TenQuyen).IsRequired(true);
         }
     }

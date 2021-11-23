@@ -10,7 +10,7 @@ namespace TASK.Data.Entities
 {
     public class DuAn
     {
-        public string MaDuAn { set; get; }
+        public int MaDuAn { set; get; }
         public string TenDuAn { set; get; }
         public int TrangThai { set; get; }
         public List<ToDo> ToDos { get; set; }

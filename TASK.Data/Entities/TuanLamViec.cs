@@ -10,13 +10,13 @@ namespace TASK.Data.Entities
 {
     public class TuanLamViec
     {
-        public Guid MaThangLamViec { set; get; }
+        public int MaThangLamViec { set; get; }
         public string TenThang { set; get; }
         public int GiaTri { set; get; }
         public DateTime NgayBatDau { set; get; }
         public DateTime NgayKetThuc { set; get; }
         public string MaDuAn { get; set; }
-        public DuAn DuAn { set; get; }
+        public virtual DuAn DuAn { set; get; }
         public List<ChiTietTuan> ChiTietTuans { get; set; }
         public List<CongViec> CongViecs { get; set; }
     }

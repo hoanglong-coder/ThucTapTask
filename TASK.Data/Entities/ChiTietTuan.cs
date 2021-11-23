@@ -10,15 +10,15 @@ namespace TASK.Data.Entities
 {
     public class ChiTietTuan
     {
-        public Guid MaTuanChiTiet { set; get; }
+        public int MaTuanChiTiet { set; get; }
         public string TenTuan { set; get; }
         public DateTime TuNgay { set; get; }
         public DateTime DenNgay { set; get; }
         public int GiaTri { set; get; }
         public int SoGioLam { set; get; }
         public int TrangThai { set; get; }
-        public int MaThangLamViec { set; get; }
-        public TuanLamViec TuanLamViec { set; get; }
+        public int? MaThangLamViec { set; get; }
+        public virtual TuanLamViec TuanLamViec { set; get; }
         public List<CongViec> CongViecs { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace TASK.Data.Configuration
 
             builder.HasKey(x => x.MaModule);
 
+            builder.Property(x => x.MaModule).UseIdentityColumn(1, 1);
+
             builder.Property(x => x.TenModule).IsRequired().HasMaxLength(50);
         }
     }

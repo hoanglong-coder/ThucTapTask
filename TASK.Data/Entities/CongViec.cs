@@ -10,9 +10,9 @@ namespace TASK.Data.Entities
 {
     public class CongViec
     {
-        public string MaCongViec { set; get; }
+        public int MaCongViec { set; get; }
         public int MaModule { set; get; }
-        public Module Module { set; get; }
+        public virtual Module Module { set; get; }
         public string IssueURL { set; get; }
         public string TenIssue { set; get; }
         public string TenCongViec { set; get; }
@@ -25,7 +25,7 @@ namespace TASK.Data.Entities
         public int MaTuanChiTiet { set; get; }
         public ChiTietTuan ChiTietTuan { set; get; }
         public string MaUser { get; set; }
-        public User User { set; get; }
+        public virtual User User { set; get; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }
     }
