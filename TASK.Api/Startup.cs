@@ -29,18 +29,15 @@ namespace TASK.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
-            //Add sql
+            //Add DBContext
             services.AddDbContext<TaskDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ConnectString"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddControllers();
 
             //Add DI
-
             services.AddTransient<IQuyenService, QuyenService>();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TASK.Api", Version = "v1" });

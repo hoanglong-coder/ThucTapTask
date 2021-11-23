@@ -32,7 +32,7 @@ namespace TASK.Data.Entities
         public DateTime DenNgay { set; get; }
         public TuanLamViec TuanLamViec { set; get; } //Mã tháng làm việc
         public ChiTietTuan ChiTietTuan { set; get; } //Mã tuần chi tiết
-        public User User { set; get }
+        public User User { set; get; }
         [StringLength(50)]
         [Column(TypeName = "Nvarchar")]
         public string GhiChu { set; get; }

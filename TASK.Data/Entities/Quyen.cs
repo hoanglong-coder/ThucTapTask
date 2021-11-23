@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Entities
 {
-    [Table("Quyen")]
     public class Quyen
     {
         [Key]
-        public int MaQuyen { get; set; }
+        public Guid MaQuyen { get; set; }
 
-        [Required]
         [StringLength(50)]
         [Column(TypeName ="Nvarchar")]
         public string TenQuyen { get; set; }
