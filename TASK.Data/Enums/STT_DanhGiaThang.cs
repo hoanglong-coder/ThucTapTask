@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Enums
 {
-    public enum STT_DanhGiaThang
+    public enum STT_DanhGiaThang : int
     {
-        //chưa biết tạo enum chuỗi có dấu + cách
+        Tot = 1,
+        Kha = 2,
+        TrungBinh = 3,
+        Yeu = 4
     }
 }

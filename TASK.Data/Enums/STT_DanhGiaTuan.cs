@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Enums
 {
-    class STT_DanhGiaTuan
+    public enum STT_DanhGiaTuan : int
     {
+        LoiNoiBoTrienKhaiTestLoai1 = 1,
+        LoiNoiBoTrienKhaiTestLoai2 = 2,
+        LoiNoiBoHoacLoiKHBao = 3,
+        LoiNghiemTrong = 4
     }
 }
