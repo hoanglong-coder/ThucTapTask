@@ -34,7 +34,7 @@ namespace TASK.Api
             //Add sql
             services.AddDbContext<TaskDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ConnectString"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             //Add DI

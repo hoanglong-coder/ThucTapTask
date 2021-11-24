@@ -14,8 +14,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
         private IEnumerable<WeatherForecast> forecasts;
         IList<WeatherForecast> selectedEmployees;
         IList<WeatherForecast> selectedEmployeesdDetail;
-        IList<WeatherForecast> selectedEmployeesdKhoa;
-        bool checkBox1Value;
+
         protected override async Task OnInitializedAsync()
         {
             forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("sample-data/weather.json");
