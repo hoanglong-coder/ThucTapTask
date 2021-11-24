@@ -19,5 +19,6 @@ namespace TASK.Data.Entities
         public virtual DuAn DuAn { set; get; }
         public List<ChiTietTuan> ChiTietTuans { get; set; }
         public List<CongViec> CongViecs { get; set; }
+        public List<DanhGiaThang> DanhGiaThangs { get; set; }
     }
 }

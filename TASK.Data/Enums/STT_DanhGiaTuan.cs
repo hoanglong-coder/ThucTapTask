@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Enums
 {
-    public enum Status
+    class STT_DanhGiaTuan
     {
-        
     }
 }

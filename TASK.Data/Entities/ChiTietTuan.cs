@@ -20,5 +20,6 @@ namespace TASK.Data.Entities
         public int? MaThangLamViec { set; get; }
         public virtual TuanLamViec TuanLamViec { set; get; }
         public List<CongViec> CongViecs { get; set; }
+        public List<DanhGiaTuan> DanhGiaTuans { get; set; }
     }
 }

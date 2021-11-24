@@ -28,6 +28,8 @@ namespace TASK.Data
             modelBuilder.ApplyConfiguration(new ToDoConfiguration());
             modelBuilder.ApplyConfiguration(new TuanLamViecConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new DanhGiaThangConfiguration());
+            modelBuilder.ApplyConfiguration(new DanhGiaTuanConfiguration());
             //base.OnModelCreating(modelBuilder);
         }
 
