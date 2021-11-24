@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj": {}
+    "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj": {}
   },
   "projects": {
-    "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj": {
+    "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
+        "projectUniqueName": "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj",
         "projectName": "TASK.Application",
-        "projectPath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
+        "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj",
         "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
-        "outputPath": "D:\\ASC\\Project\\TASK.Application\\obj\\",
+        "outputPath": "D:\\ASC\\BaiTapLon\\TASK.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
-                "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj"
+              "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj": {
+                "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj"
               }
             }
           }
@@ -66,14 +66,14 @@
         }
       }
     },
-    "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
+    "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
+        "projectUniqueName": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj",
         "projectName": "TASK.Data",
-        "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
+        "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj",
         "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
-        "outputPath": "D:\\ASC\\Project\\TASK.Data\\obj\\",
+        "outputPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

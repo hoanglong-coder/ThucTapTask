@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {}
+    "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj": {}
   },
   "projects": {
-    "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
+    "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
+        "projectUniqueName": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj",
         "projectName": "TASK.Data",
-        "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj",
+        "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj",
         "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
-        "outputPath": "D:\\ASC\\Project\\TASK.Data\\obj\\",
+        "outputPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

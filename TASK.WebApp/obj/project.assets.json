@@ -1387,11 +1387,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ASC\\Project\\TASK.WebApp\\TASK.WebApp.csproj",
+      "projectUniqueName": "D:\\ASC\\BaiTapLon\\TASK.WebApp\\TASK.WebApp.csproj",
       "projectName": "TASK.WebApp",
-      "projectPath": "D:\\ASC\\Project\\TASK.WebApp\\TASK.WebApp.csproj",
+      "projectPath": "D:\\ASC\\BaiTapLon\\TASK.WebApp\\TASK.WebApp.csproj",
       "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
-      "outputPath": "D:\\ASC\\Project\\TASK.WebApp\\obj\\",
+      "outputPath": "D:\\ASC\\BaiTapLon\\TASK.WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

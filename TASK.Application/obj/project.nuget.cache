@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pPSy6KvqSamnk3CcWrZ/heGk9PqGE/jgDdpRwt2YDsTgwO6DBruHpRDe9LKyfSccP2O+XlFZVD7XPy16HgBeWA==",
+  "dgSpecHash": "rNiwRBzi3SroBj1Vo19QTg11UYHGJ8Jho6jCOhGItW5VObckdp/qnd+JlI/qU8rOuy6LVUjcUokGhlPLBvMJKA==",
   "success": true,
-  "projectFilePath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj",
+  "projectFilePath": "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vu\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\vu\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

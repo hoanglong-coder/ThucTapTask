@@ -6025,11 +6025,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj",
+      "projectUniqueName": "D:\\ASC\\BaiTapLon\\TASK.Api\\TASK.Api.csproj",
       "projectName": "TASK.Api",
-      "projectPath": "D:\\ASC\\Project\\TASK.Api\\TASK.Api.csproj",
+      "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Api\\TASK.Api.csproj",
       "packagesPath": "C:\\Users\\vu\\.nuget\\packages\\",
-      "outputPath": "D:\\ASC\\Project\\TASK.Api\\obj\\",
+      "outputPath": "D:\\ASC\\BaiTapLon\\TASK.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6050,11 +6050,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj": {
-              "projectPath": "D:\\ASC\\Project\\TASK.Application\\TASK.Application.csproj"
+            "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj": {
+              "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Application\\TASK.Application.csproj"
             },
-            "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj": {
-              "projectPath": "D:\\ASC\\Project\\TASK.Data\\TASK.Data.csproj"
+            "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj": {
+              "projectPath": "D:\\ASC\\BaiTapLon\\TASK.Data\\TASK.Data.csproj"
             }
           }
         }
