@@ -30,7 +30,7 @@ namespace TASK.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new DanhGiaThangConfiguration());
             modelBuilder.ApplyConfiguration(new DanhGiaTuanConfiguration());
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Quyen> Quyens { set; get; }
@@ -42,5 +42,7 @@ namespace TASK.Data
         public DbSet<ToDo> ToDos { set; get; }
         public DbSet<TuanLamViec> TuanLamViecs { set; get; }
         public DbSet<User> Users { set; get; }
+        public DbSet<DanhGiaThang> DanhGiaThangs { set; get; }
+        public DbSet<DanhGiaTuan> DanhGiaTuans { set; get; }
     }
 }
