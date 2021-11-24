@@ -19,6 +19,8 @@ namespace TASK.Data.Configuration
 
             builder.Property(x => x.MaDanhGiaTuan).UseIdentityColumn(1, 1);
 
+            builder.Property(x => x.HoanThanh);
+
             builder.Property(x => x.KhoiLuong).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
 
             builder.Property(x => x.TienDo).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");

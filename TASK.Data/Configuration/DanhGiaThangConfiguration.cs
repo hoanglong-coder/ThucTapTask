@@ -24,6 +24,8 @@ namespace TASK.Data.Configuration
             builder.Property(x => x.TienDo).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
 
             builder.Property(x => x.ChatLuong).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
+            
+            builder.Property(x => x.TrungBinhThang);
 
             builder.Property(x => x.XepLoai).IsRequired();
 

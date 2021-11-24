@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TASK.Data.Enums
 {
-    class STT_CongViec
+    public enum STT_CongViec
     {
+
     }
 }

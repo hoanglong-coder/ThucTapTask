@@ -12,6 +12,7 @@ namespace TASK.Data.Entities
         public string KhoiLuong { set; get; }
         public string TienDo { set; get; }
         public string ChatLuong { set; get; }
+        public float TrungBinhThang { set; get; }
         public char XepLoai { set; get; }
         public string NhanXet { set; get; }
         public int? MaTuanLamViec { get; set; }
