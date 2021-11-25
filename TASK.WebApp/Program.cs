@@ -1,12 +1,13 @@
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Radzen;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using TASK.WebApp.Repository.Interface;
+using TASK.WebApp.Repository.Service;
 
 namespace TASK.WebApp
 {
@@ -17,7 +18,25 @@ namespace TASK.WebApp
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddBlazoredLocalStorage();
+
+            builder.Services.AddScoped<NotificationService>();
+
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44380") });
+
+            builder.Services.AddOptions();
+
+            builder.Services.AddAuthorizationCore();
+
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            builder.Services.AddScoped<IDuAnServiceClient, DuAnServiceClient>();
+
+            builder.Services.AddScoped<ITuanLamViecServiceClient, TuanLamViecServiceClient>();
+
+            builder.Services.AddScoped<IChiTietTuanServiceClient, ChiTietTuanServiceClient>();
+
+            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
             await builder.Build().RunAsync();
         }

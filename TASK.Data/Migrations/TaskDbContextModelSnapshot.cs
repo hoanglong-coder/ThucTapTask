@@ -299,6 +299,24 @@ namespace TASK.Data.Migrations
                     b.ToTable("Quyens");
                 });
 
+            modelBuilder.Entity("TASK.Data.Entities.QuyenHeThong", b =>
+                {
+                    b.Property<int>("MaQuyenHeThong")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TenQuyen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaQuyenHeThong");
+
+                    b.ToTable("QuyenHeThongs");
+                });
+
             modelBuilder.Entity("TASK.Data.Entities.ToDo", b =>
                 {
                     b.Property<int>("MaTodo")
@@ -377,6 +395,9 @@ namespace TASK.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("MaQuyenHeThong")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -396,6 +417,8 @@ namespace TASK.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("MaUser");
+
+                    b.HasIndex("MaQuyenHeThong");
 
                     b.ToTable("Users");
                 });
@@ -509,6 +532,17 @@ namespace TASK.Data.Migrations
                     b.Navigation("DuAn");
                 });
 
+            modelBuilder.Entity("TASK.Data.Entities.User", b =>
+                {
+                    b.HasOne("TASK.Data.Entities.QuyenHeThong", "QuyenHeThong")
+                        .WithMany("Users")
+                        .HasForeignKey("MaQuyenHeThong")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuyenHeThong");
+                });
+
             modelBuilder.Entity("TASK.Data.Entities.ChiTietTuan", b =>
                 {
                     b.Navigation("CongViecs");
@@ -538,6 +572,11 @@ namespace TASK.Data.Migrations
             modelBuilder.Entity("TASK.Data.Entities.Quyen", b =>
                 {
                     b.Navigation("ChiTietDuAns");
+                });
+
+            modelBuilder.Entity("TASK.Data.Entities.QuyenHeThong", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("TASK.Data.Entities.TuanLamViec", b =>

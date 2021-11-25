@@ -1,20 +1,25 @@
-﻿<RadzenMenu>
-    <RadzenImage Style="padding:22px" Path="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" width="120px" alt="ASCVN2020"></RadzenImage>
-    <h3 style="margin-top:23px"><strong>ASC<br /> TASK PLANNING</strong></h3>
-    <h1 style="color: #007bff;margin-left:auto;margin-top:28px">DỰ ÁN "SCHOOL - DEVELOPERS"</h1>
-    <RadzenProfileMenu Style="width:max-content;margin-left:auto;border-left:none">
-        <Template>
+﻿
+    <RadzenMenu>
+        <RadzenImage Style="padding:22px" Path="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" width="120px" alt="ASCVN2020"></RadzenImage>
+        <h3 style="margin-top:23px"><strong>ASC<br /> TASK PLANNING</strong></h3>
+        <h1 style="color: #007bff;margin-left:auto;margin-top:28px">DỰ ÁN "@TenDuAn"</h1>
+        <RadzenProfileMenu Style="width:max-content;margin-left:auto;border-left:none">
+            <Template>
+                <AuthorizeView>
+                    <Authorized>
+                        <p>
+                            <RadzenImage Path="https://cdn-icons-png.flaticon.com/128/483/483361.png" width="50" />
+                            <strong style="margin-left:3px">@FullName</strong>
+                        </p>
+                    </Authorized>
+                </AuthorizeView>
+            </Template>
+            <ChildContent>
+                <RadzenProfileMenuItem Text="Hồ sơ tài khoản" Icon="account_circle"></RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Text="Đổi mật khẩu" Icon="cached"></RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Text="Chuyển dự án" Icon="compare_arrows"></RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Text="Đăng xuất" Path="/" Icon="exit_to_app"></RadzenProfileMenuItem>
+            </ChildContent>
+        </RadzenProfileMenu>
+    </RadzenMenu>
 
-            <p>
-                <RadzenImage Path="https://cdn-icons-png.flaticon.com/128/483/483361.png" width="50" />
-                <strong style="margin-left:3px">Lê Hoàng Long</strong>
-            </p>
-        </Template>
-        <ChildContent>
-            <RadzenProfileMenuItem Text="Hồ sơ người dùng" Path="#" Icon="account_circle"></RadzenProfileMenuItem>
-            <RadzenProfileMenuItem Text="Đổi mật khẩu" Path="#" Icon="cached"></RadzenProfileMenuItem>
-            <RadzenProfileMenuItem Text="Chuyển dự án" Path="#" Icon="compare_arrows"></RadzenProfileMenuItem>
-            <RadzenProfileMenuItem Text="Đăng xuất" Path="#" Icon="exit_to_app"></RadzenProfileMenuItem>
-        </ChildContent>
-    </RadzenProfileMenu>
-</RadzenMenu>

@@ -1,53 +1,54 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
 using Radzen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using TASK.Application.MChiTietTuan;
+using TASK.Application.MTuanLamViec;
+using TASK.WebApp.Repository.Interface;
 
 namespace TASK.WebApp.Pages.TuanLamViec
 {
     public partial class TuanLamViec
     {
-        [Inject] DialogService DialogService { get; set; }
-        private IEnumerable<WeatherForecast> forecasts;
-        IList<WeatherForecast> selectedEmployees;
-        IList<WeatherForecast> selectedEmployeesdDetail;
+        //private IEnumerable<WeatherForecast> forecasts;
+        IList<TuanLamViecResponse> selectedTuanLamViec;
+        IList<ChiTietTuanResponse> selectedEmployeesdDetail;
+
+        [Inject] ITuanLamViecServiceClient tuanLamViecService { get; set; }
+
+        [Inject] IChiTietTuanServiceClient chiTietTuanService { get; set; }
+
+        [Inject] ISyncLocalStorageService localstorage { get; set; }
+        
+        List<TuanLamViecResponse> TuanLamViecs { get; set; }
+
+        List<ChiTietTuanResponse> ChiTietTuans = new List<ChiTietTuanResponse>();
+
+        List<DateTime> Name = new List<DateTime>();
+
+
 
         protected override async Task OnInitializedAsync()
         {
-            forecasts = await Http.GetFromJsonAsync<IEnumerable<WeatherForecast>>("sample-data/weather.json");
+            int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
+
+            TuanLamViecs = await tuanLamViecService.GetTuanLamViecByDuAn(MaDuAn);
         }
 
-        public void Click(WeatherForecast forecasts)
+        public void Click(TuanLamViecResponse tuanLamViec)
         {
-            Console.WriteLine($"Da click{forecasts.TemperatureF}");
+            Console.WriteLine($"Da click{tuanLamViec.TenThang}");
         }
 
-        void RowRender(RowRenderEventArgs<WeatherForecast> args)
+        async Task RowExpandAsync(TuanLamViecResponse TuanLamViec)
         {
+            Console.WriteLine($"Bạn đã bắm vào tuần mã {TuanLamViec.MaThangLamViec}");
 
-        }
-
-        void RowExpand(WeatherForecast order)
-        {
-
-        }
-        public async Task OpenOrder()
-        {
-            await DialogService.OpenAsync<ThemSuaTuanLamViec>("Thêm tuần làm việc");
-        }
-
-        public class WeatherForecast
-        {
-            public DateTime Date { get; set; }
-
-            public int TemperatureC { get; set; }
-
-            public string Summary { get; set; }
-
-            public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            ChiTietTuans = await chiTietTuanService.GetChiTietTuanByTuanLamViec(TuanLamViec.MaThangLamViec);
         }
     }
 }

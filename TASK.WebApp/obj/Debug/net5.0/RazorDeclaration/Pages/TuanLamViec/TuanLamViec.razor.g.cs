@@ -96,6 +96,27 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\TuanLamViec\TuanLamViec.razor"
+using TASK.Application.MTuanLamViec;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\TuanLamViec\TuanLamViec.razor"
+using TASK.Application.MChiTietTuan;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/tuanlamviec")]
     public partial class TuanLamViec : Microsoft.AspNetCore.Components.ComponentBase
     {

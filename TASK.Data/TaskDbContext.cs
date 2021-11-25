@@ -29,9 +29,10 @@ namespace TASK.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new DanhGiaThangConfiguration());
             modelBuilder.ApplyConfiguration(new DanhGiaTuanConfiguration());
+            modelBuilder.ApplyConfiguration(new QuyenHeThongConfiguration());
             //base.OnModelCreating(modelBuilder);
         }
-
+        public DbSet<QuyenHeThong> QuyenHeThongs { set; get; }
         public DbSet<Quyen> Quyens { set; get; }
         public DbSet<ChiTietDuAn> ChiTietDuAns { set; get; }
         public DbSet<ChiTietTuan> ChiTietTuans { set; get; }

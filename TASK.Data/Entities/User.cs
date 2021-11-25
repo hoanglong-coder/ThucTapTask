@@ -14,9 +14,11 @@ namespace TASK.Data.Entities
         public string TenUser { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public int MaQuyenHeThong { get; set; }
         public bool TrangThai { get; set; }
         public List<ChiTietDuAn> ChiTietDuAns { get; set; }
         public List<ToDo> ToDos { get; set; }
         public List<CongViec> CongViecs { get; set; }
+        public virtual QuyenHeThong QuyenHeThong { get; set; }
     }
 }

@@ -24,6 +24,9 @@ namespace TASK.Data.Configuration
             builder.Property(x => x.Password).IsRequired().HasMaxLength(50);
             
             builder.Property(x => x.TrangThai).IsRequired();
+
+            builder.HasOne(t => t.QuyenHeThong).WithMany(pc => pc.Users)
+              .HasForeignKey(pc => pc.MaQuyenHeThong);
         }
     }
 }

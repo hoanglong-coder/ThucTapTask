@@ -1,8 +1,8 @@
 ﻿
 @page "/choosetask"
-@layout BaseLayout
+@layout Choose
 
-@if (checkLogin == 0)
+@if (DuAns == null)
 {
     <PageLoading />
 }
@@ -17,30 +17,26 @@ else
     <div class="container">
         <RadzenMenu Style="background-color: rgb(243,245,247);margin:auto;margin-top:81px">
             <div class="row" style="margin:auto">
-                <div class="col-4">
-                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
-                        <div style="font-size: 20px; margin: auto">
-                            <i class="fas fa-school fa-10x"></i>
-                        </div>
-                        <RadzenLink Path="/dashboard" Text="Dự án 1" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
-                    </RadzenCard>
-                </div>
-                <div class="col-4">
-                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
-                        <div style="font-size: 20px;margin:auto">
-                            <i class="fas fa-tasks fa-10x"></i>
-                        </div>
-                        <RadzenLink Path="/dashboard" Text="Dự án 2" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
-                    </RadzenCard>
-                </div>
-                <div class="col-4">
-                    <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
-                        <div style="font-size: 20px; margin: auto">
-                            <i class="fas fa-graduation-cap fa-10x"></i>
-                        </div>
-                        <RadzenLink Path="/dashboard" Text="Dự án 3" Style="font-size:39px;text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" />
-                    </RadzenCard>
-                </div>
+                @foreach (var item in DuAns)
+                {
+                    <div class="col-4">
+                        <RadzenCard Style="width:300px; margin-bottom: 20px; height:300px;">
+                            <div style="font-size: 20px; margin: auto">
+                                @{
+                                    if (item.TenDuAn == "Dự án Dev")
+                                    {
+                                        <i class="fas fa-school fa-10x"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-tasks fa-10x"></i>
+                                    }
+                                }
+                            </div>
+                            <RadzenButton Click=@(args => OnClick(item.MaDuAn.ToString())) Text="@item.TenDuAn" ButtonStyle="ButtonStyle.Success" />
+                        </RadzenCard>
+                    </div>
+                }
             </div>
         </RadzenMenu>
     </div>

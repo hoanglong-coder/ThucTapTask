@@ -14,6 +14,8 @@ namespace TASK.Application.MLogin
 
         public string FullName { get; set; }
 
+        public int MaQuyenHeThong { get; set; }
+
         public bool Successful { get; set; }
 
         public string Error { get; set; }

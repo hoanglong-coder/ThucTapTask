@@ -21,12 +21,14 @@ namespace TASK.Application.MLogin
 
         public LoginResponse Login(LoginRequest loginRequest)
         {
-            var User = _taskDbContext.Users.Where(t => t.UserName == loginRequest.UserName && t.Password == loginRequest.Password).SingleOrDefault();
+            string PasswordHashMD5 = new MD5Hash().HashMD5(loginRequest.Password);
+            var User = _taskDbContext.Users.Where(t => t.UserName == loginRequest.UserName && t.Password == PasswordHashMD5).SingleOrDefault();
             var LoginResponse = new LoginResponse()
             {
                 MaUser = User.MaUser,
                 UserName = User.UserName,
                 FullName = User.TenUser,
+                MaQuyenHeThong = User.MaQuyenHeThong,
                 Successful = true
             };
             return LoginResponse;
@@ -40,7 +42,9 @@ namespace TASK.Application.MLogin
         /// <returns>Number</returns>
         public int CheckLogin(LoginRequest loginRequest)
         {
-            var User = _taskDbContext.Users.Where(t => t.UserName == loginRequest.UserName && t.Password == loginRequest.Password).SingleOrDefault();
+            string PasswordHashMD5 = new MD5Hash().HashMD5(loginRequest.Password);
+            var lst = _taskDbContext.Users.Select(t => t);
+            var User = _taskDbContext.Users.Where(t => t.UserName == loginRequest.UserName && t.Password == PasswordHashMD5).SingleOrDefault();
 
             if (User != null)
             {

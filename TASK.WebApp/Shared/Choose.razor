@@ -1,0 +1,9 @@
+﻿@inherits LayoutComponentBase
+<AuthorizeView>
+    <NotAuthorized>
+        <h1>Chưa đăng nhập vào lại trang <RadzenLink Path="/" Text="đăng nhập" /></h1>
+    </NotAuthorized>
+    <Authorized>
+        @Body
+    </Authorized>
+</AuthorizeView>

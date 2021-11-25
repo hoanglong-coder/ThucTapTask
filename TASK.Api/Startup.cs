@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TASK.Application.MChiTietTuan;
+using TASK.Application.MDuAn;
+using TASK.Application.MLogin;
 using TASK.Application.MQuyen;
+using TASK.Application.MTuanLamViec;
+using TASK.Application.MUser;
 using TASK.Data;
 
 namespace TASK.Api
@@ -31,6 +29,14 @@ namespace TASK.Api
         {
             services.AddControllers();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+
             //Add sql
             services.AddDbContext<TaskDbContext>(options =>
             {
@@ -40,6 +46,11 @@ namespace TASK.Api
             //Add DI
 
             services.AddTransient<IQuyenService, QuyenService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IDuAnService, DuAnService>();
+            services.AddTransient<ITuanLamViecService, TuanLamViecService>();
+            services.AddTransient<IChiTietTuanService, ChiTietTuanService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -60,6 +71,8 @@ namespace TASK.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 

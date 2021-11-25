@@ -8,23 +8,30 @@
 }
 else
 {
-        <RadzenCard Style="border:3px solid;border-radius:unset;height:176px">
-            <ProfileMenu />
-            <NavMenuTask />
-        </RadzenCard>
-
-    <div class="content">
-        @Body
-    </div>
-    <div class="footer" style="border: 3px solid">
-        <div class="row">
-            <div class="col-4"><h4><i class="fas fa-calendar-check" style="font-size: 25px;margin-right:4px"></i> @DateTime.Now.ToString("dd-MM-yyyy")</h4></div>
-            <div class="col-4" style="text-align: center; margin: auto; margin-top: auto">
-                <h4 style="">Copyright 2021</h4>
+    <AuthorizeView>
+        <NotAuthorized>
+            <h1>Chưa đăng nhập vào lại trang <RadzenLink Path="/" Text="đăng nhập" /></h1>
+        </NotAuthorized>
+        <Authorized>
+            <RadzenCard Style="border:3px solid;border-radius:unset;height:176px">
+                <ProfileMenu />
+                <NavMenuTask />
+            </RadzenCard>           
+            <div class="content">
+                @Body
             </div>
-            <div class="col-4" style="text-align: right; margin-top: auto"> <h4>Designed by ASC</h4></div>
-        </div>
-    </div>
+            <div class="footer" style="border: 3px solid">
+                <div class="row">
+                    <div class="col-4"><h4><i class="fas fa-calendar-check" style="font-size: 25px;margin-right:4px"></i> @DateTime.Now.ToString("dd-MM-yyyy")</h4></div>
+                    <div class="col-4" style="text-align: center; margin: auto; margin-top: auto">
+                        <h4 style="">Copyright 2021</h4>
+                    </div>
+                    <div class="col-4" style="text-align: right; margin-top: auto"> <h4>Designed by ASC</h4></div>
+                </div>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+
 
 
 }

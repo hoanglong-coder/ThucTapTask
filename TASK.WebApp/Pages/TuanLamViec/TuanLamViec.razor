@@ -1,82 +1,97 @@
 ﻿@page "/tuanlamviec"
 @inject HttpClient Http
-
-
-@if (forecasts == null)
+@using TASK.Application.MTuanLamViec
+@using TASK.Application.MChiTietTuan
+@if (TuanLamViecs == null)
 {
-    <div>..loading</div>
+    <PageLoading/>
 }
 else
 {<div class="container" style="max-width: 100%">
         <RadzenMenu Style="background-color: #EDEFF1">
             <h1>Tuần làm việc</h1>
             <div style="margin-left:auto">
-                <RadzenButton Text="Thêm" Icon="search" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click=OpenOrder />
+                <RadzenButton Text="Thêm" Icon="search" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
 
-                <RadzenButton Text="Xóa" Icon="search" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
-                <RadzenButton Text="Khóa kế hoạch tuần" Icon="search" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Xóa" Icon="delete" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Khóa kế hoạch tuần" Icon="lock" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
             </div>
         </RadzenMenu>
         <RadzenMenu Style="border: 2px solid; height: 55px; background-color: #EDEFF1">
             <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Tháng</h5>
             <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
                 <RadzenDropDown AllowClear="true" TValue="string" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowFiltering="true" Style="width:150px"
-                                Placeholder="Chọn tháng" Data=@forecasts TextProperty="Summary" ValueProperty="Date" />
+                                Placeholder="Chọn tháng" Data=@TuanLamViecs TextProperty="TenThang" ValueProperty="MaThangLamViec" />
             </div>
             <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Năm</h5>
             <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
                 <RadzenDropDown AllowClear="true" TValue="string" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowFiltering="true" Style="width:150px"
-                                Placeholder="Chọn năm" Data=@forecasts TextProperty="Summary" ValueProperty="Date" />
+                                Placeholder="Chọn năm" Data=@TuanLamViecs TextProperty="TenThang" ValueProperty="MaThangLamViec" />
             </div>
             <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
                 <RadzenButton Text="Tìm kiếm" Icon="search" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" />
             </div>
 
         </RadzenMenu>
-        <RadzenDataGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                        AllowSorting="true" Data="@forecasts" TItem="WeatherForecast" ColumnWidth="200px"
-                        SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedEmployees RowRender="RowRender" ExpandMode="DataGridExpandMode.Single" RowExpand="RowExpand">
+        <RadzenDataGrid FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        AllowSorting="true" Data="@TuanLamViecs" TItem="TuanLamViecResponse" ColumnWidth="200px"
+                        SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedTuanLamViec ExpandMode="DataGridExpandMode.Single" RowExpand="RowExpandAsync">
             <Template Context="order">
-                <RadzenDataGrid SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedEmployeesdDetail AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="forecasts" TItem="WeatherForecast">
+                <RadzenDataGrid SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedEmployeesdDetail  AllowPaging="true" AllowSorting="true" Data="ChiTietTuans" TItem="ChiTietTuanResponse">
                     <Columns>
-                        <RadzenDataGridColumn TItem="WeatherForecast" Width="40px" Sortable="false" Filterable="false">
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Width="40px" Sortable="false" Filterable="false">
                             <HeaderTemplate>
-                                <RadzenCheckBox TriState="false" TValue="bool" Value="@(forecasts.Any(i => selectedEmployeesdDetail != null && selectedEmployeesdDetail.Contains(i)))"
-                                                Change="@(args => selectedEmployeesdDetail = args ? forecasts.ToList() : null)" />
+                                <RadzenCheckBox TriState="false" TValue="bool" Value="@(ChiTietTuans.Any(i => selectedEmployeesdDetail != null && selectedEmployeesdDetail.Contains(i)))"
+                                                Change="@(args => selectedEmployeesdDetail = args ? ChiTietTuans.ToList() : null)" />
                             </HeaderTemplate>
                             <Template Context="data">
                                 <RadzenCheckBox TriState="false" Value="@(selectedEmployeesdDetail != null && selectedEmployeesdDetail.Contains(data))" />
                             </Template>
                         </RadzenDataGridColumn>
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureC" Title="Tuần" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="STT Tuần" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="TemperatureF" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Từ ngày" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Đến ngày" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="Số giờ làm" />
-                        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="Đã khóa">
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="TenTuan" Title="Tuần" />
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="GiaTri" Title="STT Tuần" />
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="TuNgay" Title="Từ ngày">
+                            <Template Context="tungay">
+                                @tungay.TuNgay.ToString("dd/MM")
+                            </Template>
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="DenNgay" Title="Đến ngày">
+                            <Template Context="dengay">
+                                @dengay.DenNgay.ToString("dd/MM")
+                            </Template>
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="SoGioLam" Title="Số giờ làm" />
+                        <RadzenDataGridColumn TItem="ChiTietTuanResponse" Property="TrangThai" Title="Đã khóa">
                             <Template Context="check">
-                                <RadzenCheckBox TriState="false" Value="@(selectedEmployeesdDetail != null && selectedEmployeesdDetail.Contains(check))" />
+                                <RadzenCheckBox TriState="false" Value="@(check.TrangThai==1?true:false)" />
                             </Template>
                         </RadzenDataGridColumn>
                     </Columns>
                 </RadzenDataGrid>
             </Template>
             <Columns>
-                <RadzenDataGridColumn TItem="WeatherForecast" Width="40px" Sortable="false" Filterable="false">
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Width="40px" Sortable="false" Filterable="false">
                     <HeaderTemplate>
-                        <RadzenCheckBox TriState="false" TValue="bool" Value="@(forecasts.Any(i => selectedEmployees != null && selectedEmployees.Contains(i)))"
-                                        Change="@(args => selectedEmployees = args ? forecasts.ToList() : null)" />
+                        <RadzenCheckBox TriState="false" TValue="bool" Value="@(TuanLamViecs.Any(i => selectedTuanLamViec != null && selectedTuanLamViec.Contains(i)))"
+                                        Change="@(args => selectedTuanLamViec = args ? TuanLamViecs.ToList() : null)" />
                     </HeaderTemplate>
                     <Template Context="data">
-                        <RadzenCheckBox TriState="false" Value="@(selectedEmployees != null && selectedEmployees.Contains(data))" />
+                        <RadzenCheckBox TriState="false" Value="@(selectedTuanLamViec != null && selectedTuanLamViec.Contains(data))" />
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureC" Filterable="false" Title="Giá trị" Width="70px" TextAlign="TextAlign.Center" />
-                <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="Tháng" />
-                <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Ngày bắt đầu" />
-                <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Ngày kết thúc" />
-                <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="Sửa">
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="GiaTri" Filterable="false" Title="Giá trị" Width="70px" TextAlign="TextAlign.Center" />
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="TenThang" Title="Tháng" />
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayBatDau" Title="Ngày bắt đầu">
+                    <Template Context="ngaybatdau">
+                        @ngaybatdau.NgayBatDau.ToString("dd/MM")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayKetThuc" Title="Ngày kết thúc">
+                    <Template Context="ngaykethuc">
+                        @ngaykethuc.NgayKetThuc.ToString("dd/MM")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Title="Sửa">
                     <Template Context="order">
                         <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args=>Click(order))" @onclick:stopPropagation="true">
                         </RadzenButton>

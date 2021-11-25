@@ -1,12 +1,11 @@
 ﻿@page "/"
 @layout BaseLayout
-<div class="container">
-    <center class="mt-4">      
-        <h1><img src="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" alt="Logo" style="margin-right:10px" />ASC TASK PLANNING</h1>
-        <center><h5>HỆ THỐNG QUẢN LÝ CÔNG VIỆC</h5></center>
-    </center>
-
-</div>
+ <div class="container">
+        <center class="mt-4">
+            <h1><img src="https://media.ascvn.com.vn/Media/1_HOME_ASC/Images/logo-ascvn9d865d6-77.png" alt="Logo" style="margin-right:10px" />ASC TASK PLANNING</h1>
+            <center><h5>HỆ THỐNG QUẢN LÝ CÔNG VIỆC</h5></center>
+        </center>
+    </div>
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
@@ -16,29 +15,32 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form>
+                    <EditForm Model="loginRequest" OnValidSubmit="OnLogin">
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" name="" class="form-control input_user" value="" placeholder="Tên đăng nhập">
+                            <InputText class="form-control input_user" placeholder="Tên đăng nhập" @bind-Value="loginRequest.UserName"></InputText><br />
+                        </div>
+                        <div class="input-group mb-3">
+                            <ValidationMessage style="color:white" For="()=>loginRequest.UserName"></ValidationMessage>
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="" class="form-control input_pass" value="" placeholder="Mật khẩu">
+                            <InputText type="password" class="form-control input_pass" placeholder="Mật khẩu" @bind-Value="loginRequest.Password"></InputText><br />
+                        </div>
+                        <div class="input-group mb-2">
+                            <ValidationMessage style="color:white" For="()=>loginRequest.Password"></ValidationMessage>
                         </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <RadzenButton Click=OnLogin Text="Đăng nhập" Icon="exit_to_app"  class="btn login_btn" />
+                            <RadzenButton type="submit" Text="Đăng nhập" Icon="exit_to_app" class="btn login_btn" />
                         </div>
-                    </form>
+                    </EditForm>
                 </div>
 
             </div>
         </div>
     </div>
-
-@code {
-
-}

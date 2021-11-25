@@ -96,6 +96,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayoutTask : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -104,7 +111,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
+#line 40 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
       
     public int checkLogin { get; set; }
 
