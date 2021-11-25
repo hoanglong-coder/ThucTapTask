@@ -8,6 +8,6 @@ namespace TASK.Application.MTuanLamViec
 {
     public class TuanLamViecRequest:TuanLamViecDTO
     {
-
+        public int? MaDuAn { get; set; }
     }
 }

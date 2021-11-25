@@ -23,6 +23,9 @@ namespace TASK.WebApp.Pages.TuanLamViec
         [Inject] IChiTietTuanServiceClient chiTietTuanService { get; set; }
 
         [Inject] ISyncLocalStorageService localstorage { get; set; }
+
+        [Inject] DialogService dialogService { get; set; }
+
         
         List<TuanLamViecResponse> TuanLamViecs { get; set; }
 
@@ -49,6 +52,12 @@ namespace TASK.WebApp.Pages.TuanLamViec
             Console.WriteLine($"Bạn đã bắm vào tuần mã {TuanLamViec.MaThangLamViec}");
 
             ChiTietTuans = await chiTietTuanService.GetChiTietTuanByTuanLamViec(TuanLamViec.MaThangLamViec);
+        }
+
+        public async Task ThemTuanLamViec()
+        {
+            await dialogService.OpenAsync<ThemSuaTuanLamViec>("THÊM/SỬA TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
+
         }
     }
 }

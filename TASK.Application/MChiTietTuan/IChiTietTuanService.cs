@@ -9,5 +9,7 @@ namespace TASK.Application.MChiTietTuan
     public interface IChiTietTuanService
     {
         Task<List<ChiTietTuanResponse>> GetChiTietTuanByTuanLamViec(int id);
+
+        Task<bool> InsertListChiTietTuan(List<ChiTietTuanRequest> chiTietTuanRequests);
     }
 }

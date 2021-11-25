@@ -103,6 +103,14 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\TuanLamViec\ThemSuaTuanLamViec.razor"
+using TASK.Application.MChiTietTuan;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/themtuanlamviec")]
     public partial class ThemSuaTuanLamViec : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

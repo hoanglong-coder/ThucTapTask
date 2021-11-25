@@ -43,8 +43,16 @@ namespace TASK.Api.Controllers
 
         // POST api/<TuanLamViecController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] TuanLamViecRequest tuanLamViec)
         {
+            var MaTuanLamViec = await tuanLamViecService.InsertTuanLamViec(tuanLamViec);
+            if (MaTuanLamViec == 0)
+            {
+                return BadRequest();
+            }else
+            {
+                return Ok(MaTuanLamViec);
+            }    
         }
 
         // PUT api/<TuanLamViecController>/5

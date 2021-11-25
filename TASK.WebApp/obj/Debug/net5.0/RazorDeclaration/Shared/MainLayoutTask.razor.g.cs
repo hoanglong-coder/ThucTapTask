@@ -111,7 +111,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
+#line 42 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
       
     public int checkLogin { get; set; }
 

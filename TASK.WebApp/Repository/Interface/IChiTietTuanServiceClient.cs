@@ -9,5 +9,9 @@ namespace TASK.WebApp.Repository.Interface
     public interface IChiTietTuanServiceClient
     {
         Task<List<ChiTietTuanResponse>> GetChiTietTuanByTuanLamViec(int id);
+
+        List<ChiTietTuanRequest> PhatSinhChiTietTuan(DateTime ngaybatdau, DateTime ngayketthuc);
+
+        Task<int> InsertChiTietTuan(List<ChiTietTuanRequest> lstChitiettuan,int mathanglamviec);
     }
 }

@@ -9,5 +9,7 @@ namespace TASK.WebApp.Repository.Interface
     public interface ITuanLamViecServiceClient
     {
         Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id);
+
+        Task<int> InsertTuanLamViec(TuanLamViecRequest tuanLamViec);
     }
 }

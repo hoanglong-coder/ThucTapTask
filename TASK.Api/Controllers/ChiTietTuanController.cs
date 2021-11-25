@@ -39,8 +39,15 @@ namespace TASK.Api.Controllers
 
         // POST api/<ChiTietTuanController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] List<ChiTietTuanRequest> chiTietTuans)
         {
+            if (!await chiTietTuanService.InsertListChiTietTuan(chiTietTuans))
+            {
+                return BadRequest();
+            }else
+            {
+                return Ok(1);
+            }    
         }
 
         // PUT api/<ChiTietTuanController>/5

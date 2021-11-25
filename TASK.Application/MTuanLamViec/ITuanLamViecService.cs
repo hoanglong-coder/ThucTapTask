@@ -9,5 +9,7 @@ namespace TASK.Application.MTuanLamViec
     public interface ITuanLamViecService
     {
         Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id);
+
+        Task<int> InsertTuanLamViec(TuanLamViecRequest tuanLamViec);
     }
 }

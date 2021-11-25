@@ -8,6 +8,8 @@
 }
 else
 {
+    <RadzenDialog />
+    <RadzenNotification/>
     <AuthorizeView>
         <NotAuthorized>
             <h1>Chưa đăng nhập vào lại trang <RadzenLink Path="/" Text="đăng nhập" /></h1>
@@ -16,7 +18,7 @@ else
             <RadzenCard Style="border:3px solid;border-radius:unset;height:176px">
                 <ProfileMenu />
                 <NavMenuTask />
-            </RadzenCard>           
+            </RadzenCard>
             <div class="content">
                 @Body
             </div>
