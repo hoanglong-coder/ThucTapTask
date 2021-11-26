@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using TASK.WebApp.Repository.Interface;
 using TASK.WebApp.Repository.Service;
 
+
+
 namespace TASK.WebApp
 {
     public class Program
@@ -21,6 +23,8 @@ namespace TASK.WebApp
             builder.Services.AddBlazoredLocalStorage();
 
             builder.Services.AddScoped<NotificationService>();
+
+            builder.Services.AddScoped<TooltipService>();
 
             builder.Services.AddScoped<DialogService>();
 
@@ -37,6 +41,10 @@ namespace TASK.WebApp
             builder.Services.AddScoped<ITuanLamViecServiceClient, TuanLamViecServiceClient>();
 
             builder.Services.AddScoped<IChiTietTuanServiceClient, ChiTietTuanServiceClient>();
+
+            builder.Services.AddScoped<IToDoServiceClient, ToDoServiceClient>();
+
+            builder.Services.AddScoped<IChartServiceClient, ChartServiceClientcs>();
 
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 

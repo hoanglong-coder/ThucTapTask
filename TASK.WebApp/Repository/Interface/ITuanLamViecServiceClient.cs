@@ -11,5 +11,7 @@ namespace TASK.WebApp.Repository.Interface
         Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id);
 
         Task<int> InsertTuanLamViec(TuanLamViecRequest tuanLamViec);
+
+        Task<int> DeleteTuanLamViec(IList<TuanLamViecResponse> tuanLamViecs);
     }
 }

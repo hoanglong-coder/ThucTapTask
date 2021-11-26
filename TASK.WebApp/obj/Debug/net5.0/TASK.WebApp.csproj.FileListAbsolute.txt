@@ -1097,8 +1097,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Raz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\Login\Login.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Shared\MainLayoutTask.razor.g.cs
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\f04EMhp7.gz
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\+EBkb2oY.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\yXQ5Kvpb.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\DrJDNiqr.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\rQms3tuS.gz
@@ -1114,7 +1112,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\bui
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\Q3hkz3vo.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\26fvF8NR.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\KbDtjm9k.gz
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\8AjgGsL5.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\8oFuw4+Z.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\4oXFKIA4.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\XYWgG0Cu.gz
@@ -1399,3 +1396,10 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\bui
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\aMsr6wf8.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Shared\Choose.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Shared\Choose.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\f04EMhp7.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\+EBkb2oY.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\8AjgGsL5.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\Dashboard.razor.rz.scp.css
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Dashboard\ToDoList.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\Dashboard\ToDoList.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\ToDoList.razor.rz.scp.css

@@ -14,9 +14,9 @@ namespace TASK.WebApp.Pages.TuanLamViec
 {
     public partial class TuanLamViec
     {
-        //private IEnumerable<WeatherForecast> forecasts;
         IList<TuanLamViecResponse> selectedTuanLamViec;
-        IList<ChiTietTuanResponse> selectedEmployeesdDetail;
+
+        IList<ChiTietTuanResponse> selectedEChitiettuan;
 
         [Inject] ITuanLamViecServiceClient tuanLamViecService { get; set; }
 
@@ -26,7 +26,8 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         [Inject] DialogService dialogService { get; set; }
 
-        
+        [Inject] NotificationService NotificationService { get; set; }
+
         List<TuanLamViecResponse> TuanLamViecs { get; set; }
 
         List<ChiTietTuanResponse> ChiTietTuans = new List<ChiTietTuanResponse>();
@@ -40,6 +41,8 @@ namespace TASK.WebApp.Pages.TuanLamViec
             int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
 
             TuanLamViecs = await tuanLamViecService.GetTuanLamViecByDuAn(MaDuAn);
+
+            dialogService.OnClose += Close;
         }
 
         public void Click(TuanLamViecResponse tuanLamViec)
@@ -49,15 +52,72 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         async Task RowExpandAsync(TuanLamViecResponse TuanLamViec)
         {
-            Console.WriteLine($"Bạn đã bắm vào tuần mã {TuanLamViec.MaThangLamViec}");
-
             ChiTietTuans = await chiTietTuanService.GetChiTietTuanByTuanLamViec(TuanLamViec.MaThangLamViec);
         }
 
         public async Task ThemTuanLamViec()
         {
-            await dialogService.OpenAsync<ThemSuaTuanLamViec>("THÊM/SỬA TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
+            await dialogService.OpenAsync<ThemSuaTuanLamViec>("THÊM TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
 
+        }
+        void Close(dynamic result)
+        {
+
+        }
+        async Task reset()
+        {
+            TuanLamViecs.Clear();
+
+            Console.WriteLine("restet");
+
+            int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
+
+            TuanLamViecs = await tuanLamViecService.GetTuanLamViecByDuAn(MaDuAn);
+        }
+
+        async Task DeletteAsync()
+        {
+            if (selectedTuanLamViec != null)
+            {
+                int check = await tuanLamViecService.DeleteTuanLamViec(selectedTuanLamViec);
+
+                if (check == 1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Xóa thành công", Duration = 2000 };
+                    ShowNotification(noti);
+                    selectedTuanLamViec.Clear();
+                    await reset();
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể xóa do đã lên công việc", Duration = 2000 };
+                    selectedTuanLamViec.Clear();
+                    ShowNotification(noti);
+                }
+            }
+            if (selectedEChitiettuan != null)
+            {
+                int check = await chiTietTuanService.DeleteChiTietTuan(selectedEChitiettuan);
+                
+                if(check==1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Xóa thành công", Duration = 2000 };
+                    ShowNotification(noti);
+                    selectedEChitiettuan.Clear();
+                    await reset();
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể xóa do đã lên công việc", Duration = 2000 };
+                    selectedTuanLamViec.Clear();
+                    ShowNotification(noti);
+                }
+            }
+            
+        }
+        void ShowNotification(NotificationMessage message)
+        {
+            NotificationService.Notify(message);
         }
     }
 }

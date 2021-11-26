@@ -20,6 +20,6 @@ namespace TASK.Application.MChiTietTuan
 
         public int SoGioLam { set; get; }
 
-        public int TrangThai { set; get; }        
+        public bool TrangThai { set; get; }        
     }
 }

@@ -13,5 +13,9 @@ namespace TASK.WebApp.Repository.Interface
         List<ChiTietTuanRequest> PhatSinhChiTietTuan(DateTime ngaybatdau, DateTime ngayketthuc);
 
         Task<int> InsertChiTietTuan(List<ChiTietTuanRequest> lstChitiettuan,int mathanglamviec);
+
+        Task<int> DeleteChiTietTuan(IList<ChiTietTuanResponse> machitiettuan);
+
+        Task<int> DeleteChiTietTuanAll(int mathanglamviec);
     }
 }

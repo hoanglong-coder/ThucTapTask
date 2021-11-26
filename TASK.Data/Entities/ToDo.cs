@@ -17,7 +17,7 @@ namespace TASK.Data.Entities
         public DateTime NgayDenHang { set; get; }
         public string NoiDung { set; get; }
         public string GhiChu { set; get; }
-        public int TrangThai { set; get; }
+        public bool TrangThai { set; get; }
         public int? MaDuAn { set; get; }
         public virtual DuAn DuAn { set; get; }
     }

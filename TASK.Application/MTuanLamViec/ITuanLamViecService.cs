@@ -11,5 +11,7 @@ namespace TASK.Application.MTuanLamViec
         Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id);
 
         Task<int> InsertTuanLamViec(TuanLamViecRequest tuanLamViec);
+
+        Task<int> DeleteTuanLamViec(List<TuanLamViecRequest> tuanLamViecs);
     }
 }

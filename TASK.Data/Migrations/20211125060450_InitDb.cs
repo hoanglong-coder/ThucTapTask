@@ -116,7 +116,7 @@ namespace TASK.Data.Migrations
                     DenNgay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GiaTri = table.Column<int>(type: "int", nullable: false),
                     SoGioLam = table.Column<int>(type: "int", nullable: false),
-                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
                     MaThangLamViec = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -197,7 +197,7 @@ namespace TASK.Data.Migrations
                     NgayDenHang = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NoiDung = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
                     MaDuAn = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

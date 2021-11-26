@@ -11,5 +11,9 @@ namespace TASK.Application.MChiTietTuan
         Task<List<ChiTietTuanResponse>> GetChiTietTuanByTuanLamViec(int id);
 
         Task<bool> InsertListChiTietTuan(List<ChiTietTuanRequest> chiTietTuanRequests);
+
+        Task<int> DeleteChiTietTuan(List<ChiTietTuanRequest> machitiettuan);
+
+        Task<int> DeleteChiTietTuanAll(int mathanglamviec);
     }
 }

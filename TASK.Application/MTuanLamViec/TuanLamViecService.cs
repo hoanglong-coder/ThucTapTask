@@ -18,6 +18,32 @@ namespace TASK.Application.MTuanLamViec
             _taskDbContext = taskDbContext;
         }
 
+        public async Task<int> DeleteTuanLamViec(List<TuanLamViecRequest> tuanLamViecs)
+        {
+            try
+            {
+                foreach (var t in tuanLamViecs)
+                {
+
+                    TuanLamViec tuanLamViec = _taskDbContext.TuanLamViecs.Find(t.MaThangLamViec);
+
+                    _taskDbContext.TuanLamViecs.Remove(tuanLamViec);
+
+                    await _taskDbContext.SaveChangesAsync();
+
+
+                }
+                return 1;
+            }
+            catch (Exception e)
+            {
+                string a = e.Message;
+
+                return 0;
+            }
+
+        }
+
         public async Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id)
         {
             var lstTuanLamViec = await _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).Select(t => new TuanLamViecResponse()

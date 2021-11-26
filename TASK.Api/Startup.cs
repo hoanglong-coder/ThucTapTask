@@ -11,6 +11,8 @@ using TASK.Application.MLogin;
 using TASK.Application.MQuyen;
 using TASK.Application.MTuanLamViec;
 using TASK.Application.MUser;
+using TASK.Application.MToDoList;
+using TASK.Application.MChart;
 using TASK.Data;
 
 namespace TASK.Api
@@ -51,6 +53,8 @@ namespace TASK.Api
             services.AddTransient<IDuAnService, DuAnService>();
             services.AddTransient<ITuanLamViecService, TuanLamViecService>();
             services.AddTransient<IChiTietTuanService, ChiTietTuanService>();
+            services.AddTransient<IToDoListService, ToDoListService>();
+            services.AddTransient<IChartService, ChartService>();
 
             services.AddSwaggerGen(c =>
             {

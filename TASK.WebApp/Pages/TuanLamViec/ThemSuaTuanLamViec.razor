@@ -6,7 +6,7 @@
     }
 </style>
 
-<EditForm Model="TuanLamViecRequest" OnSubmit="InsertTuanLamViec" >
+<EditForm Model="TuanLamViecRequest" OnSubmit="InsertTuanLamViecLuuThem" >
     <div class="row">
         <div class="col-md-4 align-items-center d-flex">
             <RadzenLabel Text="Tên tháng*" />
@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-12">
 
-            <RadzenDataGrid TItem="ChiTietTuanRequest" Data="@data" EmptyText="Chưa có phát sinh tuần" EditMode="DataGridEditMode.Single" @ref="ordersGrid">
+            <RadzenDataGrid TItem="ChiTietTuanRequest" Data="@data" EmptyText="Chưa có phát sinh tuần" EditMode="DataGridEditMode.Single" @ref="chitiettuangrid" >
                 <Columns>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="TenTuan" Title="Tên tuần" TextAlign="TextAlign.Center" Width="150px">
                         <EditTemplate Context="chitiet">
@@ -59,13 +59,13 @@
                     </RadzenDataGridColumn>
 
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="TuNgay" Title="Từ ngày" TextAlign="TextAlign.Center">
-                        <Template Context="tungay">
-                            @tungay.TuNgay.ToString("dd/MM")
+                        <Template Context="chitiet">
+                            @chitiet.TuNgay.ToString("dd/MM")
                         </Template>
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="DenNgay" Title="Đến ngày" TextAlign="TextAlign.Center">
-                        <Template Context="denngay">
-                            @denngay.DenNgay.ToString("dd/MM")
+                        <Template Context="chitiet">
+                            @chitiet.DenNgay.ToString("dd/MM")
                         </Template>
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="SoGioLam" Title="Số giờ làm" TextAlign="TextAlign.Center">
@@ -75,7 +75,7 @@
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="TrangThai" Title="Đã khóa" TextAlign="TextAlign.Center">
                         <Template Context="check">
-                            <RadzenCheckBox TriState="false" @bind-Value="@(check.TrangThai==1?true:false)" />
+                            <RadzenCheckBox TriState="false"  @bind-Value="check.TrangThai" />
                         </Template>
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
@@ -100,10 +100,10 @@
             <RadzenButton Text="Lưu & thêm" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit"/>
         </div>
         <div class="col-md-4 align-items-center d-flex">
-            <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Icon="save"  Style="margin-left:auto;margin-right:auto"  Click="PhatSinhTuan" />
+            <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>changesave())" Icon="save"  Style="margin-left:auto;margin-right:auto"  ButtonType="ButtonType.Submit" />
         </div>
         <div class="col-md-4">
-            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary"  Style="float: left " Icon="cancel"  Click="PhatSinhTuan" />
+            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))"   Style="float: left " Icon="cancel" />
         </div>
     </div>
 </EditForm>

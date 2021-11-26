@@ -16,7 +16,7 @@ namespace TASK.Data.Entities
         public DateTime DenNgay { set; get; }
         public int GiaTri { set; get; }
         public int SoGioLam { set; get; }
-        public int TrangThai { set; get; }
+        public bool TrangThai { set; get; }
         public int? MaThangLamViec { set; get; }
         public virtual TuanLamViec TuanLamViec { set; get; }
         public List<CongViec> CongViecs { get; set; }

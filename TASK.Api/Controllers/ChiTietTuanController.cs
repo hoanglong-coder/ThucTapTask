@@ -21,13 +21,6 @@ namespace TASK.Api.Controllers
             this.chiTietTuanService = chiTietTuanService;
         }
 
-        // GET: api/<ChiTietTuanController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET api/<ChiTietTuanController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -50,16 +43,30 @@ namespace TASK.Api.Controllers
             }    
         }
 
-        // PUT api/<ChiTietTuanController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // DELETE api/<ChiTietTuanController>/5
+        [HttpPost("DeleteChitiet")]
+        public async Task<IActionResult> DeleteChitiettuan([FromBody] List<ChiTietTuanRequest> chiTietTuans)
         {
+            var check = await chiTietTuanService.DeleteChiTietTuan(chiTietTuans);
+
+            if (check != 1)
+            {
+                return Ok(2);
+            }
+            return Ok(check);
         }
 
         // DELETE api/<ChiTietTuanController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteChitietAll/{id}")]
+        public async Task<IActionResult> DeleteAll(int id)
         {
+            var check = await chiTietTuanService.DeleteChiTietTuanAll(id);
+
+            if (check != 1)
+            {
+                return BadRequest();
+            }
+            return Ok(check);
         }
     }
 }

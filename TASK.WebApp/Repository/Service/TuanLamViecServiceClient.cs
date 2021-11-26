@@ -22,6 +22,15 @@ namespace TASK.WebApp.Repository.Service
             this.localStorageService = localStorageService;
         }
 
+        public async Task<int> DeleteTuanLamViec(IList<TuanLamViecResponse> tuanLamViecs)
+        {
+            var Check = await httpClient.PostAsJsonAsync("/api/TuanLamViec/DeleteTuanLamViec", tuanLamViecs);
+
+            var content = await Check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
         public async Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id)
         {
             var lstTuanLamViec = await httpClient.GetFromJsonAsync<List<TuanLamViecResponse>>($"/api/TuanLamViec/{id}");

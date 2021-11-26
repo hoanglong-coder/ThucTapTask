@@ -18,6 +18,24 @@ namespace TASK.WebApp.Repository.Service
             this.httpClient = httpClient;
         }
 
+        public async Task<int> DeleteChiTietTuan(IList<ChiTietTuanResponse> selectedEChitiettuan)
+        {
+            var Check = await httpClient.PostAsJsonAsync("/api/ChiTietTuan/DeleteChitiet", selectedEChitiettuan);
+
+            var content = await Check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
+        public async Task<int> DeleteChiTietTuanAll(int mathanglamviec)
+        {
+            var Check = await httpClient.DeleteAsync($"/api/ChiTietTuan/DeleteAll/{mathanglamviec}");
+
+            var content = await Check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
         public async Task<List<ChiTietTuanResponse>> GetChiTietTuanByTuanLamViec(int id)
         {
             var lstchitiettuan = await httpClient.GetFromJsonAsync<List<ChiTietTuanResponse>>($"/api/chitiettuan/{id}");
@@ -27,22 +45,33 @@ namespace TASK.WebApp.Repository.Service
 
         public async Task<int> InsertChiTietTuan(List<ChiTietTuanRequest> lstChitiettuan, int mathanglamviec)
         {
-            var chitiettuan =  lstChitiettuan.Select(t => new ChiTietTuanRequest() { 
-            
-                TenTuan = t.TenTuan,
-                GiaTri = t.GiaTri,
-                TuNgay = t.TuNgay,
-                DenNgay = t.DenNgay,
-                SoGioLam = t.SoGioLam,
-                TrangThai = t.TrangThai,
-                MaThangLamViec = mathanglamviec
-            
-            });
-            var Check = await httpClient.PostAsJsonAsync("/api/ChiTietTuan", chitiettuan);
 
-            var content = await Check.Content.ReadAsStringAsync();
+            if (lstChitiettuan.Count() == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                var chitiettuan = lstChitiettuan.Select(t => new ChiTietTuanRequest()
+                {
 
-            return int.Parse(content);
+                    TenTuan = t.TenTuan,
+                    GiaTri = t.GiaTri,
+                    TuNgay = t.TuNgay,
+                    DenNgay = t.DenNgay,
+                    SoGioLam = t.SoGioLam,
+                    TrangThai = t.TrangThai,
+                    MaThangLamViec = mathanglamviec
+
+                });
+                var Check = await httpClient.PostAsJsonAsync("/api/ChiTietTuan", chitiettuan);
+
+                var content = await Check.Content.ReadAsStringAsync();
+
+                return int.Parse(content);
+            }
+
+           
         }
 
         public List<ChiTietTuanRequest> PhatSinhChiTietTuan(DateTime ngaybatdau, DateTime ngayketthuc)
@@ -60,7 +89,7 @@ namespace TASK.WebApp.Repository.Service
                 chiTietTuan.TuNgay = dateTimetemp;
                 chiTietTuan.DenNgay = dateTimetemp.AddDays(4);
                 chiTietTuan.SoGioLam = 40;
-                chiTietTuan.TrangThai = 0;
+                chiTietTuan.TrangThai = false;
                 chiTietTuans.Add(chiTietTuan);
 
                 dateTimetemp = chiTietTuan.DenNgay.AddDays(3);

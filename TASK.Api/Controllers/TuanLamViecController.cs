@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TASK.Application.MChiTietTuan;
 using TASK.Application.MTuanLamViec;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,9 +17,12 @@ namespace TASK.Api.Controllers
 
         private readonly ITuanLamViecService tuanLamViecService;
 
-        public TuanLamViecController(ITuanLamViecService tuanLamViecService)
+        private readonly IChiTietTuanService chiTietTuanService;
+
+        public TuanLamViecController(ITuanLamViecService tuanLamViecService, IChiTietTuanService chiTietTuanService)
         {
             this.tuanLamViecService = tuanLamViecService;
+            this.chiTietTuanService = chiTietTuanService;
         }
 
         // GET: api/<TuanLamViecController>
@@ -54,7 +58,23 @@ namespace TASK.Api.Controllers
                 return Ok(MaTuanLamViec);
             }    
         }
+        [HttpPost("DeleteTuanLamViec")]
+        public async Task<IActionResult> PostTuanLamViec([FromBody] List<TuanLamViecRequest> tuanLamViecs)
+        {
+            //xóa chi tiết trước
+            foreach (var item in tuanLamViecs)
+            {
+               await chiTietTuanService.DeleteChiTietTuanAll(item.MaThangLamViec);
+            }
 
+            var check = await tuanLamViecService.DeleteTuanLamViec(tuanLamViecs);
+
+            if (check != 1)
+            {
+                return Ok(2);
+            }
+            return Ok(check);
+        }
         // PUT api/<TuanLamViecController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

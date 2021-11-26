@@ -110,6 +110,13 @@ using System.Globalization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\Dashboard\Dashboard.razor"
+using TASK.Application.MToDoList;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Dashboard")]
     public partial class Dashboard : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -119,65 +126,12 @@ using System.Globalization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\Dashboard\Dashboard.razor"
-       
-    class DataItem
-    {
-        public string Quarter { get; set; }
-        public double Revenue { get; set; }
-    }
+#line 151 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\Dashboard\Dashboard.razor"
+      
 
-    string FormatAsUSD(object value)
-    {
-        return ((double)value).ToString("C0", CultureInfo.CreateSpecificCulture("en-US"));
-    }
+    IEnumerable<ColorScheme> colorSchemes = Enum.GetValues(typeof(ColorScheme)).Cast<ColorScheme>();
+    ColorScheme colorScheme = ColorScheme.Palette;
 
-    DataItem[] revenue2019 = new DataItem[] {
-        new DataItem
-        {
-            Quarter = "Q1",
-            Revenue = 234000
-        },
-        new DataItem
-        {
-            Quarter = "Q2",
-            Revenue = 284000
-        },
-        new DataItem
-        {
-            Quarter = "Q3",
-            Revenue = 274000
-        },
-        new DataItem
-        {
-            Quarter = "Q4",
-            Revenue = 294000
-        },
-    };
-
-    DataItem[] revenue2020 = new DataItem[] {
-        new DataItem
-        {
-            Quarter = "Q1",
-            Revenue = 254000
-        },
-        new DataItem
-        {
-            Quarter = "Q2",
-            Revenue = 324000
-        },
-        new DataItem
-        {
-            Quarter = "Q3",
-            Revenue = 354000
-        },
-        new DataItem
-        {
-            Quarter = "Q4",
-            Revenue = 394000
-        },
-
-    };
 
 #line default
 #line hidden

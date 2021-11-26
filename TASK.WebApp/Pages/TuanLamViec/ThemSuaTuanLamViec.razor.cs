@@ -19,13 +19,17 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         [Inject] ITuanLamViecServiceClient tuanLamViecServiceClient { get; set; }
 
+        [Inject] DialogService dialogService { get; set; }
+
         [Inject] NotificationService NotificationService { get; set; }
 
         public TuanLamViecRequest TuanLamViecRequest = new TuanLamViecRequest();
 
         List<ChiTietTuanRequest> data = new List<ChiTietTuanRequest>();
 
-        RadzenDataGrid<ChiTietTuanRequest> ordersGrid;
+        RadzenDataGrid<ChiTietTuanRequest> chitiettuangrid;
+
+        public int checksave = 0;
 
         void PhatSinhTuan()
         {
@@ -35,49 +39,69 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         void EditRow(ChiTietTuanRequest order)
         {
-            ordersGrid.EditRow(order);
+            chitiettuangrid.EditRow(order);
         }
 
         void SaveRow(ChiTietTuanRequest order)
         {
-            ordersGrid.UpdateRow(order);
+            chitiettuangrid.UpdateRow(order);
         }
 
         void CancelEdit(ChiTietTuanRequest order)
         {
-            ordersGrid.CancelEditRow(order);
+            chitiettuangrid.CancelEditRow(order);
         }
-        void write()
+        async Task InsertTuanLamViecLuuThem(EditContext context)
         {
-            foreach (var item in data)
+            if (checksave == 0)
             {
-                Console.WriteLine($"Tên tuần {item.TenTuan} Số giờ {item.SoGioLam}");
-            }
-        }
+                int mathanglamviec = await tuanLamViecServiceClient.InsertTuanLamViec(TuanLamViecRequest);
 
+                int check = await tietTuanServiceClient.InsertChiTietTuan(data, mathanglamviec);
 
-        async Task InsertTuanLamViec(EditContext editContext)
-        {
-         
-            int mathanglamviec = await tuanLamViecServiceClient.InsertTuanLamViec(TuanLamViecRequest);
+                if (check == 1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
+                    ShowNotification(noti);
+                    TuanLamViecRequest.Clear();
 
-            int check = await tietTuanServiceClient.InsertChiTietTuan(data, mathanglamviec);
-
-            if (check == 1)
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
+                    ShowNotification(noti);
+                }
+            }else
             {
-                NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
-                ShowNotification(noti);
-            }
-            else
-            {
-                NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
-                ShowNotification(noti);
-            }
+                
+                int mathanglamviec = await tuanLamViecServiceClient.InsertTuanLamViec(TuanLamViecRequest);
 
+                int check = await tietTuanServiceClient.InsertChiTietTuan(data, mathanglamviec);
+
+                if (check == 1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
+                    ShowNotification(noti);
+                    TuanLamViecRequest.Clear();
+                    dialogService.Close(true);
+
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
+                    ShowNotification(noti);
+                }
+            }
+          
         }
         void ShowNotification(NotificationMessage message)
         {
             NotificationService.Notify(message);
+        }
+
+        void changesave()
+        {
+            checksave = 1;
         }
     }
 }
