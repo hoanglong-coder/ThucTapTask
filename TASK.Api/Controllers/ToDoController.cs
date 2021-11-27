@@ -30,9 +30,9 @@ namespace TASK.Api.Controllers
 
         // GET api/<ToDoController>/5
         [HttpGet("GetToDoByDuAn")]
-        public async Task<IActionResult> Get(int MaDuAn,Guid MaUser)
+        public async Task<IActionResult> Get(int MaDuAn,Guid MaUser,int skip, int take)
         {
-            var lstToDo = await toDoListService.GetToDoByDuAn(MaDuAn, MaUser);
+            var lstToDo = await toDoListService.GetToDoByDuAn(MaDuAn, MaUser,skip,take);
 
             if (lstToDo == null)
             {

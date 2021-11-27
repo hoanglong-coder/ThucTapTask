@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TASK.Application.MChart;
-using TASK.Application.MToDoList;
 using TASK.WebApp.Repository.Interface;
 
 namespace TASK.WebApp.Pages.Dashboard
@@ -14,24 +12,47 @@ namespace TASK.WebApp.Pages.Dashboard
     {
         [Inject] ILocalStorageService localstorage { get; set; }
 
-        [Inject] IToDoServiceClient toDoServiceClient { get; set; }
-
         [Inject] IChartServiceClient chartServiceClient { get; set; }
 
-
-        List<ChartDashboard> chartDashboards = new List<ChartDashboard>();
-
-        public List<ToDoListResponse> toDoLists = new List<ToDoListResponse>();
+        List<ChartDashboard> chartDashboards { get; set; }
+       
+        string[] colordashboard;
 
         protected override async Task OnInitializedAsync()
         {
             int MaDuAn = await localstorage.GetItemAsync<int>("MaDuAn");
 
-            Guid MaUser  = await localstorage.GetItemAsync<Guid>("UserID");
-
-            toDoLists = await toDoServiceClient.GetToDoByDuAn(MaDuAn, MaUser);
-
+            Guid MaUser = await localstorage.GetItemAsync<Guid>("UserID");
+         
             chartDashboards = await chartServiceClient.GetChartDashboards(MaUser, MaDuAn);
+
+            colordashboard = new string[chartDashboards.Count];
+
+            for (int i = 0; i < chartDashboards.Count; i++)
+            {
+                colordashboard[i] = GetColor(chartDashboards[i].MucDoHoanThanh);
+            }
+
+
+        }     
+        public string GetColor(int mucdo)
+        {
+            if (mucdo >= 90)
+            {
+                return "#006400";
+            }else if(mucdo >= 75)
+            {
+                return "#ffff00";
+            }
+            else if (mucdo >= 60)
+            {
+                return "#ff8c00";
+            }
+            else 
+            {
+                return "#ee4000";
+            }
+            
         }
     }
 }

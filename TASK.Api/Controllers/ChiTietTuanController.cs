@@ -21,7 +21,6 @@ namespace TASK.Api.Controllers
             this.chiTietTuanService = chiTietTuanService;
         }
 
-        // GET api/<ChiTietTuanController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -30,7 +29,6 @@ namespace TASK.Api.Controllers
             return Ok(lstChitiettuan);
         }
 
-        // POST api/<ChiTietTuanController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] List<ChiTietTuanRequest> chiTietTuans)
         {
@@ -43,7 +41,6 @@ namespace TASK.Api.Controllers
             }    
         }
 
-        // DELETE api/<ChiTietTuanController>/5
         [HttpPost("DeleteChitiet")]
         public async Task<IActionResult> DeleteChitiettuan([FromBody] List<ChiTietTuanRequest> chiTietTuans)
         {
@@ -56,7 +53,18 @@ namespace TASK.Api.Controllers
             return Ok(check);
         }
 
-        // DELETE api/<ChiTietTuanController>/5
+        [HttpPost("UpdateChitiettuanlamviec")]
+        public async Task<IActionResult> UpdateChiTietTuan([FromBody] List<ChiTietTuanRequest> chiTietTuans)
+        {
+            var check = await chiTietTuanService.UpdateChiTietTuanLamViec(chiTietTuans);
+
+            if (check != 1)
+            {
+                return Ok(2);
+            }
+            return Ok(check);
+        }
+
         [HttpDelete("DeleteChitietAll/{id}")]
         public async Task<IActionResult> DeleteAll(int id)
         {
@@ -65,6 +73,18 @@ namespace TASK.Api.Controllers
             if (check != 1)
             {
                 return BadRequest();
+            }
+            return Ok(check);
+        }
+
+        [HttpPost("Khoakehoachtuan")]
+        public async Task<IActionResult> KhoaKeHoachTuan([FromBody] List<ChiTietTuanRequest> chiTietTuans)
+        {
+            var check = await chiTietTuanService.KhoaKeHoachTuan(chiTietTuans);
+
+            if (check != 1)
+            {
+                return Ok(2);
             }
             return Ok(check);
         }

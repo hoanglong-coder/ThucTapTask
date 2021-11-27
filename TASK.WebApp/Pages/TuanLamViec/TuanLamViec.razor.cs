@@ -28,26 +28,42 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         [Inject] NotificationService NotificationService { get; set; }
 
+        TuanLamViecPaging TuanLamViecPaging { get; set; }
+
         List<TuanLamViecResponse> TuanLamViecs { get; set; }
 
         List<ChiTietTuanResponse> ChiTietTuans = new List<ChiTietTuanResponse>();
 
-        List<DateTime> Name = new List<DateTime>();
+        int MaThangLamViec;
 
+        int pageSize = 5;
 
+        int count = -1;
+
+        int skippage;
+        int takepage;
 
         protected override async Task OnInitializedAsync()
         {
             int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
 
-            TuanLamViecs = await tuanLamViecService.GetTuanLamViecByDuAn(MaDuAn);
+            TuanLamViecPaging = await tuanLamViecService.GetTuanLamViecByDuAnPageing(MaDuAn, 0, pageSize);
+
+            count = TuanLamViecPaging.Count;
+
+            TuanLamViecs = TuanLamViecPaging.ListTuanLamViecRequest;
 
             dialogService.OnClose += Close;
         }
 
-        public void Click(TuanLamViecResponse tuanLamViec)
+        public async Task SuaTuanLamViec(TuanLamViecResponse tuanLamViec)
         {
             Console.WriteLine($"Da click{tuanLamViec.TenThang}");
+
+            await dialogService.OpenAsync<SuaTuanLamViec>($"Sửa Tháng {tuanLamViec.TenThang}",
+                                                        new Dictionary<string, object>() { { "Mathanglamviec", tuanLamViec.MaThangLamViec}},
+                                                        new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
+
         }
 
         async Task RowExpandAsync(TuanLamViecResponse TuanLamViec)
@@ -57,7 +73,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         public async Task ThemTuanLamViec()
         {
-            await dialogService.OpenAsync<ThemSuaTuanLamViec>("THÊM TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
+            await dialogService.OpenAsync<ThemTuanLamViec>("THÊM TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
 
         }
         void Close(dynamic result)
@@ -72,7 +88,11 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
             int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
 
-            TuanLamViecs = await tuanLamViecService.GetTuanLamViecByDuAn(MaDuAn);
+            TuanLamViecPaging = await tuanLamViecService.GetTuanLamViecByDuAnPageing(MaDuAn, skippage, takepage);
+
+            count = TuanLamViecPaging.Count;
+
+            TuanLamViecs = TuanLamViecPaging.ListTuanLamViecRequest;
         }
 
         async Task DeletteAsync()
@@ -85,13 +105,13 @@ namespace TASK.WebApp.Pages.TuanLamViec
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Xóa thành công", Duration = 2000 };
                     ShowNotification(noti);
-                    selectedTuanLamViec.Clear();
+                    selectedTuanLamViec = new List<TuanLamViecResponse>();
                     await reset();
                 }
                 else
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể xóa do đã lên công việc", Duration = 2000 };
-                    selectedTuanLamViec.Clear();
+                    selectedTuanLamViec = new List<TuanLamViecResponse>();
                     ShowNotification(noti);
                 }
             }
@@ -103,21 +123,72 @@ namespace TASK.WebApp.Pages.TuanLamViec
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Xóa thành công", Duration = 2000 };
                     ShowNotification(noti);
-                    selectedEChitiettuan.Clear();
+                    selectedEChitiettuan = new List<ChiTietTuanResponse>();
                     await reset();
                 }
                 else
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể xóa do đã lên công việc", Duration = 2000 };
-                    selectedTuanLamViec.Clear();
+                    selectedEChitiettuan = new List<ChiTietTuanResponse>();
                     ShowNotification(noti);
                 }
             }
             
         }
+
+        async Task KhoaKeHoach()
+        {
+            if (selectedEChitiettuan != null)
+            {
+                var chitiettuanrequest = selectedEChitiettuan.Select(t => new ChiTietTuanRequest()
+                {
+                    MaTuanChiTiet = t.MaTuanChiTiet,
+                    TenTuan = t.TenTuan,
+                    GiaTri = t.GiaTri,
+                    DenNgay = t.DenNgay,
+                    TuNgay = t.TuNgay,
+                    TrangThai = t.TrangThai,
+                    SoGioLam = t.SoGioLam,
+                }).ToList();
+
+
+                int check = await chiTietTuanService.KhoaKeHoachTuan(chitiettuanrequest);
+
+                if (check == 1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Khóa thành công", Duration = 2000 };
+                    ShowNotification(noti);
+                    selectedEChitiettuan = new List<ChiTietTuanResponse>();
+                    await reset();
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Khóa thất bại", Duration = 2000 };
+                    selectedEChitiettuan = new List<ChiTietTuanResponse>();
+                    ShowNotification(noti);
+                }
+            }
+        }
         void ShowNotification(NotificationMessage message)
         {
             NotificationService.Notify(message);
+        }
+
+        async Task PageChanged(PagerEventArgs args)
+        {
+            skippage = args.Skip;
+            takepage = args.Top;
+            int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
+
+            TuanLamViecPaging = await tuanLamViecService.GetTuanLamViecByDuAnPageing(MaDuAn, args.Skip, args.Top);
+
+            TuanLamViecs = TuanLamViecPaging.ListTuanLamViecRequest;
+        }
+        void OnChange(object value)
+        {
+            var str = value is IEnumerable<object> ? string.Join(", ", (IEnumerable<object>)value) : value;
+
+            Console.WriteLine($"Value changed to {str}");
         }
     }
 }

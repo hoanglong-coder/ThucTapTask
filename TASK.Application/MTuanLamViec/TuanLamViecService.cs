@@ -87,5 +87,68 @@ namespace TASK.Application.MTuanLamViec
             }
 
         }
+
+        public async Task<TuanLamViecResponse> GetTuanLamViecByMaThangLamViec(int id)
+        {
+            var tuanlamviec = await _taskDbContext.TuanLamViecs.FindAsync(id);
+
+            var tuanlamviecresponse = new TuanLamViecResponse();
+            tuanlamviecresponse.MaThangLamViec = tuanlamviec.MaThangLamViec;
+            tuanlamviecresponse.TenThang = tuanlamviec.TenThang;
+            tuanlamviecresponse.GiaTri = tuanlamviec.GiaTri;
+            tuanlamviecresponse.NgayBatDau = tuanlamviec.NgayBatDau;
+            tuanlamviecresponse.NgayKetThuc = tuanlamviec.NgayKetThuc;
+
+
+            return tuanlamviecresponse;
+
+        }
+
+        public async Task<int> UpdateTuanLamViec(TuanLamViecRequest tuanLamViecRequest)
+        {
+            try
+            {
+                TuanLamViec tuanLamViec = new TuanLamViec();
+                tuanLamViec.MaThangLamViec = tuanLamViecRequest.MaThangLamViec;
+                tuanLamViec.TenThang = tuanLamViecRequest.TenThang;
+                tuanLamViec.GiaTri = tuanLamViecRequest.GiaTri;
+                tuanLamViec.NgayBatDau = tuanLamViecRequest.NgayBatDau;
+                tuanLamViec.NgayKetThuc = tuanLamViecRequest.NgayKetThuc;
+                tuanLamViec.MaDuAn = tuanLamViecRequest.MaDuAn;
+
+                _taskDbContext.TuanLamViecs.Update(tuanLamViec);
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+        }
+
+        public async Task<TuanLamViecPaging> GetTuanLamViecByDuAnPageing(int id, int skip, int take)
+        {
+            var lstTuanLamViec = await _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).Select(t => new TuanLamViecResponse()
+            {
+
+                MaThangLamViec = t.MaThangLamViec,
+                TenThang = t.TenThang,
+                GiaTri = t.GiaTri,
+                NgayBatDau = t.NgayBatDau,
+                NgayKetThuc = t.NgayKetThuc,
+
+            }).Skip(skip).Take(take).ToListAsync();
+
+            int Count = _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).Count();
+
+            TuanLamViecPaging tuanLamViecPaging = new TuanLamViecPaging() {
+                Count = Count,
+                ListTuanLamViecRequest = lstTuanLamViec            
+            };
+            return tuanLamViecPaging;
+        }
     }
 }

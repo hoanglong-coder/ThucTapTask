@@ -25,25 +25,45 @@ namespace TASK.Api.Controllers
             this.chiTietTuanService = chiTietTuanService;
         }
 
-        // GET: api/<TuanLamViecController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/<TuanLamViecController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
 
             var lstTuanLamViec = await tuanLamViecService.GetTuanLamViecByDuAn(id);
 
-            await Task.Delay(1000);
+            return Ok(lstTuanLamViec);
+
+        }
+
+        [HttpGet("gettuanlamviecpaging")]
+        public async Task<IActionResult> Gettuanlamviecpaging(int id,int skip,int take)
+        {
+
+            var lstTuanLamViec = await tuanLamViecService.GetTuanLamViecByDuAnPageing(id,skip,take);
 
             return Ok(lstTuanLamViec);
 
         }
+
+        [HttpGet("Getchitiettuanlamviec")]
+        public async Task<IActionResult> GetTuanLamViecByMaThang(int id)
+        {
+
+            var TuanLamViec = await tuanLamViecService.GetTuanLamViecByMaThangLamViec(id);
+
+            return Ok(TuanLamViec);
+
+        }
+        [HttpPost("Updatetuanlamviec")]
+        public async Task<IActionResult> UpdateTuanLamViec([FromBody] TuanLamViecRequest tuanLamViec)
+        {
+            var check = await tuanLamViecService.UpdateTuanLamViec(tuanLamViec);
+
+            return Ok(check);
+
+        }
+
 
         // POST api/<TuanLamViecController>
         [HttpPost]
@@ -75,16 +95,6 @@ namespace TASK.Api.Controllers
             }
             return Ok(check);
         }
-        // PUT api/<TuanLamViecController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/<TuanLamViecController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

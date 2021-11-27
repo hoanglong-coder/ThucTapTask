@@ -1306,8 +1306,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Raz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Shared\PageLoading.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Shared\PageLoading.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Shared\PageLoading.razor.rz.scp.css
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\TuanLamViec\ThemSuaTuanLamViec.razor.g.cs
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\TuanLamViec\ThemSuaTuanLamViec.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\Blazored.LocalStorage.dll.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Authorization.dll.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\Microsoft.Data.SqlClient.dll.gz
@@ -1383,7 +1381,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\bui
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\Iqn5yqgD.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\LYogU63z.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\xvZ7zL8+.gz
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\56Qt4jxv.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\JikUQUOk.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\P5Qn8AES.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\9HYWKKOi.gz
@@ -1400,6 +1397,14 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\bui
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\+EBkb2oY.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\8AjgGsL5.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\Dashboard.razor.rz.scp.css
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Dashboard\ToDoList.razor.g.cs
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\Dashboard\ToDoList.razor.g.cs
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\ToDoList.razor.rz.scp.css
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\ChartJs.Blazor.dll.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\ChartJs.Blazor.dll
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\JDBovnzO.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\vicE4x3g.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Dashboard\ToDoListDashboard.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\Dashboard\ToDoListDashboard.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\ToDoListDashboard.razor.rz.scp.css
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\TuanLamViec\ThemTuanLamViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\TuanLamViec\ThemTuanLamViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\TuanLamViec\SuaTuanLamViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\TuanLamViec\SuaTuanLamViec.razor.g.cs

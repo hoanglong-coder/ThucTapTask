@@ -1,4 +1,5 @@
-﻿@page "/themtuanlamviec"
+﻿@page "/suatuanlamviec/{Mathanglamviec}"
+@using TASK.Application.MTuanLamViec
 @using TASK.Application.MChiTietTuan
 <style>
     form .row {
@@ -6,13 +7,20 @@
     }
 </style>
 
-<EditForm Model="TuanLamViecRequest" OnSubmit="InsertTuanLamViecLuuThem" >
+@if (tuanLamViecresponse == null || chiTietTuanResponse == null)
+{
+    <PageLoading />
+}
+else
+{
+<RadzenTemplateForm TItem="TuanLamViecRequest" Data="tuanLamViecrequest" Submit=UpdateTuanLamViecLuuThem InvalidSubmit=@OnInvalidSubmit>
     <div class="row">
         <div class="col-md-4 align-items-center d-flex">
             <RadzenLabel Text="Tên tháng*" />
         </div>
         <div class="col-md-4">
-            <RadzenTextBox style="width: 100%;" @bind-Value="TuanLamViecRequest.TenThang" />
+            <RadzenTextBox style="width: 100%;" Name="TenThang" @bind-Value="tuanLamViecrequest.TenThang" />
+            <RadzenRequiredValidator Component="TenThang" Text="Không được để trống" Popup=true Style="width:136px" />
         </div>
     </div>
     <div class="row">
@@ -20,7 +28,8 @@
             <RadzenLabel Text="Ngày bắt đầu*" />
         </div>
         <div class="col-md-7">
-            <RadzenDatePicker @bind-Value="TuanLamViecRequest.NgayBatDau" DateFormat="d" Style="width:429px" />
+            <RadzenDatePicker @bind-Value="tuanLamViecrequest.NgayBatDau" Name="NBD" DateFormat="d" Style="width:429px" />
+            <RadzenRequiredValidator Component="NBD" Text="Không được để trống" Popup=true Style="width:136px" />
         </div>
     </div>
     <div class="row">
@@ -28,7 +37,8 @@
             <RadzenLabel Text="Ngày kết thúc*" />
         </div>
         <div class="col-md-7">
-            <RadzenDatePicker @bind-Value="TuanLamViecRequest.NgayKetThuc" DateFormat="d" Style="width: 429px" />
+            <RadzenDatePicker @bind-Value="tuanLamViecrequest.NgayKetThuc" Name="NKT" DateFormat="d" Style="width: 429px" />
+            <RadzenRequiredValidator Component="NKT" Text="Không được để trống" Popup=true Style="width:136px" />
         </div>
     </div>
     <div class="row">
@@ -36,7 +46,8 @@
             <RadzenLabel Text="Giá trị tháng*" />
         </div>
         <div class="col-md-3">
-            <RadzenNumeric TValue="int" @bind-Value="TuanLamViecRequest.GiaTri" />
+            <RadzenNumeric TValue="int" Name="GiaTri" @bind-Value="tuanLamViecrequest.GiaTri" />
+            <RadzenCompareValidator Component="GiaTri" Text="Giá trị phải lớn hơn 0" Popup=true Operator="CompareOperator.GreaterThan" Value="0" Style="width:136px;z-index:1" />
         </div>
         <div class="col-md-5">
             <RadzenButton Text="Phát sinh tuần" ButtonStyle="ButtonStyle.Secondary" Style="float:right" Click="PhatSinhTuan" />
@@ -45,7 +56,7 @@
     <div class="row">
         <div class="col-12">
 
-            <RadzenDataGrid TItem="ChiTietTuanRequest" Data="@data" EmptyText="Chưa có phát sinh tuần" EditMode="DataGridEditMode.Single" @ref="chitiettuangrid" >
+            <RadzenDataGrid TItem="ChiTietTuanRequest" Data="chiTietTuanRequest" EmptyText="Chưa có phát sinh tuần" EditMode="DataGridEditMode.Single" @ref="chitiettuangrid">
                 <Columns>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="TenTuan" Title="Tên tuần" TextAlign="TextAlign.Center" Width="150px">
                         <EditTemplate Context="chitiet">
@@ -75,7 +86,7 @@
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Property="TrangThai" Title="Đã khóa" TextAlign="TextAlign.Center">
                         <Template Context="check">
-                            <RadzenCheckBox TriState="false"  @bind-Value="check.TrangThai" />
+                            <RadzenCheckBox TriState="false" @bind-Value="check.TrangThai" />
                         </Template>
                     </RadzenDataGridColumn>
                     <RadzenDataGridColumn TItem="ChiTietTuanRequest" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
@@ -97,17 +108,11 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <RadzenButton Text="Lưu & thêm" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit"/>
-        </div>
-        <div class="col-md-4 align-items-center d-flex">
-            <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>changesave())" Icon="save"  Style="margin-left:auto;margin-right:auto"  ButtonType="ButtonType.Submit" />
+            <RadzenButton Text="Cập nhật & đóng" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="width:218px" ButtonType="ButtonType.Submit" />
         </div>
         <div class="col-md-4">
-            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))"   Style="float: left " Icon="cancel" />
+            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))" Style="float: left " Icon="cancel" />
         </div>
     </div>
-</EditForm>
-
-@code {
-
-}
+</RadzenTemplateForm>
+        }

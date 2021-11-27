@@ -8,6 +8,6 @@ namespace TASK.Application.MToDoList
 {
     public interface IToDoListService
     {
-        Task<List<ToDoListResponse>> GetToDoByDuAn(int MaDuAn,Guid MaUser);
+        Task<ToDoListResponse> GetToDoByDuAn(int MaDuAn,Guid MaUser,int skip,int take);
     }
 }

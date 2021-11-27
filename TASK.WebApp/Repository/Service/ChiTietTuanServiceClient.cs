@@ -74,6 +74,15 @@ namespace TASK.WebApp.Repository.Service
            
         }
 
+        public async Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan)
+        {
+            var Check = await httpClient.PostAsJsonAsync("/api/ChiTietTuan/Khoakehoachtuan", machitiettuan);
+
+            var content = await Check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
         public List<ChiTietTuanRequest> PhatSinhChiTietTuan(DateTime ngaybatdau, DateTime ngayketthuc)
         {
             List<ChiTietTuanRequest> chiTietTuans = new List<ChiTietTuanRequest>();
@@ -96,6 +105,15 @@ namespace TASK.WebApp.Repository.Service
             }
 
             return chiTietTuans;
+        }
+
+        public async Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests)
+        {
+            var Check = await httpClient.PostAsJsonAsync($"/api/ChiTietTuan/UpdateChitiettuanlamviec", chiTietTuanRequests);
+
+            var content = await Check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
         }
     }
 }

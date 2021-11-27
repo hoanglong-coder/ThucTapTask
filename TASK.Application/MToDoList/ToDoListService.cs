@@ -17,11 +17,11 @@ namespace TASK.Application.MToDoList
             _taskDbContext = taskDbContext;
         }
 
-        public async Task<List<ToDoListResponse>> GetToDoByDuAn(int MaDuAn, Guid MaUser)
+        public async Task<ToDoListResponse> GetToDoByDuAn(int MaDuAn, Guid MaUser, int skip, int take)
         {
             if (!KiemTraAdmin(MaUser))
             {
-                var listtodo = await _taskDbContext.ToDos.Where(t => t.MaUser == MaUser && t.MaDuAn == MaDuAn&&t.TrangThai==false).Select(t=> new ToDoListResponse() {
+                var listtodo = await _taskDbContext.ToDos.Where(t => t.MaUser == MaUser && t.MaDuAn == MaDuAn&&t.TrangThai==false).Select(t=> new ToDoListDTO() {
                 
                     MaTodo = t.MaTodo,
                     MaUser = t.MaUser,
@@ -31,12 +31,21 @@ namespace TASK.Application.MToDoList
                     GhiChu = t.GhiChu,
                     TrangThai = t.TrangThai,
                     MaDuAn = t.MaDuAn               
-                }).OrderBy(t=>t.NgayDenHang).ToListAsync();
+                }).OrderBy(t=>t.NgayDenHang).Skip(skip).Take(take).ToListAsync();
 
-                return listtodo;
+
+                int CountSize = _taskDbContext.ToDos.Where(t => t.MaUser == MaUser && t.MaDuAn == MaDuAn && t.TrangThai == false).Count();
+
+                ToDoListResponse toDoListResponse = new ToDoListResponse();
+
+                toDoListResponse.Count = CountSize;
+
+                toDoListResponse.ListToDo = listtodo;
+
+                return toDoListResponse;
             }else
             {
-                var listtodo = await _taskDbContext.ToDos.Where(t => t.MaDuAn == MaDuAn && t.TrangThai == false).Select(t => new ToDoListResponse()
+                var listtodo = await _taskDbContext.ToDos.Where(t => t.MaDuAn == MaDuAn && t.TrangThai == false).Select(t => new ToDoListDTO()
                 {
 
                     MaTodo = t.MaTodo,
@@ -47,9 +56,18 @@ namespace TASK.Application.MToDoList
                     GhiChu = t.GhiChu,
                     TrangThai = t.TrangThai,
                     MaDuAn = t.MaDuAn
-                }).OrderBy(t => t.NgayDenHang).ToListAsync();
+                }).OrderBy(t => t.NgayDenHang).Skip(skip).Take(take).ToListAsync();
 
-                return listtodo;
+
+                int CountSize = await _taskDbContext.ToDos.Where(t => t.MaDuAn == MaDuAn && t.TrangThai == false).CountAsync();
+
+                ToDoListResponse toDoListResponse = new ToDoListResponse();
+
+                toDoListResponse.Count = CountSize;
+
+                toDoListResponse.ListToDo = listtodo;
+
+                return toDoListResponse;
             }
     }
 

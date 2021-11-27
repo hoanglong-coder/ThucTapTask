@@ -1,156 +1,128 @@
 ﻿@page "/Dashboard"
-@using System.Globalization
-@using TASK.Application.MToDoList
-<div class="page">
-    <div class="sidebar" style="width: 327px; border-left: solid 3px; background-color: rgb(37 106 238)">
-        <div class="top-row pl-4 navbar navbar-dark" style="background-color: #2c0e4f">
-            <p class="navbar-brand" style="margin: auto">TO-DO LIST</p>
-            <RadzenIcon Icon="line_weight" Style="color:white;margin-left:auto" />
-        </div>
-        <div style="width:320px;margin-top:10px">
-            @{int dem = 1; }
-            <RadzenDataList WrapItems="true" AllowPaging="true" Data="toDoLists" TItem="ToDoListResponse">
-                <Template Context="todo">
-                    <RadzenCard Style="width:320px;">
-                        <div class="d-flex flex-row align-items-center">
-                            <h2 style="margin-right:26px;text-align:center">@dem</h2>
-                            <div class="row">
-                                @{
-                                    DateTime hientai = DateTime.Now;
-
-                                    var hethang = todo.NgayDenHang;
-
-                                    if (hientai.Day == hethang.Day)
-                                    {
-                                        <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Warning" Style="font-size:14px" IsPill="true" Text="Hôm nay" /></div>
-                                    }
-                                    else if (hientai > hethang)
-                                    {
-                                        int tre = hientai.Day - hethang.Day;
-                                        string text = $"Trể {tre} ngày";
-                                        <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size:14px" IsPill="true" Text=@text /></div>
-                                    }
-                                    else if (hientai < hethang)
-                                    {
-                                        int con = Math.Abs(hientai.Day - hethang.Day);
-                                        string text = $"Còn {con} ngày";
-                                        <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Secondary" Style="font-size:14px" IsPill="true" Text=@text /></div>
-                                    }
-                                    dem++;
-                                }
-                                <div class="col-6"><h4 class="mb-0">@todo.NgayDenHang.ToString("dd/MM/yyyy")</h4></div>
-                                <div style="margin-left:13px">@todo.NoiDung.Substring(0, 27)...</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12"></div>
-                            </div>
-                        </div>
-                    </RadzenCard>
-                </Template>
-
-            </RadzenDataList>
-        </div>
-    </div>
-
-    <div class="main">
-        <div class="content px-4">
-            <div class="row" style="height:70px">
-                <div class="col-4"><p style="text-align: center; line-height: 70px;font-size:25px">Tháng 09-2021</p></div>
-                <div class="col-4"><p style="text-align: center; line-height: 70px;font-size:25px"><strong>Tuần 1: 5/7 - 10/7</strong></p></div>
-                <div class="col-4" style="margin-top:-10px">
-                    <p style="text-align: center; line-height: 70px;font-size:25px">
-                        <RadzenButton Icon="skip_previous" ButtonStyle="ButtonStyle.Secondary" Text="Trở về" />
-                        <RadzenButton Icon="date_range" ButtonStyle="ButtonStyle.Secondary" Text="Hiện tại" />
-                        <RadzenButton Icon="skip_next" ButtonStyle="ButtonStyle.Secondary" Text="Tiếp" />
-                    </p>
-                </div>
-            </div>
-            <div class="row" style="height:max-content">
-                <div class="col-6">
-                    <p style="text-align:center">
-                        <RadzenCard class="m-3">
-                            <center><h3 class="h5">KẾ HOẠCH TEAM</h3></center>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-12"><strong style="font-size:50px;margin-right:5px">81%</strong> (250/308 giờ)</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12" style="margin-left:-4px">Tổng số giờ đã lên kế hoạch</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row" style="height:50px">
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px">56</p></div>
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Tổng số task</p></div>
-                                    </div>
-                                    <div class="row" style="height:50px">
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px">4/7</p></div>
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">User đã tạo task</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </RadzenCard>
-                    </p>
-                </div>
-                <div class="col-6">
-                    <p style="text-align:center">
-                        <RadzenCard class="m-3">
-                            <center><h3 class="h5">TIẾN DỘ TOÀN TEAM (đến ngày hôm hay)</h3></center>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-12"><strong style="font-size:50px;margin-right:5px;color:blue">47%</strong> (145/308 giờ)</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12" style="margin-left:-54px">Hoàn thành</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row" style="height:50px">
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px;color:orange">18/56</p></div>
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Task xong hoặc vắn</p></div>
-                                    </div>
-                                    <div class="row" style="height:50px">
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px;color:green">38</p></div>
-                                        <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Task tồn động</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </RadzenCard>
-                    </p>
-                </div>
-            </div>
-            <div class="row" style="height:480px;margin-top:74px">
-                <div class="col-12">
-                    <RadzenDropDown Data="@colorSchemes" @bind-Value="@colorScheme" />
-                    <RadzenChart Style="height:436px" ColorScheme="@colorScheme">
-                        <RadzenColumnSeries Data="chartDashboards" CategoryProperty="NameUser" LineType="LineType.Dashed" ValueProperty="MucDoHoanThanh">
-                            <TooltipTemplate Context="data">
-                                <div>
-                                    <span>@data.NameUser</span><br />
-                                    <strong>Mức độ hoàn thành @data.MucDoHoanThanh</strong>
-                                </div>
-                            </TooltipTemplate>
-                        </RadzenColumnSeries>
-                        <RadzenLegend Visible="false" />
-                        <RadzenValueAxis Min="0" Max="100" Step="20">
-                            <RadzenAxisTitle Text="Phần trăm hoàn thành" />
-                        </RadzenValueAxis>
-                        <RadzenCategoryAxis>
-                            <RadzenAxisTitle Text="MỨC ĐỘ HOÀN THÀNH CÔNG VIỆC " />
-
-                        </RadzenCategoryAxis>
-
-                    </RadzenChart>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@code{
-
-    IEnumerable<ColorScheme> colorSchemes = Enum.GetValues(typeof(ColorScheme)).Cast<ColorScheme>();
-    ColorScheme colorScheme = ColorScheme.Palette;
-
+@if (chartDashboards == null)
+{
+    <PageLoading />
 }
+else
+{
+    <div class="page">
+        <div class="sidebar" style="width: 327px; border-left: solid 3px; background-color: rgb(37 106 238)">
+            <ToDoListDashboard/>
+        </div>
+
+        <div class="main">
+            <div class="content px-4">
+                <div class="row" style="height:70px">
+                    <div class="col-4"><p style="text-align: center; line-height: 70px;font-size:25px">Tháng 09-2021</p></div>
+                    <div class="col-4"><p style="text-align: center; line-height: 70px;font-size:25px"><strong>Tuần 1: 5/7 - 10/7</strong></p></div>
+                    <div class="col-4" style="margin-top:-10px">
+                        <p style="text-align: center; line-height: 70px;font-size:25px">
+                            <RadzenButton Icon="skip_previous" ButtonStyle="ButtonStyle.Secondary" Text="Trở về" />
+                            <RadzenButton Icon="date_range" ButtonStyle="ButtonStyle.Secondary" Text="Hiện tại" />
+                            <RadzenButton Icon="skip_next" ButtonStyle="ButtonStyle.Secondary" Text="Tiếp" />
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="height:max-content">
+                    <div class="col-6">
+                        <p style="text-align:center">
+                            <RadzenCard class="m-3">
+                                <center><h3 class="h5">KẾ HOẠCH TEAM</h3></center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-12"><strong style="font-size:50px;margin-right:5px">81%</strong> (250/308 giờ)</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-left:-4px">Tổng số giờ đã lên kế hoạch</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row" style="height:50px">
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px">56</p></div>
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Tổng số task</p></div>
+                                        </div>
+                                        <div class="row" style="height:50px">
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px">4/7</p></div>
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">User đã tạo task</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </RadzenCard>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p style="text-align:center">
+                            <RadzenCard class="m-3">
+                                <center><h3 class="h5">TIẾN DỘ TOÀN TEAM (đến ngày hôm hay)</h3></center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-12"><strong style="font-size:50px;margin-right:5px;color:blue">47%</strong> (145/308 giờ)</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-left:-54px">Hoàn thành</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row" style="height:50px">
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px;color:orange">18/56</p></div>
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Task xong/vắng</p></div>
+                                        </div>
+                                        <div class="row" style="height:50px">
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:25px;color:green">38</p></div>
+                                            <div class="col-6"><p style="text-align: center; line-height: 50px;font-size:20px">Task tồn động</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </RadzenCard>
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="height:480px;margin-top:74px">
+                    <div class="col-12">
+                        <RadzenChart Style="height:436px">
+                            <RadzenColumnSeries Data="chartDashboards" Fills="colordashboard" CategoryProperty="NameUser" LineType="LineType.Dashed" ValueProperty="MucDoHoanThanh">
+                                <TooltipTemplate Context="data">
+                                    <div style="width:300px">
+                                        <strong>@data.NameUser</strong><br />
+                                        <ul>
+                                            <li class="row">
+                                                <div class="co-4">- Lên kế hoạch:</div>
+                                                <div class="co-4"><p style="color:green;min-width:max-content;margin-left:5px"> 40/44 giờ</p></div>
+                                            </li>
+                                            <li class="row">
+                                                <div class="co-4">- Số task hoàn thành:</div>
+                                                <div class="co-4"><p style="color:blue;min-width:max-content;margin-left:5px"> 5/8 task</p></div>
+                                            </li>
+                                            <li class="row">
+                                                <div class="co-4">- Số giờ hoàn thành:</div>
+                                                <div class="co-4"><p style="color:deeppink;min-width:max-content;margin-left:5px"> 32/40 giờ(80%)</p></div>
+                                            </li>
+                                            <li class="row">
+                                                <div class="co-4">- Tồn động:</div>
+                                                <div class="co-4"><p style="color:red;min-width:max-content;margin-left:5px"> 3 task</p></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </TooltipTemplate>
+                            </RadzenColumnSeries>
+                            <RadzenColumnOptions Radius="8" />
+                            <RadzenLegend Visible="false" />
+                            <RadzenValueAxis Min="0" Max="100" Step="20">
+                                <RadzenAxisTitle Text="Phần trăm hoàn thành" />
+                            </RadzenValueAxis>
+                            <RadzenCategoryAxis>
+                                <RadzenAxisTitle Text="MỨC ĐỘ HOÀN THÀNH CÔNG VIỆC " />
+
+                            </RadzenCategoryAxis>
+
+                        </RadzenChart>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

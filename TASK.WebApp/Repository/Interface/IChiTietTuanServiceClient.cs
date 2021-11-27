@@ -17,5 +17,9 @@ namespace TASK.WebApp.Repository.Interface
         Task<int> DeleteChiTietTuan(IList<ChiTietTuanResponse> machitiettuan);
 
         Task<int> DeleteChiTietTuanAll(int mathanglamviec);
+
+        Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests);
+
+        Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan);
     }
 }

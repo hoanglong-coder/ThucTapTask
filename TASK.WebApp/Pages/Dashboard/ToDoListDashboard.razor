@@ -1,0 +1,65 @@
+﻿@using TASK.Application.MToDoList
+
+<style>
+    .rz-paginator-summary {
+        margin-left: -30px
+    }
+
+</style>
+<div class="top-row pl-4 navbar navbar-dark" style="background-color: #2c0e4f">
+    <p class="navbar-brand" style="margin: auto">TO-DO LIST</p>
+    <RadzenIcon Icon="line_weight" Style="color:white;margin-left:auto" />
+</div>
+<div style="width:320px;margin-top:10px">
+    <RadzenDataList WrapItems="true" AllowPaging="true" Data="toDoListDTOs" TItem="ToDoListDTO">
+        <Template Context="todo">
+            <RadzenCard Style="width:320px;">
+                <div class="d-flex flex-row align-items-center">
+                    <h2 style="margin-right:26px;text-align:center">@dem</h2>
+                    <div class="row">
+                        @{
+                            DateTime hientai = DateTime.Now;
+
+                            var hethang = todo.NgayDenHang;
+
+                            if (hientai.Day == hethang.Day)
+                            {
+                                <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Warning" Style="font-size:14px" IsPill="true" Text="Hôm nay" /></div>
+                            }
+                            else if (hientai > hethang)
+                            {
+                                TimeSpan tre = hientai.Subtract(hethang);
+                                string text = $"Trể {tre.Days} ngày";
+                                <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size:14px" IsPill="true" Text=@text /></div>
+                            }
+                            else if (hientai < hethang)
+                            {
+                                TimeSpan tre = hientai.Subtract(hethang);
+                                int con = Math.Abs(tre.Days);
+                                if (con == 0)
+                                {
+                                    string text = $"Còn 1 ngày";
+                                    <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Secondary" Style="font-size:14px" IsPill="true" Text=@text /></div>
+                                }
+                                else
+                                {
+                                    string text = $"Còn {con} ngày";
+                                    <div class="col-6"><RadzenBadge BadgeStyle="BadgeStyle.Secondary" Style="font-size:14px" IsPill="true" Text=@text /></div>
+                                }
+
+                            }
+                            dem++;
+                        }
+                        <div class="col-6"><h4 class="mb-0">@todo.NgayDenHang.ToString("dd/MM/yyyy")</h4></div>
+                        <div style="margin-left:13px">@todo.NoiDung.Substring(0, 27)...</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"></div>
+                    </div>
+                </div>
+            </RadzenCard>
+        </Template>
+
+    </RadzenDataList>
+    <RadzenPager PagingSummaryFormat="@pagingSummaryFormat" Style="margin-left: 10px; width: 298px; border-radius: 4px ;position: fixed; bottom: 74px " ShowPagingSummary="true" Count="count" PageSize="@pageSize" PageNumbersCount="3" PageChanged="@PageChanged" />
+</div>

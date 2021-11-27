@@ -24,7 +24,7 @@ namespace TASK.Application.MChart
                 ChartDashboard chartDashboard = new ChartDashboard();
 
                 chartDashboard.MaChart = Guid.NewGuid();
-                chartDashboard.NameUser = "Nhân viên " + i+1;
+                chartDashboard.NameUser = "Nhân viên " + (i+1);
                 chartDashboard.MucDoHoanThanh = new Random().Next(50, 100);
                 chartDashboards.Add(chartDashboard);
             }

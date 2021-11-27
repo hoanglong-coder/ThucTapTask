@@ -15,10 +15,14 @@ namespace TASK.Application.MTuanLamViec
         [Required(ErrorMessage = "Tên tháng không được để trống")]
         public string TenThang { set; get; }
 
+        [Range(1,100000,
+        ErrorMessage = "Giá trị phải lớn hơn 1 ")]
         public int GiaTri { set; get; }
 
+        [Required(ErrorMessage = "Ngày bắt đầu không đc để trống")]
         public DateTime NgayBatDau { set; get; }
 
+        [Required(ErrorMessage = "Ngày kết thúc không đc để trống")]
         public DateTime NgayKetThuc { set; get; }
     }
 }

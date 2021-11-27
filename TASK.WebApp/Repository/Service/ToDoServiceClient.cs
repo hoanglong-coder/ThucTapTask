@@ -18,9 +18,11 @@ namespace TASK.WebApp.Repository.Service
             this.httpClient = httpClient;
         }
 
-        public async Task<List<ToDoListResponse>> GetToDoByDuAn(int MaDuAn, Guid MaUser)
+        public async Task<ToDoListResponse> GetToDoByDuAn(int MaDuAn, Guid MaUser, int skip, int take)
         {
-            var lsttodo = await httpClient.GetFromJsonAsync<List<ToDoListResponse>>($"/api/ToDo/GetToDoByDuAn?MaDuAn={MaDuAn}&MaUser={MaUser}");
+
+
+            var lsttodo = await httpClient.GetFromJsonAsync<ToDoListResponse>($"/api/ToDo/GetToDoByDuAn?MaDuAn={MaDuAn}&MaUser={MaUser}&skip={skip}&take={take}");
 
             return lsttodo;
         }

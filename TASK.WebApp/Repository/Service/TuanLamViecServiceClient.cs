@@ -38,6 +38,22 @@ namespace TASK.WebApp.Repository.Service
             return lstTuanLamViec;
         }
 
+        public async Task<TuanLamViecPaging> GetTuanLamViecByDuAnPageing(int id, int skip, int take)
+        {
+            var lstTuanLamViec = await httpClient.GetFromJsonAsync<TuanLamViecPaging>($"/api/TuanLamViec/gettuanlamviecpaging?id={id}&skip={skip}&take={take}");
+
+            return lstTuanLamViec;
+        }
+
+        public async Task<TuanLamViecResponse> GetTuanLamViecByMaThangLamViec(int id)
+        {
+           
+            var tuanlamviec = await httpClient.GetFromJsonAsync<TuanLamViecResponse>($"/api/TuanLamViec/Getchitiettuanlamviec?id={id}");
+
+            return tuanlamviec;
+
+        }
+
         public async Task<int> InsertTuanLamViec(TuanLamViecRequest tuanLamViec)
         {
 
@@ -54,6 +70,15 @@ namespace TASK.WebApp.Repository.Service
             var MaTuanLamViec = await httpClient.PostAsJsonAsync("/api/TuanLamViec", tlv);
 
             var content = await MaTuanLamViec.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
+        public async Task<int> UpdateTuanLamViec(TuanLamViecRequest tuanLamViecRequest)
+        {
+            var response = await httpClient.PostAsJsonAsync("/api/TuanLamViec/Updatetuanlamviec", tuanLamViecRequest);
+
+            var content = await response.Content.ReadAsStringAsync();
 
             return int.Parse(content);
         }

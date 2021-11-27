@@ -112,5 +112,57 @@ namespace TASK.Application.MChiTietTuan
                 return false;
             }
         }
+
+        public async Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan)
+        {
+            try
+            {
+                foreach (var item in machitiettuan)
+                {
+                    ChiTietTuan chiTietTuan = await _taskDbContext.ChiTietTuans.FindAsync(item.MaTuanChiTiet);
+
+                    chiTietTuan.TrangThai = true;
+
+                    await _taskDbContext.SaveChangesAsync();
+                }
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+            
+        }
+
+        public async Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests)
+        {
+            try
+            {
+                var chitiettuan = chiTietTuanRequests.Select(t => new ChiTietTuan()
+                {
+                    MaTuanChiTiet = t.MaTuanChiTiet,
+                    TenTuan = t.TenTuan,
+                    TuNgay = t.TuNgay,
+                    DenNgay = t.DenNgay,
+                    GiaTri = t.GiaTri,
+                    SoGioLam = t.SoGioLam,
+                    TrangThai = t.TrangThai,
+                    MaThangLamViec = t.MaThangLamViec
+                });
+
+                _taskDbContext.ChiTietTuans.UpdateRange(chitiettuan);
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }                    
+        }
     }
 }

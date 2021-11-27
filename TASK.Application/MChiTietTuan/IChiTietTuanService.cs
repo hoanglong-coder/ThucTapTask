@@ -15,5 +15,9 @@ namespace TASK.Application.MChiTietTuan
         Task<int> DeleteChiTietTuan(List<ChiTietTuanRequest> machitiettuan);
 
         Task<int> DeleteChiTietTuanAll(int mathanglamviec);
+
+        Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests);
+
+        Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan);
     }
 }

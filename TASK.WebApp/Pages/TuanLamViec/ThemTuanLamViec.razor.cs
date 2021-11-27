@@ -12,7 +12,7 @@ using TASK.WebApp.Repository.Interface;
 
 namespace TASK.WebApp.Pages.TuanLamViec
 {
-    public partial class ThemSuaTuanLamViec
+    public partial class ThemTuanLamViec
     {
 
         [Inject] IChiTietTuanServiceClient tietTuanServiceClient { get; set; }
@@ -30,6 +30,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
         RadzenDataGrid<ChiTietTuanRequest> chitiettuangrid;
 
         public int checksave = 0;
+
 
         void PhatSinhTuan()
         {
@@ -51,8 +52,10 @@ namespace TASK.WebApp.Pages.TuanLamViec
         {
             chitiettuangrid.CancelEditRow(order);
         }
-        async Task InsertTuanLamViecLuuThem(EditContext context)
+        async Task InsertTuanLamViecLuuThem()
         {
+            
+
             if (checksave == 0)
             {
                 int mathanglamviec = await tuanLamViecServiceClient.InsertTuanLamViec(TuanLamViecRequest);
@@ -63,6 +66,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
                     ShowNotification(noti);
+                    data.Clear();
                     TuanLamViecRequest.Clear();
 
                 }
@@ -83,6 +87,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
                     ShowNotification(noti);
                     TuanLamViecRequest.Clear();
+                    data.Clear();
                     dialogService.Close(true);
 
                 }
@@ -94,6 +99,12 @@ namespace TASK.WebApp.Pages.TuanLamViec
             }
           
         }
+
+        void OnInvalidSubmit()
+        {
+
+        }
+
         void ShowNotification(NotificationMessage message)
         {
             NotificationService.Notify(message);
