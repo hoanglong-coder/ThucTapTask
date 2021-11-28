@@ -1,6 +1,147 @@
 ﻿@page "/todolist"
-<h1>Trang TO-DO list</h1>
+@using TASK.Application.MTuanLamViec
+@using TASK.Application.MToDoList
+<div class="container" style="max-width: 100%">
+    <RadzenMenu Style="background-color: #EDEFF1;margin-top:6px">
+        <h1>TO-DO LIST </h1>
+        <div style="margin-left:auto">
 
-@code {
+            <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="InsertToDo" />
 
-}
+            <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+
+            <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+
+        </div>
+    </RadzenMenu>
+    <div style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Nội dung</h5></div>
+                    <div class="col-md-8"><RadzenTextBox Style="width: 100%" /></div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Đến hạng</h5></div>
+                    <div class="col-md-4"> <RadzenDatePicker @bind-Value=@value DateFormat="d" /></div>
+                    <div class="col-md-4"> <RadzenDatePicker @bind-Value=@value DateFormat="d" /></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Người thực hiện</h5></div>
+                    <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Trạng thái</h5></div>
+                    <div class="col-md-8">
+                        <RadzenRadioButtonList TValue="int">
+                            <Items>
+                                <RadzenRadioButtonListItem Text="Tất cả" Value="1" />
+                                <RadzenRadioButtonListItem Text="Xong" Value="2" />
+                                <RadzenRadioButtonListItem Text="Chưa xong" Value="3" />
+                            </Items>
+                        </RadzenRadioButtonList>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Trễ từ</h5></div>
+                    <div class="col-md-4"><RadzenNumeric TValue="int" Style="width:100%" /></div>
+                    <div class="col-md-4"> <h5 style="padding:5px">ngày trở lên</h5></div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"> <RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 100%" ButtonStyle="ButtonStyle.Primary" /></div>
+                    <div class="col-md-4"> <RadzenButton Text="Cập nhật" Icon="cached" Style="margin-bottom: 20px;" ButtonStyle="ButtonStyle.Primary" /></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <RadzenDataGrid FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                    AllowSorting="true" Data="@toDoListDTOs" TItem="ToDoListDTO" ColumnWidth="200px"
+                    SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedtodo ExpandMode="DataGridExpandMode.Single">
+        <Columns>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Width="40px" Sortable="false" Filterable="false">
+                <HeaderTemplate>
+                    <RadzenCheckBox TriState="false" TValue="bool" Value="@(toDoListDTOs.Any(i => selectedtodo != null && selectedtodo.Contains(i)))"
+                                    Change="@(args => selectedtodo = args ? toDoListDTOs.ToList() : null)" />
+                </HeaderTemplate>
+                <Template Context="data">
+                    <RadzenCheckBox TriState="false" Value="@(selectedtodo != null && selectedtodo.Contains(data))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Filterable="false" Title="STT" Width="70px" TextAlign="TextAlign.Center">
+                <Template Context="ngaydenhang">
+                    @dem
+                    @{dem++;}
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="NoiDung" Title="Nội dung to-do" Width="500px" />
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="TenUser" Title="người thực hiện" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="NgayDenHang" Title="thời hạn" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="thoihan">
+                    @{
+                        DateTime hientai = DateTime.Now;
+
+                        var hethang = thoihan.NgayDenHang;
+
+                        if (hientai.Day == hethang.Day)
+                        {
+                            <RadzenBadge BadgeStyle="BadgeStyle.Warning" IsPill="true" Text="Hôm nay" Style="font-size:13px" />
+                        }
+                        else if (hientai > hethang)
+                        {
+                            TimeSpan tre = hientai.Subtract(hethang);
+                            string text = $"Trể {tre.Days} ngày";
+                            <RadzenBadge BadgeStyle="BadgeStyle.Danger" IsPill="true" Text=@text Style="font-size:13px" />
+                        }
+                        else if (hientai < hethang)
+                        {
+                            TimeSpan tre = hientai.Subtract(hethang);
+                            int con = Math.Abs(tre.Days);
+                            if (con == 0)
+                            {
+                                string text = $"Còn 1 ngày";
+                                <RadzenBadge BadgeStyle="BadgeStyle.Secondary" IsPill="true" Text=@text Style="font-size:13px" />
+                            }
+                            else
+                            {
+                                string text = $"Còn {con} ngày";
+                                <RadzenBadge BadgeStyle="BadgeStyle.Secondary" IsPill="true" Text=@text Style="font-size:13px" />
+                            }
+
+                        }
+                    }
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="NgayDenHang" Title="đến hạng" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="ngaydenhang">
+                    @ngaydenhang.NgayDenHang.ToString("dd/MM")
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="NgayGiao" Title="Ngày giao" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="ngaygiao">
+                    @ngaygiao.NgayGiao.ToString("dd/MM")
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="GhiChu" Title="ghi chú" TextAlign="TextAlign.Center" Width="400px" />
+
+            <RadzenDataGridColumn TItem="ToDoListDTO" Property="TrangThai" Title="trạng thái" TextAlign="TextAlign.Center" Width="100px">
+                <Template Context="check">
+                    <RadzenCheckBox TriState="false" TValue="bool" Value="check.TrangThai" />
+                </Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="ToDoListDTO" Title="Sửa" TextAlign="TextAlign.Center">
+                <Template Context="tuanlamviec">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" @onclick:stopPropagation="true">
+                    </RadzenButton>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+    <RadzenPager ShowPagingSummary="true" Count="count" Style="width: 500px; border-radius: 4px" PageSize="@pageSize" PageChanged="PageChanged" PageNumbersCount="3" />
+</div>
+

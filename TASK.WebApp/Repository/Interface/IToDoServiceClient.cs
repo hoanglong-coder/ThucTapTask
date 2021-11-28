@@ -8,6 +8,10 @@ namespace TASK.WebApp.Repository.Interface
 {
     public interface IToDoServiceClient
     {
-        Task<ToDoListResponse> GetToDoByDuAn(int MaDuAn, Guid MaUser, int skip, int take);
+        Task<ToDoListResponse> GetToDoByDuAn(int MaDuAn, Guid MaUser, int skip, int take,bool trangthai);
+
+        Task<ToDoListResponse> GetAllToDoByDuAn(int MaDuAn, Guid MaUser);
+
+        Task<int> InsertToDo(ToDoListRequest toDoListRequest);
     }
 }

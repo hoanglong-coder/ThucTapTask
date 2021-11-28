@@ -140,7 +140,7 @@ namespace TASK.Application.MTuanLamViec
                 NgayBatDau = t.NgayBatDau,
                 NgayKetThuc = t.NgayKetThuc,
 
-            }).Skip(skip).Take(take).ToListAsync();
+            }).OrderBy(t=>t.GiaTri).Skip(skip).Take(take).ToListAsync();
 
             int Count = _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).Count();
 

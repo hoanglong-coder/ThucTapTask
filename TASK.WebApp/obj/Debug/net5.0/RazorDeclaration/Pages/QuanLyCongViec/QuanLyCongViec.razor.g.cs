@@ -166,6 +166,20 @@ using ChartJs.Blazor.Interop;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\QuanLyCongViec\QuanLyCongViec.razor"
+using TASK.Application.MTuanLamViec;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\QuanLyCongViec\QuanLyCongViec.razor"
+using TASK.Application.MToDoList;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/quanlycongviec")]
     public partial class QuanLyCongViec : Microsoft.AspNetCore.Components.ComponentBase
     {

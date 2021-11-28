@@ -11,6 +11,8 @@ namespace TASK.Application.MUser
     {
         Task<List<UserResponse>> GetAll();
 
+        Task<List<UserResponse>> GetAllByDuAn(int maduan);
+
         Task<UserResponse> GetUser(Guid idUser);
     }
 }

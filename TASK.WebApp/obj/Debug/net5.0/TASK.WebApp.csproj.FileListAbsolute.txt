@@ -1408,3 +1408,7 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Raz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\TuanLamViec\ThemTuanLamViec.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\TuanLamViec\SuaTuanLamViec.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\TuanLamViec\SuaTuanLamViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\ToDoList\SuaTodo.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\ToDoList\ThemTodo.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\ToDoList\SuaTodo.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\ToDoList\ThemTodo.razor.g.cs

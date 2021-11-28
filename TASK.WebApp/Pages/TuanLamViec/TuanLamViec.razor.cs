@@ -34,18 +34,22 @@ namespace TASK.WebApp.Pages.TuanLamViec
 
         List<ChiTietTuanResponse> ChiTietTuans = new List<ChiTietTuanResponse>();
 
+        int Role;
+
         int MaThangLamViec;
 
-        int pageSize = 5;
+        int pageSize = 3;
 
         int count = -1;
 
-        int skippage;
-        int takepage;
+        int skippage = 0;
+        int takepage = 3;
 
         protected override async Task OnInitializedAsync()
         {
             int MaDuAn = int.Parse(localstorage.GetItemAsString("MaDuAn"));
+
+            Role = localstorage.GetItem<int>("Role");
 
             TuanLamViecPaging = await tuanLamViecService.GetTuanLamViecByDuAnPageing(MaDuAn, 0, pageSize);
 
@@ -76,9 +80,9 @@ namespace TASK.WebApp.Pages.TuanLamViec
             await dialogService.OpenAsync<ThemTuanLamViec>("THÊM TUẦN LÀM VIỆC",null, new DialogOptions() { Width = "700px", Height = "530px", Resizable = true, Draggable = true });
 
         }
-        void Close(dynamic result)
+        async void Close(dynamic result)
         {
-
+            await InvokeAsync(async () => await reset());
         }
         async Task reset()
         {

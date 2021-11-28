@@ -1,7 +1,208 @@
 ﻿@page "/quanlycongviec"
 
-<h1>Trang quản lý công việc</h1>
+@using TASK.Application.MTuanLamViec
+@using TASK.Application.MToDoList
 
-@code {
-
+@if (toDoList == null)
+{
+    <PageLoading />
 }
+else
+{
+    <div class="container" style="max-width: 100%">
+        <RadzenMenu Style="background-color: #EDEFF1;margin-top:6px">
+            <h1>QUẢN LÝ CÔNG VIỆC</h1>
+            <div style="margin-left:auto">
+
+                <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Duyệt kế hoạch tuần" Icon="done" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Khóa mở tuần" Icon="lock" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Dời công việc" Icon="east" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+
+                <RadzenButton Text="Xuất excel" Icon="get_app" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
+            </div>
+        </RadzenMenu>
+        <RadzenMenu Style="border: 2px solid; height: 55px; background-color: #EDEFF1">
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Tháng</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+
+                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 150px; margin-left: 8px; "
+                                AllowFiltering="true" Placeholder="Chọn tháng" />
+
+            </div>
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:76px">Tuần*</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+                <RadzenDropDown AllowClear="true" TValue="int" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowFiltering="true" Style="width:150px"
+                                Placeholder="Chọn tuần" />
+            </div>
+            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
+                <RadzenButton Text="Tìm kiếm" Icon="search" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" />
+            </div>
+            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
+                <RadzenButton Text="Tìm nâng cao" Icon="file_download" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" Click="change" />
+            </div>
+            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
+                <RadzenButton Text="Cập nhật" Icon="cached" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" />
+            </div>
+        </RadzenMenu>
+        <RadzenMenu Style="border-left: 2px solid;border-bottom:2px solid;border-right:2px solid; height: 55px; background-color: #EDEFF1" hidden="@timkiemncao">
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Module</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+
+                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 150px"
+                                AllowFiltering="true" Placeholder="Chọn tháng" />
+
+            </div>
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Tên công việc</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+
+                <RadzenTextBox Style="width: 150px" />
+
+            </div>
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Nhân sự</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+
+                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 189px"
+                                AllowFiltering="true" Placeholder="Chọn nhân sự" />
+
+            </div>
+            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Trạng thái</h5>
+            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
+
+                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 189px"
+                                AllowFiltering="true" Placeholder="Chọn trạng thái" />
+
+            </div>
+        </RadzenMenu>
+        <RadzenButton hidden="@checkpush" Text=@chuoipush Icon="push_pin" Style="width: 100%;color:black" Click="changepush" ButtonStyle="ButtonStyle.Warning" />
+        <div hidden="@pushpin" style="width: 100%; height: 250px;margin-bottom:8px; background-color: rgb(233,203,97)">
+            <div class="row" style="height:90%;width:100%;overflow-y:scroll">
+                @foreach (var todo in toDoListDTOs)
+                {
+                    <div class="col-6 mt-4">
+                        <RadzenCard Style="width:700px;height:85px;margin:auto;">
+                            <div class="row" style="margin-top:-10px">
+                                <div class="col-2">
+                                    <RadzenCard Style="width:103px;height:60px;margin:auto;padding:0;border:1px solid #1562c1">
+                                        <center style="font-size:21px">@todo.NgayDenHang.ToString("dd/MM")</center>
+                                        @{
+                                            DateTime hientai = DateTime.Now;
+
+                                            var hethang = todo.NgayDenHang;
+
+                                            if (hientai.Day == hethang.Day)
+                                            {
+                                                <RadzenBadge BadgeStyle="BadgeStyle.Warning" Style="font-size: 14px ;margin-top: 3px;border-radius:0px" IsPill="true" Text="Hôm nay" />
+                                            }
+                                            else if (hientai > hethang)
+                                            {
+                                                TimeSpan tre = hientai.Subtract(hethang);
+                                                string text = $"Trể {tre.Days} ngày";
+                                                <RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size: 14px ;margin-top: 3px;border-radius:0px" IsPill="true" Text=@text />
+                                            }
+                                            else if (hientai < hethang)
+                                            {
+                                                TimeSpan tre = hientai.Subtract(hethang);
+                                                int con = Math.Abs(tre.Days);
+                                                if (con == 0)
+                                                {
+                                                    string text = $"Còn 1 ngày";
+                                                    <RadzenBadge BadgeStyle="BadgeStyle.Secondary" Style="font-size: 14px ;margin-top: 3px;border-radius:0px" IsPill="true" Text=@text />
+                                                }
+                                                else
+                                                {
+                                                    string text = $"Còn {con} ngày";
+                                                    <RadzenBadge BadgeStyle="BadgeStyle.Secondary" Style="font-size: 14px ;margin-top: 3px;border-radius:0px" IsPill="true" Text=@text />
+                                                }
+
+                                            }
+                                        }
+                                    </RadzenCard>
+                                </div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        @{
+                                            if (todo.NoiDung.Length < 33)
+                                            {
+                                                <div class="col-9" style="font-size:23px">@dem. @todo.NoiDung.ToString()</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-9" style="font-size:23px">@dem. @todo.NoiDung.Substring(0, 33)...</div>
+
+                                            }
+                                            dem++;
+                                        }
+                                        <div class="col-3">
+                                            <RadzenButton Text="Xong" ButtonStyle="ButtonStyle.Success" />
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top:4px">
+                                        <div class="col-3">@todo.TenUser</div>
+                                        <div class="col-3">Ngày giao:@todo.NgayGiao.ToString("dd/MM")</div>
+                                        @{
+                                            if (todo.GhiChu.Length < 20)
+                                            {
+                                                <div class="col-6">Nội dung: @todo.GhiChu.ToString()</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-6">Nội dung: @todo.GhiChu.Substring(0, 20)...</div>
+
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </RadzenCard>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+        <RadzenDataGrid FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                        AllowSorting="true" Data="@TuanLamViecs" TItem="TuanLamViecResponse" ColumnWidth="200px"
+                        SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedTuanLamViec ExpandMode="DataGridExpandMode.Single">
+            <Columns>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Width="40px" Sortable="false" Filterable="false">
+                    <HeaderTemplate>
+                        <RadzenCheckBox TriState="false" TValue="bool" Value="@(TuanLamViecs.Any(i => selectedTuanLamViec != null && selectedTuanLamViec.Contains(i)))"
+                                        Change="@(args => selectedTuanLamViec = args ? TuanLamViecs.ToList() : null)" />
+                    </HeaderTemplate>
+                    <Template Context="data">
+                        <RadzenCheckBox TriState="false" Value="@(selectedTuanLamViec != null && selectedTuanLamViec.Contains(data))" />
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="GiaTri" Filterable="false" Title="Giá trị" Width="70px" TextAlign="TextAlign.Center" />
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="TenThang" Title="Tháng" TextAlign="TextAlign.Center" />
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayBatDau" Title="Ngày bắt đầu" TextAlign="TextAlign.Center">
+                    <Template Context="ngaybatdau">
+                        @ngaybatdau.NgayBatDau.ToString("dd/MM")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayKetThuc" Title="Ngày kết thúc" TextAlign="TextAlign.Center">
+                    <Template Context="ngaykethuc">
+                        @ngaykethuc.NgayKetThuc.ToString("dd/MM")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="TuanLamViecResponse" Title="Sửa" TextAlign="TextAlign.Center">
+                    <Template Context="tuanlamviec">
+                        <RadzenButton Icon="edit" Size="ButtonSize.Small" @onclick:stopPropagation="true">
+                        </RadzenButton>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+        <RadzenPager ShowPagingSummary="true" Count="count" Style="width: 500px; border-radius: 4px" PageSize="@pageSize" PageNumbersCount="3" />
+    </div>
+}
+
+

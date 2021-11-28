@@ -46,6 +46,8 @@ namespace TASK.WebApp
 
             builder.Services.AddScoped<IChartServiceClient, ChartServiceClientcs>();
 
+            builder.Services.AddScoped<IUserServiceClient, UserServiceClient>();
+
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
             await builder.Build().RunAsync();

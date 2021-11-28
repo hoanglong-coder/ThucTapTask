@@ -1,0 +1,80 @@
+﻿
+@using TASK.Application.MToDoList
+<style>
+    form .row {
+        margin-bottom: 16px;
+    }
+</style>
+@if (userResponses == null)
+{
+    <PageLoading/>
+}else
+{<RadzenTemplateForm TItem="ToDoListRequest" Data="ToDoListRequest" Submit=InsertTodo InvalidSubmit=@OnInvalidSubmit>
+    <div class="row">
+        <div class="col-md-3 align-items-center d-flex">
+            <RadzenLabel Text="Nội dung*" />
+        </div>
+        <div class="col-md-5">
+            <RadzenTextBox style="width: 100%;" Name="NoiDung" @bind-Value="ToDoListRequest.NoiDung" />
+            <RadzenRequiredValidator Component="NoiDung" Text="Không được để trống" Popup=true Style="width:136px" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 align-items-center d-flex">
+            <RadzenLabel Text="Người thực hiện*" />
+        </div>
+        <div class="col-md-5">
+            <RadzenDropDown AllowClear="true" Data="userResponses" AllowVirtualization="true" Style="width: 100%"
+                            AllowFiltering="true" Placeholder="Chọn người thực hiện" Name="User" TextProperty="TenUser" ValueProperty="MaUser" @bind-Value="ToDoListRequest.MaUser" />
+            <RadzenRequiredValidator Component="User" Text="Phải chọn người thực hiện" Popup=true Style="width:171px" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 align-items-center d-flex">
+            <RadzenLabel Text="Ngày giao*" />
+        </div>
+        <div class="col-md-3">
+            <RadzenDatePicker @bind-Value="ToDoListRequest.NgayGiao" DateFormat="d" Style="width: 100%" />
+        </div>
+        <div class="col-md-2 align-items-center d-flex">
+            <RadzenLabel Text="Đến hạn*" />
+        </div>
+        <div class="col-md-3">
+            <RadzenDatePicker @bind-Value="ToDoListRequest.NgayDenHang" Name="DenHan" DateFormat="d" Style="width: 100%" />
+            <RadzenRequiredValidator Component="DenHan" Text="Phải chọn thời gian đến hạn" Popup=true Style="width:195px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 align-items-center d-flex">
+            <RadzenLabel Text="Ghi chú" />
+        </div>
+        <div class="col-md-9">
+            <RadzenTextBox Style="width: 100%" @bind-Value="ToDoListRequest.GhiChu" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 align-items-center d-flex">
+            <RadzenLabel Text="Trạng thái" />
+        </div>
+        <div class="col-md-8">
+            <RadzenRadioButtonList TValue="bool" @bind-Value="ToDoListRequest.TrangThai" Style="margin-left:-58px">
+                <Items>
+                    <RadzenRadioButtonListItem Text="Chưa xong" Value="false" />
+                    <RadzenRadioButtonListItem Text="Xong" Value="true" />
+                </Items>
+            </RadzenRadioButtonList>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <RadzenButton Text="Lưu & thêm" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit" />
+        </div>
+        <div class="col-md-4 align-items-center d-flex">
+            <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Icon="save" Click="@(args=>changesave())" Style="margin-left:auto;margin-right:auto" ButtonType="ButtonType.Submit" />
+        </div>
+        <div class="col-md-4">
+            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Style="float: left " Icon="cancel" />
+        </div>
+    </div>
+</RadzenTemplateForm>
+}

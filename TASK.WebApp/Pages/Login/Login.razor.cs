@@ -44,6 +44,7 @@ namespace TASK.WebApp.Pages.Login
                 await LocalStorage.SetItemAsync<Guid>("UserID", result.MaUser);
                 await LocalStorage.SetItemAsync<string>("Username", result.UserName);
                 await LocalStorage.SetItemAsync<string>("FullName", result.FullName);
+                await LocalStorage.SetItemAsync<int>("Role", result.MaQuyenHeThong);
                 await authenticationStateProvider.GetAuthenticationStateAsync();
                 muav.NavigateTo("/choosetask");
             }

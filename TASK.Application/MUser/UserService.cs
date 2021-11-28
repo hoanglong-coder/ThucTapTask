@@ -35,6 +35,24 @@ namespace TASK.Application.MUser
             return ListUser;
         }
 
+        public async Task<List<UserResponse>> GetAllByDuAn(int maduan)
+        {
+            var ListUser =  _taskDbContext.Users.Select(t => t);
+
+            var ListChitietDuAn = _taskDbContext.ChiTietDuAns.Where(t=>t.MaDuAn==maduan).Select(t => t);
+
+            var ListUserChitietDuan = await (from User in ListUser
+                                      join ChitietDuan in ListChitietDuAn on User.MaUser equals ChitietDuan.MaUser
+                                      select new UserResponse
+                                      {
+                                          MaUser = User.MaUser,
+                                          TenUser = User.TenUser,
+                                          UserName = User.UserName,
+                                          TrangThai = User.TrangThai
+                                      }).ToListAsync();
+            return ListUserChitietDuan;
+        }
+
         public Task<UserResponse> GetUser(Guid idUser)
         {
             throw new NotImplementedException();
