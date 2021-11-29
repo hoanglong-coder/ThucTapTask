@@ -51,8 +51,16 @@
                                 dem++;
                             }
                             <div class="col-6"><h4 class="mb-0">@todo.NgayDenHang.ToString("dd/MM/yyyy")</h4></div>
-
-                            <div style="margin-left:13px">@todo.NoiDung.Substring(0, 27)...</div>
+                            @{
+                                if (todo.NoiDung.Length < 27)
+                                {
+                                    <div style="margin-left:13px">@todo.NoiDung.ToString()</div>
+                                }
+                                else
+                                {
+                                    <div style="margin-left:13px">@todo.NoiDung.Substring(0, 27)...</div>
+                                }
+                            }
                         </div>
                         <div class="row">
                             <div class="col-12"></div>

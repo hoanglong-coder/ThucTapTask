@@ -4,15 +4,19 @@
 <div class="container" style="max-width: 100%">
     <RadzenMenu Style="background-color: #EDEFF1;margin-top:6px">
         <h1>TO-DO LIST </h1>
-        <div style="margin-left:auto">
+        @if (Role == 1 || Role == 2)
+        {
+            <div style="margin-left:auto">
 
-            <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="InsertToDo" />
+                <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="InsertToDo" />
 
-            <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="DeleteToDo" />
 
-            <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
 
-        </div>
+            </div>
+        }
+
     </RadzenMenu>
     <div style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
         <div class="row mt-3">
@@ -54,7 +58,6 @@
                 <div class="row mt-4">
                     <div class="col-md-4"></div>
                     <div class="col-md-4"> <RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 100%" ButtonStyle="ButtonStyle.Primary" /></div>
-                    <div class="col-md-4"> <RadzenButton Text="Cập nhật" Icon="cached" Style="margin-bottom: 20px;" ButtonStyle="ButtonStyle.Primary" /></div>
                 </div>
             </div>
         </div>
@@ -135,8 +138,8 @@
             </RadzenDataGridColumn>
 
             <RadzenDataGridColumn TItem="ToDoListDTO" Title="Sửa" TextAlign="TextAlign.Center">
-                <Template Context="tuanlamviec">
-                    <RadzenButton Icon="edit" Size="ButtonSize.Small" @onclick:stopPropagation="true">
+                <Template Context="todo">
+                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args=>SuaTodo(todo))" @onclick:stopPropagation="true">
                     </RadzenButton>
                 </Template>
             </RadzenDataGridColumn>

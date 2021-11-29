@@ -103,69 +103,6 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 14 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 15 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 16 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common.Axes;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 17 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common.Axes.Ticks;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 18 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common.Enums;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 19 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common.Handlers;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 20 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Common.Time;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 21 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Util;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 22 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\_Imports.razor"
-using ChartJs.Blazor.Interop;
-
-#line default
-#line hidden
-#nullable disable
     public partial class MainLayoutTask : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -174,7 +111,7 @@ using ChartJs.Blazor.Interop;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 42 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
+#line 43 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Shared\MainLayoutTask.razor"
       
     public int checkLogin { get; set; }
 

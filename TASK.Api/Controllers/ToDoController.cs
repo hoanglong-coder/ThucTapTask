@@ -22,10 +22,12 @@ namespace TASK.Api.Controllers
         }
 
         // GET: api/<ToDoController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("GetToDoByID")]
+        public async Task<IActionResult> GetTodobyid(int id)
         {
-            return new string[] { "value1", "value2" };
+            var tododto = await toDoListService.GetTodoById(id);
+
+            return Ok(tododto);
         }
 
         // GET api/<ToDoController>/5
@@ -60,6 +62,20 @@ namespace TASK.Api.Controllers
         public async Task<IActionResult> Post([FromBody] ToDoListRequest toDoListRequest)
         {
             int rs = await toDoListService.InsertToDo(toDoListRequest);
+            return Ok(rs);
+        }
+
+        [HttpPost("Delete")]
+        public async Task<IActionResult> DeleteTodo([FromBody] List<ToDoListDTO> matodo)
+        {
+            int rs = await toDoListService.DeleteTodo(matodo);
+            return Ok(rs);
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> UpdateTodo([FromBody] ToDoListRequest toDoListRequest)
+        {
+            int rs = await toDoListService.UpdateToDo(toDoListRequest);
             return Ok(rs);
         }
 

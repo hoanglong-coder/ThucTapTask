@@ -13,5 +13,11 @@ namespace TASK.Application.MToDoList
         Task<ToDoListResponse> GetAllToDoByDuAn(int MaDuAn, Guid MaUser);
 
         Task<int> InsertToDo(ToDoListRequest toDoListRequest);
+
+        Task<int> UpdateToDo(ToDoListRequest toDoListRequest);
+
+        Task<int> DeleteTodo(List<ToDoListDTO> MaToDo);
+
+        Task<ToDoListDTO> GetTodoById(int MaToDo);
     }
 }

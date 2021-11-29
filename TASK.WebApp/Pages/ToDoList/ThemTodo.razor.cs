@@ -14,6 +14,8 @@ namespace TASK.WebApp.Pages.ToDoList
     {
         public ToDoListRequest ToDoListRequest = new ToDoListRequest();
 
+        [Inject] DialogService dialogService { get; set; }
+
         [Inject] IUserServiceClient UserServiceClient { get; set; }
 
         [Inject] IToDoServiceClient toDoServiceClient { get; set; }
@@ -48,13 +50,13 @@ namespace TASK.WebApp.Pages.ToDoList
                 if (check == 1)
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
-                    ShowNotification(noti);
-
+                    await ShowNotification(noti);
+                    ClearTodo();
                 }
                 else
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
-                    ShowNotification(noti);
+                    await ShowNotification(noti);
                 }
             }
             else
@@ -65,13 +67,15 @@ namespace TASK.WebApp.Pages.ToDoList
                 if (check == 1)
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
-                    ShowNotification(noti);
+                    await ShowNotification(noti);
+                    ClearTodo();
+                    dialogService.Close(true);
 
                 }
                 else
                 {
                     NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
-                    ShowNotification(noti);
+                    await ShowNotification(noti);
                 }
             }
         }
@@ -81,13 +85,30 @@ namespace TASK.WebApp.Pages.ToDoList
 
         }
 
-        void ShowNotification(NotificationMessage message)
+        async Task ShowNotification(NotificationMessage message)
         {
-            NotificationService.Notify(message);
+            Task task = new Task(() =>
+            {
+                NotificationService.Notify(message);
+            });
+
+            task.Start();
+
+            await task;
+            
         }
         void changesave()
         {
             checksave = 1;
+        }
+
+        void ClearTodo()
+        {
+            ToDoListRequest.NoiDung = string.Empty;
+            ToDoListRequest.MaUser = Guid.Empty;
+            ToDoListRequest.NgayDenHang = DateTime.Now;
+            ToDoListRequest.GhiChu = string.Empty;
+            ToDoListRequest.TrangThai = false;
         }
     }
 }

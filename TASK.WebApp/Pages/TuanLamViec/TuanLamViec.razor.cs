@@ -82,7 +82,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
         }
         async void Close(dynamic result)
         {
-            await InvokeAsync(async () => await reset());
+            await reset();
         }
         async Task reset()
         {
@@ -97,6 +97,8 @@ namespace TASK.WebApp.Pages.TuanLamViec
             count = TuanLamViecPaging.Count;
 
             TuanLamViecs = TuanLamViecPaging.ListTuanLamViecRequest;
+
+            StateHasChanged();
         }
 
         async Task DeletteAsync()

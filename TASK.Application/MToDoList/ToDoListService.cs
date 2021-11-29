@@ -18,6 +18,31 @@ namespace TASK.Application.MToDoList
             _taskDbContext = taskDbContext;
         }
 
+        public async Task<int> DeleteTodo(List<ToDoListDTO> MaToDo)
+        {
+            try
+            {
+                List<ToDo> toDos = new List<ToDo>();
+
+                foreach (var item in MaToDo)
+                {
+                    ToDo toDo = await _taskDbContext.ToDos.FindAsync(item.MaTodo);
+                    toDos.Add(toDo);
+                }
+
+                _taskDbContext.ToDos.RemoveRange(toDos);
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }          
+        }
+
         public async Task<ToDoListResponse> GetAllToDoByDuAn(int MaDuAn, Guid MaUser)
         {
             if (!KiemTraAdmin(MaUser))
@@ -60,6 +85,7 @@ namespace TASK.Application.MToDoList
                         GhiChu = t.GhiChu,
                         TrangThai = t.TrangThai,
                         MaDuAn = t.MaDuAn,
+                        TenUser = _taskDbContext.Users.Where(e => e.MaUser == t.MaUser).SingleOrDefault().TenUser
 
                     }).OrderBy(t => t.NgayDenHang).Skip(skip).Take(take).ToListAsync();
 
@@ -118,6 +144,7 @@ namespace TASK.Application.MToDoList
                         GhiChu = t.GhiChu,
                         TrangThai = t.TrangThai,
                         MaDuAn = t.MaDuAn,
+                        TenUser = _taskDbContext.Users.Where(e => e.MaUser == t.MaUser).SingleOrDefault().TenUser
 
                     }).OrderBy(t => t.NgayDenHang).Skip(skip).Take(take).ToListAsync();
 
@@ -165,6 +192,22 @@ namespace TASK.Application.MToDoList
             
         }
 
+        public async Task<ToDoListDTO> GetTodoById(int MaToDo)
+        {
+            var todo = await _taskDbContext.ToDos.FindAsync(MaToDo);
+
+            var tododto = new ToDoListDTO();
+            tododto.MaTodo = todo.MaTodo;
+            tododto.MaUser = todo.MaUser;
+            tododto.NgayGiao = todo.NgayGiao;
+            tododto.NgayDenHang = todo.NgayDenHang;
+            tododto.NoiDung = todo.NoiDung;
+            tododto.GhiChu = todo.GhiChu;
+            tododto.TrangThai = todo.TrangThai;
+            tododto.MaDuAn = todo.MaDuAn;
+            return tododto;
+        }
+
         public async Task<int> InsertToDo(ToDoListRequest toDoListRequest)
         {
             try
@@ -195,12 +238,38 @@ namespace TASK.Application.MToDoList
         {
             var check = _taskDbContext.Users.Where(t => t.MaUser == UserId).SingleOrDefault();
 
-            if (check.MaQuyenHeThong == 1)
+            if (check.MaQuyenHeThong == 1||check.MaQuyenHeThong==2)
             {
                 return true;
             }
             return false;
         }
 
+        public async Task<int> UpdateToDo(ToDoListRequest toDoListRequest)
+        {
+            try
+            {
+                var todo = new ToDo();
+                todo.MaTodo = toDoListRequest.MaTodo;
+                todo.MaUser = toDoListRequest.MaUser;
+                todo.NgayGiao = toDoListRequest.NgayGiao;
+                todo.NgayDenHang = toDoListRequest.NgayDenHang;
+                todo.NoiDung = toDoListRequest.NoiDung;
+                todo.GhiChu = toDoListRequest.GhiChu;
+                todo.TrangThai = toDoListRequest.TrangThai;
+                todo.MaDuAn = toDoListRequest.MaDuAn;
+
+                 _taskDbContext.ToDos.Update(todo);
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+        }
     }
 }

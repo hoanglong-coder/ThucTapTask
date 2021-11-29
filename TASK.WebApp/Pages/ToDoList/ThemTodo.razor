@@ -73,7 +73,7 @@
             <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Icon="save" Click="@(args=>changesave())" Style="margin-left:auto;margin-right:auto" ButtonType="ButtonType.Submit" />
         </div>
         <div class="col-md-4">
-            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Style="float: left " Icon="cancel" />
+            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))" Style="float: left " Icon="cancel" />
         </div>
     </div>
 </RadzenTemplateForm>

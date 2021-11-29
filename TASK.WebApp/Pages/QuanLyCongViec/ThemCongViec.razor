@@ -1,0 +1,65 @@
+﻿<style>
+    form .row {
+        margin-bottom: 16px;
+    }
+</style>
+<form>
+    <div class="row">
+        <div class="col-2">Nhân sự*</div>
+        <div class="col-4"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+        <div class="col-2"></div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row" style="border-bottom:1px solid black">
+        <div class="col-2">Tháng*</div>
+        <div class="col-4"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+        <div class="col-2">Tuần*</div>
+        <div class="col-4"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Module</div>
+        <div class="col-4"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+        <div class="col-2">Nguồn</div>
+        <div class="col-4">Tạo mới(hoặc Được dời)</div>
+    </div>
+    <div class="row">
+        <div class="col-2">Tên issue</div>
+        <div class="col-4"><RadzenTextBox Style="width:100%" /></div>
+        <div class="col-2">Url issue</div>
+        <div class="col-4"><RadzenTextBox Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Tên công việc*</div>
+        <div class="col-10"><RadzenTextArea Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Thời gian làm*</div>
+        <div class="col-4"><RadzenNumeric TValue="int" Style="width:100%" /></div>
+        <div class="col-2">Trạng thái*</div>
+        <div class="col-4"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Từ ngày*</div>
+        <div class="col-4">  <RadzenDatePicker @bind-Value="value" DateFormat="d" Style="width:100%" /></div>
+        <div class="col-2">Đến ngày</div>
+        <div class="col-4"><RadzenDatePicker @bind-Value="value" DateFormat="d" Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Ghi chú</div>
+        <div class="col-10"><RadzenTextBox Style="width:100%" /></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <RadzenButton Text="Lưu & thêm" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit" />
+        </div>
+        <div class="col-md-4 align-items-center d-flex">
+            <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary"  Icon="save" Style="margin-left:auto;margin-right:auto" ButtonType="ButtonType.Submit" />
+        </div>
+        <div class="col-md-4">
+            <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary"Style="float: left " Icon="cancel" />
+        </div>
+    </div>
+</form>
+@code {
+    DateTime? value = DateTime.Now;
+}

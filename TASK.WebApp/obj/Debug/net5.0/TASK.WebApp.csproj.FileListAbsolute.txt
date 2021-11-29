@@ -1397,10 +1397,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\bui
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\+EBkb2oY.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\8AjgGsL5.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\Dashboard.razor.rz.scp.css
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\ChartJs.Blazor.dll.gz
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\_framework\ChartJs.Blazor.dll
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\JDBovnzO.gz
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\vicE4x3g.gz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\Dashboard\ToDoListDashboard.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\Dashboard\ToDoListDashboard.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\Pages\Dashboard\ToDoListDashboard.razor.rz.scp.css
@@ -1412,3 +1408,8 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Raz
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\ToDoList\ThemTodo.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\ToDoList\SuaTodo.razor.g.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\ToDoList\ThemTodo.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\build-gz\56Qt4jxv.gz
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\QuanLyCongViec\SuaCongViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\RazorDeclaration\Pages\QuanLyCongViec\ThemCongViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\QuanLyCongViec\SuaCongViec.razor.g.cs
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\Razor\Pages\QuanLyCongViec\ThemCongViec.razor.g.cs

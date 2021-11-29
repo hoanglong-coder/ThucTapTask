@@ -13,5 +13,11 @@ namespace TASK.WebApp.Repository.Interface
         Task<ToDoListResponse> GetAllToDoByDuAn(int MaDuAn, Guid MaUser);
 
         Task<int> InsertToDo(ToDoListRequest toDoListRequest);
+
+        Task<int> DeleteTodo(IList<ToDoListDTO> MaToDo);
+
+        Task<int> UpdateToDo(ToDoListRequest toDoListRequest);
+
+        Task<ToDoListDTO> GetTodoById(int MaToDo);
     }
 }

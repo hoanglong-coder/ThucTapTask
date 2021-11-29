@@ -13,6 +13,7 @@ using TASK.Application.MTuanLamViec;
 using TASK.Application.MUser;
 using TASK.Application.MToDoList;
 using TASK.Application.MChart;
+using TASK.Application.MCongViec;
 using TASK.Data;
 
 namespace TASK.Api
@@ -55,7 +56,7 @@ namespace TASK.Api
             services.AddTransient<IChiTietTuanService, ChiTietTuanService>();
             services.AddTransient<IToDoListService, ToDoListService>();
             services.AddTransient<IChartService, ChartService>();
-
+            services.AddTransient<ICongViecService, CongViecService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TASK.Api", Version = "v1" });

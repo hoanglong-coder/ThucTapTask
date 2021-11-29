@@ -1,6 +1,5 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="_content/ChartJs.Blazor.Fork" Path="C:\Users\HoangLong\.nuget\packages\chartjs.blazor.fork\2.0.2\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\HoangLong\.nuget\packages\radzen.blazor\3.12.2\build\..\staticwebassets\" />
   <ContentRoot BasePath="/" Path="C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Debug\net5.0\wwwroot\" />
   <ContentRoot BasePath="/" Path="C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\HoangLong\.nuget\packages\radzen.blazor\3.12.2\build\..\staticwebassets\" />
 </StaticWebAssets>

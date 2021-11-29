@@ -1,7 +1,8 @@
 ﻿@page "/quanlycongviec"
 
-@using TASK.Application.MTuanLamViec
+@using TASK.Application.MCongViec
 @using TASK.Application.MToDoList
+@using TASK.Data.Enums
 
 @if (toDoList == null)
 {
@@ -14,7 +15,7 @@ else
             <h1>QUẢN LÝ CÔNG VIỆC</h1>
             <div style="margin-left:auto">
 
-                <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="InsertCongViec" />
 
                 <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
 
@@ -29,59 +30,51 @@ else
                 <RadzenButton Text="Xuất excel" Icon="get_app" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
             </div>
         </RadzenMenu>
-        <RadzenMenu Style="border: 2px solid; height: 55px; background-color: #EDEFF1">
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Tháng</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-
-                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 150px; margin-left: 8px; "
-                                AllowFiltering="true" Placeholder="Chọn tháng" />
-
+        <div style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tháng</h5></div>
+                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                    </div>
+                    <div class="row mt-4" hidden="@timkiemncao">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Module</h5></div>
+                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tuần</h5></div>
+                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                    </div>
+                    <div class="row mt-4" hidden="@timkiemncao">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tên công việc</h5></div>
+                        <div class="col-md-8"><RadzenTextBox Style="width: 100%" /></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8"></div>
+                    </div>
+                    <div class="row" style="margin-top:65px" hidden="@timkiemncao">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Nhân sự</h5></div>
+                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" /></div>
+                        <div class="col-md-6"><RadzenButton Text="Tìm nâng cao" Icon="arrow_downward" Style="margin-bottom: 20px; width: 100%;margin-left:-31px" ButtonStyle="ButtonStyle.Primary" Click="change"/></div>
+                    </div>
+                    <div class="row" hidden="@timkiemncao">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Trạng thái</h5></div>
+                        <div class="col-md-4"><RadzenDropDown TValue="string" Style="width: 100% " /></div>
+                    </div>
+                </div>
             </div>
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:76px">Tuần*</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-                <RadzenDropDown AllowClear="true" TValue="int" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowFiltering="true" Style="width:150px"
-                                Placeholder="Chọn tuần" />
-            </div>
-            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
-                <RadzenButton Text="Tìm kiếm" Icon="search" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" />
-            </div>
-            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
-                <RadzenButton Text="Tìm nâng cao" Icon="file_download" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" Click="change" />
-            </div>
-            <div style="margin-top: 8px;margin-bottom:auto;margin-left:25px">
-                <RadzenButton Text="Cập nhật" Icon="cached" Style="margin-bottom: 20px; width: 200px" ButtonStyle="ButtonStyle.Secondary" />
-            </div>
-        </RadzenMenu>
-        <RadzenMenu Style="border-left: 2px solid;border-bottom:2px solid;border-right:2px solid; height: 55px; background-color: #EDEFF1" hidden="@timkiemncao">
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Module</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-
-                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 150px"
-                                AllowFiltering="true" Placeholder="Chọn tháng" />
-
-            </div>
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Tên công việc</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-
-                <RadzenTextBox Style="width: 150px" />
-
-            </div>
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Nhân sự</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-
-                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 189px"
-                                AllowFiltering="true" Placeholder="Chọn nhân sự" />
-
-            </div>
-            <h5 style="margin-top:auto;margin-bottom:auto;margin-left:25px">Trạng thái</h5>
-            <div style="margin-top: 8px; margin-bottom: auto; margin-left: 25px ">
-
-                <RadzenDropDown AllowClear="true" TValue="int" AllowVirtualization="true" Style="width: 189px"
-                                AllowFiltering="true" Placeholder="Chọn trạng thái" />
-
-            </div>
-        </RadzenMenu>
-        <RadzenButton hidden="@checkpush" Text=@chuoipush Icon="push_pin" Style="width: 100%;color:black" Click="changepush" ButtonStyle="ButtonStyle.Warning" />
+        </div>
+        <RadzenButton hidden="@checkpush" Text=@chuoipush Icon="push_pin" Style="width: 100%;color:black;text-align:left" Click="changepush" ButtonStyle="ButtonStyle.Warning" />
         <div hidden="@pushpin" style="width: 100%; height: 250px;margin-bottom:8px; background-color: rgb(233,203,97)">
             <div class="row" style="height:90%;width:100%;overflow-y:scroll">
                 @foreach (var todo in toDoListDTOs)
@@ -168,36 +161,139 @@ else
             </div>
 
         </div>
-        <RadzenDataGrid FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
-                        AllowSorting="true" Data="@TuanLamViecs" TItem="TuanLamViecResponse" ColumnWidth="200px"
-                        SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedTuanLamViec ExpandMode="DataGridExpandMode.Single">
+        <RadzenDataGrid  EditMode="DataGridEditMode.Single" @ref="congviecsGrid" AllowGrouping="false" AllowFiltering="false" AllowColumnResize="false" FilterMode="FilterMode.Advanced"  AllowPaging="true" AllowSorting="true"
+                        Data="@congViecResponses"  SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedCongViec TItem="CongViecResponse" ColumnWidth="300px
+                        " LogicalFilterOperator="LogicalFilterOperator.Or" Render="OnRender" Style="height:300px;width:100%;overflow-y:scroll">
+            <GroupHeaderTemplate Context="congviec">
+                <div class="row">
+                    <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
+                        <div class="row">
+                            <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold;font-size:18px">DEV:</div>
+                            <div class="col--6" style="margin-top: auto; margin-bottom: auto; margin-left: -30%; font-weight: bold;font-size:18px">@(congviec.Data.Items.Cast<CongViecResponse>().Select(t=>t).FirstOrDefault()?.TenUser)</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
+                        <div class="row">
+                            <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">TỔNG THỜI GIAN(giờ):</div>
+                            <p style="color: blue; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">40</p>
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
+                        <div class="row">
+                            <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">MỨC ĐỘ HOÀN THÀNH:</div>
+                            <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="100%" Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                        </div>
+                    </div>
+                    <div class="col-md-6"><RadzenLink href="javascript:void(0)" Icon="edit" Text="Đánh giá nhân sự" Style="float:right" @onclick="@(args=>Action())" /></div>
+                </div>
+            </GroupHeaderTemplate>
+
             <Columns>
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Width="40px" Sortable="false" Filterable="false">
+                <RadzenDataGridColumn TItem="CongViecResponse" Width="40px" Sortable="false" Filterable="false">
                     <HeaderTemplate>
-                        <RadzenCheckBox TriState="false" TValue="bool" Value="@(TuanLamViecs.Any(i => selectedTuanLamViec != null && selectedTuanLamViec.Contains(i)))"
-                                        Change="@(args => selectedTuanLamViec = args ? TuanLamViecs.ToList() : null)" />
+                        <RadzenCheckBox TriState="false" TValue="bool" Value="@(congViecResponses.Any(i => selectedCongViec != null && selectedCongViec.Contains(i)))"
+                                        Change="@(args => selectedCongViec = args ? congViecResponses.ToList() : null)" />
                     </HeaderTemplate>
                     <Template Context="data">
-                        <RadzenCheckBox TriState="false" Value="@(selectedTuanLamViec != null && selectedTuanLamViec.Contains(data))" />
+                        <RadzenCheckBox TriState="false" Value="@(selectedCongViec != null && selectedCongViec.Contains(data))" />
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="GiaTri" Filterable="false" Title="Giá trị" Width="70px" TextAlign="TextAlign.Center" />
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="TenThang" Title="Tháng" TextAlign="TextAlign.Center" />
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayBatDau" Title="Ngày bắt đầu" TextAlign="TextAlign.Center">
-                    <Template Context="ngaybatdau">
-                        @ngaybatdau.NgayBatDau.ToString("dd/MM")
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TenModule" Title="Module" Width="200px">
+                    <EditTemplate Context="congviec">
+                        <RadzenDropDown AllowClear="true" Data="Listmodule" TValue="int" @bind-Value="congviec.MaModule" TextProperty="TenModule" ValueProperty="MaModule" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TenIssue" Title="Issue URL" Width="100px" TextAlign="TextAlign.Center" />
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TenCongViec" Title="Tên công việc" Width="400px">
+                    <EditTemplate Context="congviec">
+                        <RadzenTextBox @bind-Value="congviec.TenCongViec" Style="width:100%"/>
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="Nguon" Title="Nguồn gốc" Width="90px" TextAlign="TextAlign.Center">
+                    <Template Context="congviec">
+                        @{
+                            if (congviec.Nguon == (int)STT_NguonGoc.TAOMOI)
+                            {
+                                <RadzenIcon Icon="radio_button_unchecked" MouseEnter="@(args => ShowTooltip(args,
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:green" />
+                            }
+                            if (congviec.Nguon == (int)STT_NguonGoc.DOIDOTRE)
+                            {
+                                <RadzenIcon Icon="arrow_right_alt" MouseEnter="@(args => ShowTooltip(args,
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:red" />
+                            }
+                            if (congviec.Nguon == (int)STT_NguonGoc.DOIDOTXUAT)
+                            {
+                                <RadzenIcon Icon="sync_alt" MouseEnter="@(args => ShowTooltip(args,
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:blue" />
+                            }
+                        }
+
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Property="NgayKetThuc" Title="Ngày kết thúc" TextAlign="TextAlign.Center">
-                    <Template Context="ngaykethuc">
-                        @ngaykethuc.NgayKetThuc.ToString("dd/MM")
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="ThoiGianLam" Title="Thời gian(giờ)" Width="70px" TextAlign="TextAlign.Center">
+                    <EditTemplate Context="congviec">
+                        <RadzenNumeric TValue="int" @bind-Value="congviec.ThoiGianLam" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TuNgay" Title="Từ ngày" Width="100px" TextAlign="TextAlign.Center">
+                    <Template Context="congviec">
+                        @congviec.TuNgay.ToString("dd/MM")
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="TuanLamViecResponse" Title="Sửa" TextAlign="TextAlign.Center">
-                    <Template Context="tuanlamviec">
-                        <RadzenButton Icon="edit" Size="ButtonSize.Small" @onclick:stopPropagation="true">
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="DenNgay" Title="Đến ngày" Width="100px" TextAlign="TextAlign.Center">
+                    <Template Context="congviec">
+                        @congviec.DenNgay.ToString("dd/MM")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TrangThai" Title="Trạng thái" Width="250px" TextAlign="TextAlign.Center">
+                    <Template Context="congviec">
+                        @{
+                            STT_CongViec TT = (STT_CongViec)congviec.TrangThai;
+
+                            switch (TT)
+                            {
+                                  
+                                case STT_CongViec.ChuaLam:
+                                    <p style="float:left;margin-top:auto;margin-bottom:auto;font-weight:bold">Chưa làm</p>
+                                    break;
+                                case STT_CongViec.DaXong:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: cornflowerblue; font-weight: bold ">Đã xong</p>
+                                    break;
+                                case STT_CongViec.DaXongTaskDotXuat:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: green; font-weight: bold ">Vắng</p>
+                                    break;
+                                case STT_CongViec.ChuaXong:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: #E6C54F; font-weight: bold ">Chưa xong</p>
+                                    break;
+                                case STT_CongViec.ChuaXongBanTaskKhacChuaDuyet:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: red; font-weight: bold ">Chưa xong(bận task khác)-Chưa duyệt</p>
+                                    break;
+                                case STT_CongViec.ChuaXongBanTaskKhacDaDuyet:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: deeppink; font-weight: bold ">Chưa xong(bận task khác)-Đã duyệt</p>
+                                    break;
+                                case STT_CongViec.Vang:
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: darkblue; font-weight: bold ">Vắng</p>
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        }
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="GhiChu" Title="Ghi chú" Width="300px" />
+                <RadzenDataGridColumn TItem="CongViecResponse" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                    <Template Context="congviec">
+                        <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args => EditRow(congviec))" @onclick:stopPropagation="true">
                         </RadzenButton>
                     </Template>
+                    <EditTemplate Context="congviec">
+                        <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((args) => SaveRow(congviec))">
+                        </RadzenButton>
+                        <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((args) => CancelEdit(congviec))">
+                        </RadzenButton>
+                    </EditTemplate>
                 </RadzenDataGridColumn>
             </Columns>
         </RadzenDataGrid>
