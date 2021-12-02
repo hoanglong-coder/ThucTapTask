@@ -25,7 +25,7 @@ else
         <div class="row" style="border-bottom:1px solid black">
             <div class="col-2">Tháng*</div>
             <div class="col-4">
-                <RadzenDropDown AllowClear="true" Data="tuanLamViecResponses" AllowVirtualization="true" Style="width: 100%"
+                <RadzenDropDown AllowClear="true" Data="tuanLamViecResponses" Style="width: 100%"
                                 AllowFiltering="true" Placeholder="Chọn tháng" Name="Thang" TextProperty="TenThang" ValueProperty="MaThangLamViec" @bind-Value="congViecRequest.MaThangLamViec" Change=@(args => OnChange(args)) />
                 <RadzenRequiredValidator DefaultValue="0" Component="Thang" Text="Phải chọn tháng" Popup=true Style="width:136px" />
             </div>
@@ -92,7 +92,7 @@ else
                 <RadzenButton Text="Lưu & đóng" ButtonStyle="ButtonStyle.Secondary" Icon="save" Click="@(args=>changesave())" Style="margin-left:auto;margin-right:auto" ButtonType="ButtonType.Submit" />
             </div>
             <div class="col-md-4">
-                <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Style="float: left " Icon="cancel" />
+                <RadzenButton Text="Đóng" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))" Style="float: left " Icon="cancel" />
             </div>
         </div>
        </RadzenTemplateForm>

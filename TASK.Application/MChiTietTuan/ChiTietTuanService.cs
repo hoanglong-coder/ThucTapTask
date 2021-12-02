@@ -137,6 +137,24 @@ namespace TASK.Application.MChiTietTuan
             
         }
 
+        public async Task<bool> KiemTraKhoaTuan(int machitiettuan)
+        {
+            var chitiettuan = await _taskDbContext.ChiTietTuans.FindAsync(machitiettuan);
+
+            if (chitiettuan.TrangThai)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<int> TraVeSoGioLam(int machitiettuan)
+        {
+            var chitiettuan = await _taskDbContext.ChiTietTuans.FindAsync(machitiettuan);
+
+            return chitiettuan.SoGioLam;
+        }
+
         public async Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests)
         {
             try

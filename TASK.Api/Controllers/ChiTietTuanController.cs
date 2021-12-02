@@ -29,6 +29,22 @@ namespace TASK.Api.Controllers
             return Ok(lstChitiettuan);
         }
 
+        [HttpGet("KiemTraKhoaTuan")]
+        public async Task<IActionResult> KiemTraKhoaTuan(int machitiettuan)
+        {
+            var lstChitiettuan = await chiTietTuanService.KiemTraKhoaTuan(machitiettuan);
+
+            return Ok(lstChitiettuan);
+        }
+
+        [HttpGet("GetSoGioLam")]
+        public async Task<IActionResult> GetSoGioLam(int machitiettuan)
+        {
+            var lstChitiettuan = await chiTietTuanService.TraVeSoGioLam(machitiettuan);
+
+            return Ok(lstChitiettuan);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] List<ChiTietTuanRequest> chiTietTuans)
         {

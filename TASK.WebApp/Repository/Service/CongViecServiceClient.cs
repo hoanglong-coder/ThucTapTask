@@ -19,9 +19,30 @@ namespace TASK.WebApp.Repository.Service
             this.httpClient = httpClient;
         }
 
-        public async Task<List<CongViecResponse>> GetAll()
+        public async Task<int> DeleteCongViecRange(List<CongViecRequest> congViecRequests)
         {
-            var lst = await httpClient.GetFromJsonAsync<List<CongViecResponse>>($"/api/CongViec");
+            var check = await httpClient.PostAsJsonAsync("/api/CongViec/DeleteCongViec", congViecRequests);
+
+            var content = await check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
+        public async Task<int> DuyetKeHoachTuan(List<CongViecRequest> congViecRequests)
+        {
+            var check = await httpClient.PostAsJsonAsync("/api/CongViec/DuyetCongViecRange", congViecRequests);
+
+            var content = await check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
+        public async Task<List<CongViecResponse>> GetAll(CongViecSearch congViecSearch)
+        {
+
+            string url = $"/api/CongViec?MaThangLamViec={congViecSearch.MaThangLamViec}&MaTuanChiTiet={congViecSearch.MaTuanChiTiet}&MaModule={congViecSearch.MaModule}&TenCongViec={congViecSearch.TenCongViec}&MaUser={congViecSearch.MaUser}&TrangThai={congViecSearch.TrangThai}";
+
+            var lst = await httpClient.GetFromJsonAsync<List<CongViecResponse>>(url);
 
             return lst;
         }
@@ -36,6 +57,15 @@ namespace TASK.WebApp.Repository.Service
         public async Task<int> InsertCongViec(CongViecRequest congViecRequest)
         {
             var check = await httpClient.PostAsJsonAsync("/api/CongViec/InsertCongViec", congViecRequest);
+
+            var content = await check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
+
+        public async Task<int> UpdateCongViecRange(List<CongViecRequest> congViecRequests)
+        {
+            var check = await httpClient.PostAsJsonAsync("/api/CongViec/UpdateCongViecRange", congViecRequests);
 
             var content = await check.Content.ReadAsStringAsync();
 

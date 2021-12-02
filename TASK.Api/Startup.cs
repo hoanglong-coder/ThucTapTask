@@ -48,15 +48,15 @@ namespace TASK.Api
 
             //Add DI
 
-            services.AddTransient<IQuyenService, QuyenService>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ILoginService, LoginService>();
-            services.AddTransient<IDuAnService, DuAnService>();
-            services.AddTransient<ITuanLamViecService, TuanLamViecService>();
-            services.AddTransient<IChiTietTuanService, ChiTietTuanService>();
-            services.AddTransient<IToDoListService, ToDoListService>();
-            services.AddTransient<IChartService, ChartService>();
-            services.AddTransient<ICongViecService, CongViecService>();
+            services.AddScoped<IQuyenService, QuyenService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IDuAnService, DuAnService>();
+            services.AddScoped<ITuanLamViecService, TuanLamViecService>();
+            services.AddScoped<IChiTietTuanService, ChiTietTuanService>();
+            services.AddScoped<IToDoListService, ToDoListService>();
+            services.AddScoped<IChartService, ChartService>();
+            services.AddScoped<ICongViecService, CongViecService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TASK.Api", Version = "v1" });

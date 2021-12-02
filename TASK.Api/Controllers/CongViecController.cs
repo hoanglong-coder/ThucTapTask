@@ -23,9 +23,9 @@ namespace TASK.Api.Controllers
 
         // GET: api/<CongViecController>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] CongViecSearch congViecSearch)
         {
-            var lstcongviec = await congViecService.GetAll();
+            var lstcongviec = await congViecService.GetAll(congViecSearch);
 
             return Ok(lstcongviec);
         }
@@ -53,17 +53,27 @@ namespace TASK.Api.Controllers
             int rs = await congViecService.InsertCongViec(congViecRequest);
             return Ok(rs);
         }
-
-        // PUT api/<CongViecController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        
+        [HttpPost("DeleteCongViec")]
+        public async Task<IActionResult> DeleteCongViecRange([FromBody] List<CongViecRequest> congViecRequest)
         {
+            int rs = await congViecService.DeleteCongViecRange(congViecRequest);
+            return Ok(rs);
         }
 
-        // DELETE api/<CongViecController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("UpdateCongViecRange")]
+        public async Task<IActionResult> UpdateCongViecRange([FromBody] List<CongViecRequest> congViecRequest)
         {
+            int rs = await congViecService.UpdateCongViecRange(congViecRequest);
+            return Ok(rs);
         }
+
+        [HttpPost("DuyetCongViecRange")]
+        public async Task<IActionResult> DuyetCongViecRange([FromBody] List<CongViecRequest> congViecRequest)
+        {
+            int rs = await congViecService.DuyetKeHoachTuan(congViecRequest);
+            return Ok(rs);
+        }
+
     }
 }

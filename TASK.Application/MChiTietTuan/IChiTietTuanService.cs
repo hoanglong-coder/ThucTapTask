@@ -19,5 +19,9 @@ namespace TASK.Application.MChiTietTuan
         Task<int> UpdateChiTietTuanLamViec(List<ChiTietTuanRequest> chiTietTuanRequests);
 
         Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan);
+
+        Task<bool> KiemTraKhoaTuan(int machitiettuan);
+
+        Task<int> TraVeSoGioLam(int machitiettuan);
     }
 }

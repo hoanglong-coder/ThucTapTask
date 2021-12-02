@@ -28,6 +28,8 @@ namespace TASK.WebApp.Pages.ChooseTask
             Guid id = await LocalStorage.GetItemAsync<Guid>("UserID");
 
             DuAns = await DuAnServiceClient.GetDuAnByUser(id);
+
+            await localStorageService.RemoveItemAsync("MaDuAn");
         }
 
         public async Task OnClick(string ma)

@@ -101,7 +101,7 @@ namespace TASK.WebApp.Pages.TuanLamViec
             StateHasChanged();
         }
 
-        async Task DeletteAsync()
+        async Task DeleteAsync()
         {
             if (selectedTuanLamViec != null)
             {

@@ -136,13 +136,15 @@
                     <RadzenCheckBox TriState="false" TValue="bool" Value="check.TrangThai" />
                 </Template>
             </RadzenDataGridColumn>
-
-            <RadzenDataGridColumn TItem="ToDoListDTO" Title="Sửa" TextAlign="TextAlign.Center">
-                <Template Context="todo">
-                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args=>SuaTodo(todo))" @onclick:stopPropagation="true">
-                    </RadzenButton>
-                </Template>
-            </RadzenDataGridColumn>
+            @if (Role == 1 || Role == 2)
+            {
+                <RadzenDataGridColumn TItem="ToDoListDTO" Title="Sửa" TextAlign="TextAlign.Center">
+                    <Template Context="todo">
+                        <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args=>SuaTodo(todo))" @onclick:stopPropagation="true">
+                        </RadzenButton>
+                    </Template>
+                </RadzenDataGridColumn>
+            }
         </Columns>
     </RadzenDataGrid>
     <RadzenPager ShowPagingSummary="true" Count="count" Style="width: 500px; border-radius: 4px" PageSize="@pageSize" PageChanged="PageChanged" PageNumbersCount="3" />

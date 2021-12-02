@@ -62,9 +62,15 @@ namespace TASK.Application.MToDoList
             {
                 int CountSize = _taskDbContext.ToDos.Where(t => t.MaDuAn == MaDuAn && t.TrangThai == false).Count();
 
-                var getall = await GetToDoByDuAn(MaDuAn, MaUser, 0, CountSize,false);
+                if (CountSize != 0)
+                {
+                    var getall = await GetToDoByDuAn(MaDuAn, MaUser, 0, CountSize, false);
 
-                return getall;
+                    return getall;
+                }
+                ToDoListResponse rs = new ToDoListResponse();
+                rs.Count = 0;
+                return rs;
             }
         }
 

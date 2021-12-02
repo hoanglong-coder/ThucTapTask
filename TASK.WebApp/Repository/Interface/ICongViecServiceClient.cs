@@ -9,10 +9,16 @@ namespace TASK.WebApp.Repository.Interface
 {
     public interface ICongViecServiceClient
     {
-        Task<List<CongViecResponse>> GetAll();
+        Task<List<CongViecResponse>> GetAll(CongViecSearch congViecSearch);
 
         Task<List<Module>> GetAllModule();
 
         Task<int> InsertCongViec(CongViecRequest congViecRequest);
+
+        Task<int> DeleteCongViecRange(List<CongViecRequest> congViecRequests);
+
+        Task<int> UpdateCongViecRange(List<CongViecRequest> congViecRequests);
+
+        Task<int> DuyetKeHoachTuan(List<CongViecRequest> congViecRequests);
     }
 }

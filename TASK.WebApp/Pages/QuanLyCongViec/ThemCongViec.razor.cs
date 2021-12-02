@@ -35,9 +35,9 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         List<UserResponse> userResponses { get; set; }
 
-        List<TuanLamViecResponse> tuanLamViecResponses { get; set; }
+        List<TuanLamViecResponse> tuanLamViecResponses = new List<TuanLamViecResponse>();
 
-        List<ChiTietTuanResponse> chiTietTuanResponses { get; set; }
+        List<ChiTietTuanResponse> chiTietTuanResponses = new List<ChiTietTuanResponse>();
 
         List<Module> Listmodule = new List<Module>();
 
@@ -46,8 +46,6 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
         Guid MaUser;
 
         Guid Admin;
-
-        int matuanchitiet;
 
         public int checksave = 0;
 
@@ -122,41 +120,61 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
         {
             if (checksave == 0)
             {
-                congViecRequest.MaUser = MaUser;
-                congViecRequest.Nguon = (int)STT_NguonGoc.TAOMOI;
-                int check = await congViecServiceClient.InsertCongViec(congViecRequest);
+                Guid MaUserKiemTra = await localstorage.GetItemAsync<Guid>("UserID");
+                if (MaUserKiemTra == MaUser || Admin != Guid.Empty)
+                {
+                    congViecRequest.MaUser = MaUser;
+                    congViecRequest.Nguon = (int)STT_NguonGoc.TAOMOI;
+                    int check = await congViecServiceClient.InsertCongViec(congViecRequest);
 
-                if (check == 1)
+                    if (check == 1)
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
+                        await ShowNotification(noti);
+                        //ClearTodo();
+                    }
+                    else
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã duyệt", Duration = 2000 };
+                        await ShowNotification(noti);
+                    }
+                }else
                 {
-                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
-                    await ShowNotification(noti);
-                    //ClearTodo();
-                }
-                else
-                {
-                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Bạn chưa chọn đúng User", Duration = 2000 };
                     await ShowNotification(noti);
                 }
+                
             }
             else
             {
-                congViecRequest.MaUser = MaUser;
-                congViecRequest.Nguon = (int)STT_NguonGoc.TAOMOI;
-                int check = await congViecServiceClient.InsertCongViec(congViecRequest);
-
-                if (check == 1)
+                Guid MaUserKiemTra = await localstorage.GetItemAsync<Guid>("UserID");
+                if (MaUserKiemTra == MaUser || Admin != Guid.Empty)
                 {
-                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
-                    await ShowNotification(noti);
-                    //ClearTodo();
-                    dialogService.Close(true);
+                    congViecRequest.MaUser = MaUser;
+                    congViecRequest.Nguon = (int)STT_NguonGoc.TAOMOI;
+                    int check = await congViecServiceClient.InsertCongViec(congViecRequest);
 
+                    if (check == 1)
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
+                        await ShowNotification(noti);
+                        //ClearTodo();
+                        dialogService.Close(true);
+
+                    }
+                    else
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã duyệt", Duration = 2000 };
+                        await ShowNotification(noti);
+                    }
                 }
                 else
                 {
-                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Thêm thất bại", Duration = 2000 };
+
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Bạn chưa chọn đúng User", Duration = 2000 };
                     await ShowNotification(noti);
                 }
+               
             }
         }
         async Task OnInvalidSubmit()

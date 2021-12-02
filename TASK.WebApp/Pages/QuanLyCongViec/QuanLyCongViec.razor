@@ -3,8 +3,8 @@
 @using TASK.Application.MCongViec
 @using TASK.Application.MToDoList
 @using TASK.Data.Enums
-
-@if (toDoList == null)
+@using TASK.Data.Entities
+@if (congViecResponses == null)
 {
     <PageLoading />
 }
@@ -17,39 +17,67 @@ else
 
                 <RadzenButton Text="Thêm" Icon="add" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="InsertCongViec" />
 
-                <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Xóa" Icon="delete_outline" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="DeleteCongViec" />
 
-                <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" />
+                <RadzenButton Text="Lưu" Icon="save" Style="margin-bottom: 20px; width: 150px" ButtonStyle="ButtonStyle.Primary" Click="UpdateCongViec" />
 
-                <RadzenButton Text="Duyệt kế hoạch tuần" Icon="done" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                @if (Role == 1 || Role == 2)
+                {
+                    <RadzenButton Text="Duyệt kế hoạch tuần" Icon="done" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" Click="DuyetCongViec" />
+                }
 
-                <RadzenButton Text="Khóa mở tuần" Icon="lock" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                @if (Role == 1)
+                {
+                    <RadzenButton Text="Khóa mở tuần" Icon="lock" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                }
 
-                <RadzenButton Text="Dời công việc" Icon="east" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
-
+                @if (Role == 1 | Role == 2)
+                {
+                    <RadzenButton Text="Dời công việc" Icon="east" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                }
                 <RadzenButton Text="Xuất excel" Icon="get_app" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
             </div>
         </RadzenMenu>
-        <div style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
+        <RadzenTemplateForm TItem="CongViecSearch" Data="congViecSearch" Submit=SearchCongViec Style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
             <div class="row mt-3">
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tháng</h5></div>
-                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                        <div class="col-md-8">
+                            <RadzenDropDown AllowClear="true" Data="TuanLamViecs" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn tháng" TextProperty="TenThang" ValueProperty="MaThangLamViec" @bind-Value="congViecSearch.MaThangLamViec" Change=@(args => OnChangeThang(args)) />
+                            
+
+                        </div>
                     </div>
                     <div class="row mt-4" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Module</h5></div>
-                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                        <div class="col-md-8"><RadzenDropDown AllowClear="true" Data="Listmodule" AllowVirtualization="true" Style="width: 100%"
+                AllowFiltering="true" Placeholder="Chọn module" TextProperty="TenModule" ValueProperty="MaModule" @bind-Value="congViecSearch.MaModule" /></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row">
-                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tuần</h5></div>
-                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tuần*</h5></div>
+                        <div class="col-md-7">
+                            <RadzenDropDown AllowClear="true" Data="ChiTietTuans" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn tuần" Name="Tuan" TextProperty="TenTuanChitiet" ValueProperty="MaTuanChiTiet" @bind-Value="congViecSearch.MaTuanChiTiet" Change=@(args => OnChangeChitiettuan(args)) />
+                            <RadzenRequiredValidator DefaultValue="0" Component="Tuan" Text="Phải chọn tuần" Popup=true Style="width:136px" />
+                        </div>
+                        @if (!isKhoaTuan)
+                        {
+                            <div class="col-md-1" style="margin-top:auto;margin-bottom:auto"><RadzenIcon Icon="lock_open" /></div>
+                        }
+                        else
+                        {
+                            <div class="col-md-1" style="margin-top:auto;margin-bottom:auto"><RadzenIcon Icon="lock" /></div>
+                        }
+
+
                     </div>
                     <div class="row mt-4" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tên công việc</h5></div>
-                        <div class="col-md-8"><RadzenTextBox Style="width: 100%" /></div>
+                        <div class="col-md-8"><RadzenTextBox Style="width: 100%"  @bind-Value="congViecSearch.TenCongViec"/></div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -59,21 +87,22 @@ else
                     </div>
                     <div class="row" style="margin-top:65px" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Nhân sự</h5></div>
-                        <div class="col-md-8"><RadzenDropDown TValue="string" Style="width:100%" /></div>
+                        <div class="col-md-8"><RadzenDropDown AllowClear="true" Data="userResponses" AllowVirtualization="true" Style="width: 100%"
+                AllowFiltering="true" Placeholder="Chọn nhân sự" Name="NhanSu" TextProperty="TenUser" ValueProperty="MaUser" @bind-Value="congViecSearch.MaUser" /></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row" style="margin-top:10px">
-                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" /></div>
-                        <div class="col-md-6"><RadzenButton Text="Tìm nâng cao" Icon="arrow_downward" Style="margin-bottom: 20px; width: 100%;margin-left:-31px" ButtonStyle="ButtonStyle.Primary" Click="change"/></div>
+                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit"/></div>
+                        <div class="col-md-6"><RadzenButton Text="Tìm nâng cao" Icon="arrow_downward" Style="margin-bottom: 20px; width: 100%;margin-left:-31px" ButtonStyle="ButtonStyle.Primary" Click="change" /></div>
                     </div>
                     <div class="row" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Trạng thái</h5></div>
-                        <div class="col-md-4"><RadzenDropDown TValue="string" Style="width: 100% " /></div>
+                        <div class="col-md-7">  <RadzenDropDown AllowClear="true" Data="trangThaiCongViecs" TValue="int" @bind-Value="congViecSearch.TrangThai" TextProperty="Name" ValueProperty="Value"  Style="width:100%"/></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </RadzenTemplateForm>
         <RadzenButton hidden="@checkpush" Text=@chuoipush Icon="push_pin" Style="width: 100%;color:black;text-align:left" Click="changepush" ButtonStyle="ButtonStyle.Warning" />
         <div hidden="@pushpin" style="width: 100%; height: 250px;margin-bottom:8px; background-color: rgb(233,203,97)">
             <div class="row" style="height:90%;width:100%;overflow-y:scroll">
@@ -161,9 +190,9 @@ else
             </div>
 
         </div>
-        <RadzenDataGrid  EditMode="DataGridEditMode.Single" @ref="congviecsGrid" AllowGrouping="false" AllowFiltering="false" AllowColumnResize="false" FilterMode="FilterMode.Advanced"  AllowSorting="true"
-                        Data="@congViecResponses"  SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedCongViec TItem="CongViecResponse" ColumnWidth="300px
-                        " LogicalFilterOperator="LogicalFilterOperator.Or" Render="OnRender" Style="height:300px;width:100%;overflow-y:scroll">
+        <RadzenDataGrid EditMode="DataGridEditMode.Single" @ref="congviecsGrid" AllowGrouping="false" AllowFiltering="false" AllowColumnResize="false" FilterMode="FilterMode.Advanced" AllowSorting="true"
+                        Data="@congViecResponses" SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedCongViec TItem="CongViecResponse" ColumnWidth="300px
+                        " LogicalFilterOperator="LogicalFilterOperator.Or" Render="OnRender" Style="height:437px;width:100%;overflow-y:scroll" EmptyText="Chưa tìm thấy công việc">
             <GroupHeaderTemplate Context="congviec">
                 <div class="row">
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
@@ -176,11 +205,11 @@ else
                                     bool kiemtraduyet = congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).FirstOrDefault().DaDuyet;
                                     if (kiemtraduyet)
                                     {
-                                        <RadzenIcon Icon="check_circle" Style="color: green; margin-left: 124px;" />
+                                        <RadzenIcon Icon="check_circle" Style="color: green; margin-left: 242px;" />
                                     }
                                     else
                                     {
-                                        <RadzenIcon Icon="unpublished" Style="color: red; margin-left: 124px;" />
+                                        <RadzenIcon Icon="unpublished" Style="color: red; margin-left: 242px;" />
                                     }
 
                                 }
@@ -195,7 +224,7 @@ else
                         </div>
                     </div>
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
-                        @{ 
+                        @{
                             int TongThoiGianLamXong = congviec.Data.Items.Cast<CongViecResponse>()
                                 .Where(t => t.TrangThai == (int)STT_CongViec.DaXong || t.TrangThai == (int)STT_CongViec.Vang || t.TrangThai == (int)STT_CongViec.DaXongTaskDotXuat || t.TrangThai == (int)STT_CongViec.ChuaXongBanTaskKhacDaDuyet).Sum(t => t.ThoiGianLam);
 
@@ -206,10 +235,9 @@ else
 
                             int Result = (int)Math.Round(MucDoHoanThanh * 100);
 
-                            Console.WriteLine($"Mức độ hoàn thành{Result}");
 
                             string ResultString = Math.Round(MucDoHoanThanh * 100) + "%";
-                            }
+                        }
                         <div class="row">
                             <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">MỨC ĐỘ HOÀN THÀNH:</div>
                             @if (Result >= 90)
@@ -246,13 +274,17 @@ else
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CongViecResponse" Property="TenModule" Title="Module" Width="200px">
                     <EditTemplate Context="congviec">
-                        <RadzenDropDown AllowClear="true" Data="Listmodule" TValue="int" @bind-Value="congviec.MaModule" TextProperty="TenModule" ValueProperty="MaModule" />
+                        <RadzenDropDown AllowClear="true" Data="Listmodule" TValue="int" @bind-Value="congviec.MaModule" Change="@(args => OnChange(args,congviec.MaCongViec))" TextProperty="TenModule" ValueProperty="MaModule" />
                     </EditTemplate>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="CongViecResponse" Property="TenIssue" Title="Issue URL" Width="100px" TextAlign="TextAlign.Center" />
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="TenIssue" Title="Issue URL" Width="100px" TextAlign="TextAlign.Center">
+                    <EditTemplate Context="congviec">
+                        <RadzenTextBox @bind-Value="congviec.TenIssue" Style="width:100%" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CongViecResponse" Property="TenCongViec" Title="Tên công việc" Width="400px">
                     <EditTemplate Context="congviec">
-                        <RadzenTextBox @bind-Value="congviec.TenCongViec" Style="width:100%"/>
+                        <RadzenTextArea @bind-Value="congviec.TenCongViec" Style="width:100%" />
                     </EditTemplate>
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CongViecResponse" Property="Nguon" Title="Nguồn gốc" Width="90px" TextAlign="TextAlign.Center">
@@ -286,11 +318,17 @@ else
                     <Template Context="congviec">
                         @congviec.TuNgay.ToString("dd/MM")
                     </Template>
+                    <EditTemplate Context="congviec">
+                        <RadzenDatePicker @bind-Value="congviec.TuNgay" Name="TuNgay" DateFormat="d" Style="width:100%" />
+                    </EditTemplate>
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CongViecResponse" Property="DenNgay" Title="Đến ngày" Width="100px" TextAlign="TextAlign.Center">
                     <Template Context="congviec">
                         @congviec.DenNgay.ToString("dd/MM")
                     </Template>
+                    <EditTemplate Context="congviec">
+                        <RadzenDatePicker @bind-Value="congviec.DenNgay" Name="TuNgay" DateFormat="d" Style="width:100%" />
+                    </EditTemplate>
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="CongViecResponse" Property="TrangThai" Title="Trạng thái" Width="250px" TextAlign="TextAlign.Center">
                     <Template Context="congviec">
@@ -299,7 +337,7 @@ else
 
                             switch (TT)
                             {
-                                  
+
                                 case STT_CongViec.ChuaLam:
                                     <p style="float:left;margin-top:auto;margin-bottom:auto;font-weight:bold">Chưa làm</p>
                                     break;
@@ -327,20 +365,31 @@ else
 
                         }
                     </Template>
-                </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="CongViecResponse" Property="GhiChu" Title="Ghi chú" Width="300px" />
-                <RadzenDataGridColumn TItem="CongViecResponse" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
-                    <Template Context="congviec">
-                        <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args => EditRow(congviec))" @onclick:stopPropagation="true">
-                        </RadzenButton>
-                    </Template>
                     <EditTemplate Context="congviec">
-                        <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((args) => SaveRow(congviec))">
-                        </RadzenButton>
-                        <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((args) => CancelEdit(congviec))">
-                        </RadzenButton>
+                        <RadzenDropDown AllowClear="true" Data="trangThaiCongViecs" TValue="int" @bind-Value="congviec.TrangThai" TextProperty="Name" ValueProperty="Value" />
                     </EditTemplate>
                 </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="CongViecResponse" Property="GhiChu" Title="Ghi chú" Width="300px">
+                    <EditTemplate Context="congviec">
+                        <RadzenTextBox @bind-Value="congviec.GhiChu" Style="width:100%" />
+                    </EditTemplate>
+                </RadzenDataGridColumn>
+                @if (!isKhoaTuan)
+                {
+                    <RadzenDataGridColumn TItem="CongViecResponse" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                        <Template Context="congviec">
+                            <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args => EditRow(congviec))" @onclick:stopPropagation="true">
+                            </RadzenButton>
+                        </Template>
+                        <EditTemplate Context="congviec">
+                            <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((args) => SaveRow(congviec))">
+                            </RadzenButton>
+                            <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((args) => CancelEdit(congviec))">
+                            </RadzenButton>
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                }
+
             </Columns>
         </RadzenDataGrid>
         <RadzenPager ShowPagingSummary="true" Count="count" Style="width: 500px; border-radius: 4px" PageSize="@pageSize" PageNumbersCount="3" />
