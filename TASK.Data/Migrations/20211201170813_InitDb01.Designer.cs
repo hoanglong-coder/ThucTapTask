@@ -10,8 +10,8 @@ using TASK.Data;
 namespace TASK.Data.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    [Migration("20211125060450_InitDb")]
-    partial class InitDb
+    [Migration("20211201170813_InitDb01")]
+    partial class InitDb01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,8 +67,8 @@ namespace TASK.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("TrangThai")
-                        .HasColumnType("int");
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("TuNgay")
                         .HasColumnType("datetime2");
@@ -89,15 +89,16 @@ namespace TASK.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("DaDuyet")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("DenNgay")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GhiChu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IssueURL")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
@@ -121,7 +122,6 @@ namespace TASK.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenIssue")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -135,8 +135,6 @@ namespace TASK.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("MaCongViec");
-
-                    b.HasIndex("MaModule");
 
                     b.HasIndex("MaThangLamViec");
 
@@ -346,8 +344,8 @@ namespace TASK.Data.Migrations
                     b.Property<string>("NoiDung")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TrangThai")
-                        .HasColumnType("int");
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
 
                     b.HasKey("MaTodo");
 
@@ -461,10 +459,6 @@ namespace TASK.Data.Migrations
 
             modelBuilder.Entity("TASK.Data.Entities.CongViec", b =>
                 {
-                    b.HasOne("TASK.Data.Entities.Module", "Module")
-                        .WithMany("CongViecs")
-                        .HasForeignKey("MaModule");
-
                     b.HasOne("TASK.Data.Entities.TuanLamViec", "TuanLamViec")
                         .WithMany("CongViecs")
                         .HasForeignKey("MaThangLamViec");
@@ -478,8 +472,6 @@ namespace TASK.Data.Migrations
                         .HasForeignKey("MaUser");
 
                     b.Navigation("ChiTietTuan");
-
-                    b.Navigation("Module");
 
                     b.Navigation("TuanLamViec");
 
@@ -564,11 +556,6 @@ namespace TASK.Data.Migrations
                     b.Navigation("ToDos");
 
                     b.Navigation("TuanLamViecs");
-                });
-
-            modelBuilder.Entity("TASK.Data.Entities.Module", b =>
-                {
-                    b.Navigation("CongViecs");
                 });
 
             modelBuilder.Entity("TASK.Data.Entities.Quyen", b =>

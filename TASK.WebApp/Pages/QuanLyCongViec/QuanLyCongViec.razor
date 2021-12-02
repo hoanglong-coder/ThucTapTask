@@ -161,7 +161,7 @@ else
             </div>
 
         </div>
-        <RadzenDataGrid  EditMode="DataGridEditMode.Single" @ref="congviecsGrid" AllowGrouping="false" AllowFiltering="false" AllowColumnResize="false" FilterMode="FilterMode.Advanced"  AllowPaging="true" AllowSorting="true"
+        <RadzenDataGrid  EditMode="DataGridEditMode.Single" @ref="congviecsGrid" AllowGrouping="false" AllowFiltering="false" AllowColumnResize="false" FilterMode="FilterMode.Advanced"  AllowSorting="true"
                         Data="@congViecResponses"  SelectionMode="DataGridSelectionMode.Multiple" @bind-Value=@selectedCongViec TItem="CongViecResponse" ColumnWidth="300px
                         " LogicalFilterOperator="LogicalFilterOperator.Or" Render="OnRender" Style="height:300px;width:100%;overflow-y:scroll">
             <GroupHeaderTemplate Context="congviec">
@@ -169,19 +169,65 @@ else
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
                         <div class="row">
                             <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold;font-size:18px">DEV:</div>
-                            <div class="col--6" style="margin-top: auto; margin-bottom: auto; margin-left: -30%; font-weight: bold;font-size:18px">@(congviec.Data.Items.Cast<CongViecResponse>().Select(t=>t).FirstOrDefault()?.TenUser)</div>
+                            <div class="col-3" style="margin-top: auto; margin-bottom: auto; margin-left: -35%; font-weight: bold;font-size:18px">@(congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).FirstOrDefault()?.TenUser)</div>
+                            <div class="col-3" style="margin-top: auto; margin-bottom: auto; margin-left: -35%; font-weight: bold;font-size:18px">
+
+                                @{
+                                    bool kiemtraduyet = congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).FirstOrDefault().DaDuyet;
+                                    if (kiemtraduyet)
+                                    {
+                                        <RadzenIcon Icon="check_circle" Style="color: green; margin-left: 124px;" />
+                                    }
+                                    else
+                                    {
+                                        <RadzenIcon Icon="unpublished" Style="color: red; margin-left: 124px;" />
+                                    }
+
+                                }
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
                         <div class="row">
                             <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">TỔNG THỜI GIAN(giờ):</div>
-                            <p style="color: blue; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">40</p>
+                            <p style="color: blue; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">@(congviec.Data.Items.Cast<CongViecResponse>().Select(t=>t).Sum(t=>t.ThoiGianLam))</p>
                         </div>
                     </div>
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
+                        @{ 
+                            int TongThoiGianLamXong = congviec.Data.Items.Cast<CongViecResponse>()
+                                .Where(t => t.TrangThai == (int)STT_CongViec.DaXong || t.TrangThai == (int)STT_CongViec.Vang || t.TrangThai == (int)STT_CongViec.DaXongTaskDotXuat || t.TrangThai == (int)STT_CongViec.ChuaXongBanTaskKhacDaDuyet).Sum(t => t.ThoiGianLam);
+
+                            int TongThoiGianDaGiao = congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).Sum(t => t.ThoiGianLam);
+
+
+                            double MucDoHoanThanh = (double)TongThoiGianLamXong / TongThoiGianDaGiao;
+
+                            int Result = (int)Math.Round(MucDoHoanThanh * 100);
+
+                            Console.WriteLine($"Mức độ hoàn thành{Result}");
+
+                            string ResultString = Math.Round(MucDoHoanThanh * 100) + "%";
+                            }
                         <div class="row">
                             <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">MỨC ĐỘ HOÀN THÀNH:</div>
-                            <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="100%" Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                            @if (Result >= 90)
+                            {
+                                <RadzenBadge BadgeStyle="BadgeStyle.Success" Text=@ResultString Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                            }
+                            else if (Result > 75)
+                            {
+                                <RadzenBadge BadgeStyle="BadgeStyle.Warning" Text=@ResultString Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                            }
+                            else if (Result > 60)
+                            {
+                                <RadzenBadge BadgeStyle="BadgeStyle.Primary" Text=@ResultString Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                            }
+                            else
+                            {
+                                <RadzenBadge BadgeStyle="BadgeStyle.Danger" Text=@ResultString Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" />
+                            }
                         </div>
                     </div>
                     <div class="col-md-6"><RadzenLink href="javascript:void(0)" Icon="edit" Text="Đánh giá nhân sự" Style="float:right" @onclick="@(args=>Action())" /></div>
@@ -261,7 +307,7 @@ else
                                     <p style="float: left; margin-top: auto; margin-bottom: auto; color: cornflowerblue; font-weight: bold ">Đã xong</p>
                                     break;
                                 case STT_CongViec.DaXongTaskDotXuat:
-                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: green; font-weight: bold ">Vắng</p>
+                                    <p style="float: left; margin-top: auto; margin-bottom: auto; color: green; font-weight: bold ">Đã xong(Task đột xuất)</p>
                                     break;
                                 case STT_CongViec.ChuaXong:
                                     <p style="float: left; margin-top: auto; margin-bottom: auto; color: #E6C54F; font-weight: bold ">Chưa xong</p>

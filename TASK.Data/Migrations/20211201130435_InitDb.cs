@@ -224,8 +224,8 @@ namespace TASK.Data.Migrations
                     MaCongViec = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaModule = table.Column<int>(type: "int", nullable: true),
-                    IssueURL = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    TenIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IssueURL = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    TenIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     TenCongViec = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nguon = table.Column<int>(type: "int", nullable: false),
                     ThoiGianLam = table.Column<int>(type: "int", nullable: false),
@@ -234,7 +234,7 @@ namespace TASK.Data.Migrations
                     MaThangLamViec = table.Column<int>(type: "int", nullable: true),
                     MaTuanChiTiet = table.Column<int>(type: "int", nullable: true),
                     MaUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -245,12 +245,6 @@ namespace TASK.Data.Migrations
                         column: x => x.MaTuanChiTiet,
                         principalTable: "ChiTietTuans",
                         principalColumn: "MaTuanChiTiet",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_CongViecs_Modules_MaModule",
-                        column: x => x.MaModule,
-                        principalTable: "Modules",
-                        principalColumn: "MaModule",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CongViecs_TuanLamViecs_MaThangLamViec",
@@ -312,11 +306,6 @@ namespace TASK.Data.Migrations
                 name: "IX_ChiTietTuans_MaThangLamViec",
                 table: "ChiTietTuans",
                 column: "MaThangLamViec");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CongViecs_MaModule",
-                table: "CongViecs",
-                column: "MaModule");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CongViecs_MaThangLamViec",
@@ -381,13 +370,13 @@ namespace TASK.Data.Migrations
                 name: "DanhGiaTuans");
 
             migrationBuilder.DropTable(
+                name: "Modules");
+
+            migrationBuilder.DropTable(
                 name: "ToDos");
 
             migrationBuilder.DropTable(
                 name: "Quyens");
-
-            migrationBuilder.DropTable(
-                name: "Modules");
 
             migrationBuilder.DropTable(
                 name: "ChiTietTuans");

@@ -63,6 +63,7 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         protected override async Task OnInitializedAsync()
         {
+            dialogService.OnClose += Close;
 
             int MaDuAn = await localstorage.GetItemAsync<int>("MaDuAn");
 
@@ -148,6 +149,10 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
         async Task InsertCongViec()
         {
             await dialogService.OpenAsync<ThemCongViec>("THÊM CÔNG VIỆC TUẦN", null, new DialogOptions() { Width = "772px", Height = "611px", Resizable = true, Draggable = true });
+        }
+
+        async void Close(dynamic result)
+        {
         }
     }
 }

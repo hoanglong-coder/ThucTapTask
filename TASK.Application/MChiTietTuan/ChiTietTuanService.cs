@@ -73,6 +73,7 @@ namespace TASK.Application.MChiTietTuan
 
                 MaTuanChiTiet = t.MaTuanChiTiet,
                 TenTuan = t.TenTuan,
+                TenTuanChitiet = t.TenTuan+$"({t.TuNgay.ToString("dd/MM")} - {t.DenNgay.ToString("dd/MM")})",
                 TuNgay = t.TuNgay,
                 DenNgay = t.DenNgay,
                 GiaTri = t.GiaTri,

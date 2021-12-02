@@ -24,5 +24,6 @@ namespace TASK.Application.MCongViec
         public string TenUser { get; set; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }
+        public bool DaDuyet { get; set; }
     }
 }

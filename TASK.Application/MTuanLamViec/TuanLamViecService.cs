@@ -46,7 +46,7 @@ namespace TASK.Application.MTuanLamViec
 
         public async Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id)
         {
-            var lstTuanLamViec = await _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).Select(t => new TuanLamViecResponse()
+            var lstTuanLamViec = await _taskDbContext.TuanLamViecs.Where(t => t.MaDuAn == id).OrderBy(t=>t.GiaTri).Select(t => new TuanLamViecResponse()
             {
 
                 MaThangLamViec = t.MaThangLamViec,

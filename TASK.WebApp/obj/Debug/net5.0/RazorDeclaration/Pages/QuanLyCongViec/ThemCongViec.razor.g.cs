@@ -103,6 +103,13 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\QuanLyCongViec\ThemCongViec.razor"
+using TASK.Application.MCongViec;
+
+#line default
+#line hidden
+#nullable disable
     public partial class ThemCongViec : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -110,14 +117,6 @@ using Microsoft.AspNetCore.Components.Authorization;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 63 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\QuanLyCongViec\ThemCongViec.razor"
-       
-    DateTime? value = DateTime.Now;
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

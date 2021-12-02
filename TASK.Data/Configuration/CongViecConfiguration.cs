@@ -19,12 +19,9 @@ namespace TASK.Data.Configuration
 
             builder.Property(x => x.MaCongViec).UseIdentityColumn(1, 1);
 
-            builder.HasOne(t => t.Module).WithMany(pc => pc.CongViecs)
-                .HasForeignKey(pc => pc.MaModule);
+            builder.Property(x => x.IssueURL).HasMaxLength(500);
 
-            builder.Property(x => x.IssueURL).IsRequired().HasMaxLength(500);
-
-            builder.Property(x => x.TenIssue).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.TenIssue).HasMaxLength(50);
 
             builder.Property(x => x.TenCongViec).IsRequired().HasColumnType("nvarchar(max)");
 
@@ -45,9 +42,11 @@ namespace TASK.Data.Configuration
             builder.HasOne(t => t.User).WithMany(pc => pc.CongViecs)
                 .HasForeignKey(pc => pc.MaUser);
 
-            builder.Property(x => x.GhiChu).IsRequired().HasColumnType("nvarchar(max)");
+            builder.Property(x => x.GhiChu).HasColumnType("nvarchar(max)");
 
             builder.Property(x => x.TrangThai).IsRequired();
+
+            builder.Property(x => x.DaDuyet).IsRequired();
         }
     }
 }

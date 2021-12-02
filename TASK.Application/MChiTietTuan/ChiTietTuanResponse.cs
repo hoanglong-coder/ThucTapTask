@@ -8,6 +8,6 @@ namespace TASK.Application.MChiTietTuan
 {
     public class ChiTietTuanResponse:ChiTietTuanDTO
     {
-
+        public string TenTuanChitiet { set; get; }
     }
 }

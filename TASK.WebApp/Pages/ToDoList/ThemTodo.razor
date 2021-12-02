@@ -9,7 +9,8 @@
 {
     <PageLoading/>
 }else
-{<RadzenTemplateForm TItem="ToDoListRequest" Data="ToDoListRequest" Submit=InsertTodo InvalidSubmit=@OnInvalidSubmit>
+{
+    <RadzenTemplateForm TItem="ToDoListRequest" Data="ToDoListRequest" Submit=InsertTodo InvalidSubmit=@OnInvalidSubmit>
     <div class="row">
         <div class="col-md-3 align-items-center d-flex">
             <RadzenLabel Text="Nội dung*" />

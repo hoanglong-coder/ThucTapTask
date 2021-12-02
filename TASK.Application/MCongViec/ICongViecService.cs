@@ -12,5 +12,7 @@ namespace TASK.Application.MCongViec
         Task<List<CongViecResponse>> GetAll();
 
         Task<List<Module>> GetAllModule();
+
+        Task<int> InsertCongViec(CongViecRequest congViecRequest);
     }
 }

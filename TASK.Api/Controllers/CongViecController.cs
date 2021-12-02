@@ -47,9 +47,11 @@ namespace TASK.Api.Controllers
         }
 
         // POST api/<CongViecController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("InsertCongViec")]
+        public async Task<IActionResult> Post([FromBody] CongViecRequest congViecRequest)
         {
+            int rs = await congViecService.InsertCongViec(congViecRequest);
+            return Ok(rs);
         }
 
         // PUT api/<CongViecController>/5

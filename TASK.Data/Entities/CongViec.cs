@@ -12,7 +12,6 @@ namespace TASK.Data.Entities
     {
         public int MaCongViec { set; get; }
         public int? MaModule { set; get; }
-        public virtual Module Module { set; get; }
         public string IssueURL { set; get; }
         public string TenIssue { set; get; }
         public string TenCongViec { set; get; }
@@ -28,5 +27,6 @@ namespace TASK.Data.Entities
         public virtual User User { set; get; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }
+        public bool DaDuyet { get; set; }
     }
 }

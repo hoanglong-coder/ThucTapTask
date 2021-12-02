@@ -12,6 +12,5 @@ namespace TASK.Data.Entities
     {
         public int MaModule { set; get; }
         public string TenModule { set; get; }
-        public List<CongViec> CongViecs { get; set; }
     }
 }

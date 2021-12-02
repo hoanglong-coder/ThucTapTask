@@ -12,5 +12,7 @@ namespace TASK.WebApp.Repository.Interface
         Task<List<CongViecResponse>> GetAll();
 
         Task<List<Module>> GetAllModule();
+
+        Task<int> InsertCongViec(CongViecRequest congViecRequest);
     }
 }

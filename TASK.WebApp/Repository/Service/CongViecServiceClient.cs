@@ -32,5 +32,14 @@ namespace TASK.WebApp.Repository.Service
 
             return lst;
         }
+
+        public async Task<int> InsertCongViec(CongViecRequest congViecRequest)
+        {
+            var check = await httpClient.PostAsJsonAsync("/api/CongViec/InsertCongViec", congViecRequest);
+
+            var content = await check.Content.ReadAsStringAsync();
+
+            return int.Parse(content);
+        }
     }
 }
