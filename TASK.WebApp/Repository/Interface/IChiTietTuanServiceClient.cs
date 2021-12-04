@@ -22,6 +22,8 @@ namespace TASK.WebApp.Repository.Interface
 
         Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan);
 
+        Task<int> KhoaKeHoachTuanToggle(int machitiettuan);
+
         Task<bool> KiemTraKhoaTuan(int machitiettuan);
 
         Task<int> TraVeSoGioLam(int machitiettuan);

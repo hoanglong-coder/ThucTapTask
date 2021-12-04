@@ -20,6 +20,8 @@ namespace TASK.Application.MChiTietTuan
 
         Task<int> KhoaKeHoachTuan(List<ChiTietTuanRequest> machitiettuan);
 
+        Task<int> KhoaKeHoachTuanToggle(int machitiettuan);
+
         Task<bool> KiemTraKhoaTuan(int machitiettuan);
 
         Task<int> TraVeSoGioLam(int machitiettuan);

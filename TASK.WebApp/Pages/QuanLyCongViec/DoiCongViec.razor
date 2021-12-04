@@ -1,0 +1,44 @@
+﻿@page "/doicongviec/{macongviec}"
+
+@using TASK.Application.MCongViec
+
+
+<RadzenTemplateForm TItem="CongViecRequest" Data="congViecRequest" Submit=SubmitDoiCongViec>
+    <div class="row">
+        <div class="col-2">Tháng*</div>
+        <div class="col-4">
+            <RadzenDropDown AllowClear="true" Data="tuanLamViecResponses" Style="width: 100%"
+                            AllowFiltering="true" Placeholder="Chọn tháng" Name="Thang" TextProperty="TenThang" ValueProperty="MaThangLamViec" @bind-Value="congViecRequest.MaThangLamViec" Change=@(args => OnChange(args)) />
+            <RadzenRequiredValidator DefaultValue="0" Component="Thang" Text="Phải chọn tháng" Popup=true Style="width:136px" />
+        </div>
+        <div class="col-2">Tuần*</div>
+        <div class="col-4">
+            <RadzenDropDown AllowClear="true" Data="chiTietTuanResponses" Style="width: 100%"
+                            AllowFiltering="true" Placeholder="Chọn tuần" Name="Tuan" TextProperty="TenTuanChitiet" ValueProperty="MaTuanChiTiet" @bind-Value="congViecRequest.MaTuanChiTiet" />
+            <RadzenRequiredValidator DefaultValue="0" Component="Tuan" Text="Phải chọn tuần" Popup=true Style="width:136px" />
+        </div>
+    </div>
+        <div class="row" style="margin-top:52px">
+            <div class="col-2">Từ ngày*</div>
+            <div class="col-4">
+                <RadzenDatePicker @bind-Value="congViecRequest.TuNgay" Name="TuNgay" DateFormat="d" Style="width:100%" />
+                <RadzenRequiredValidator DefaultValue="1/1/0001" Component="TuNgay" Text="Phải chọn từ ngày" Popup=true Style="width:136px" />
+            </div>
+            <div class="col-2">Đến ngày</div>
+            <div class="col-4">
+                <RadzenDatePicker @bind-Value="congViecRequest.DenNgay" DateFormat="d" Name="DenNgay" Style="width:100%" />
+                <RadzenRequiredValidator DefaultValue="1/1/0001" Component="DenNgay" Text="Phải chọn đến ngày" Popup=true Style="width:136px" />
+            </div>
+        </div>
+        <center>
+            <div class="row" style="margin-left:auto;margin-right:auto;margin-top:37px">
+                <div class="col-md-6">
+                    <RadzenButton Text="OK" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit" />
+                </div>
+                <div class="col-md-6">
+                    <RadzenButton Text="Hủy bỏ" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))" Style="float: left " Icon="cancel" />
+                </div>
+            </div>
+        </center>
+    
+</RadzenTemplateForm>

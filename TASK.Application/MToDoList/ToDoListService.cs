@@ -277,5 +277,23 @@ namespace TASK.Application.MToDoList
                 return 0;
             }
         }
+
+        public async Task<int> XacNhanXongToDo(int MaToDo)
+        {
+            try
+            {
+                var todo = await _taskDbContext.ToDos.FindAsync(MaToDo);
+                todo.TrangThai = true;
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+        }
     }
 }

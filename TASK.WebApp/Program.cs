@@ -50,6 +50,8 @@ namespace TASK.WebApp
 
             builder.Services.AddScoped<ICongViecServiceClient, CongViecServiceClient>();
 
+            builder.Services.AddScoped<IDanhGiaNhanSuServiceClient, DanhGiaNhanSuServiceClient>();
+
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
             await builder.Build().RunAsync();

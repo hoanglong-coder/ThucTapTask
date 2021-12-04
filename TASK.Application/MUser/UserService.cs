@@ -53,9 +53,39 @@ namespace TASK.Application.MUser
             return ListUserChitietDuan;
         }
 
-        public Task<UserResponse> GetUser(Guid idUser)
+        public async Task<int> GetQuyenDuAn(Guid idUser, int maduan)
         {
-            throw new NotImplementedException();
+            var MaQuyen =  _taskDbContext.ChiTietDuAns.Where(t => t.MaDuAn == maduan && t.MaUser == idUser);
+            await Task.Delay(100);
+            if(KiemTraAdmin(idUser))
+            {
+                return 0;
+            }    
+            if (MaQuyen.SingleOrDefault().MaQuyen != null)
+            {
+                return MaQuyen.FirstOrDefault().MaQuyen.Value;
+            }
+            return 0;
+        }
+
+        public async Task<UserResponse> GetUser(Guid idUser)
+        {
+           var user= await _taskDbContext.Users.FindAsync(idUser);
+            var result = new UserResponse();
+            result.TenUser = user.TenUser;
+            result.MaQuyen = user.MaQuyenHeThong;
+            return result;
+        }
+
+        public bool KiemTraAdmin(Guid UserId)
+        {
+            var check = _taskDbContext.Users.Where(t => t.MaUser == UserId).SingleOrDefault();
+
+            if (check.MaQuyenHeThong == 1)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

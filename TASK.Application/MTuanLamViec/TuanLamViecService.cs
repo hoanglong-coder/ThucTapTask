@@ -150,5 +150,18 @@ namespace TASK.Application.MTuanLamViec
             };
             return tuanLamViecPaging;
         }
+
+        public async Task<int> GetTongGio1Thang(int MaThangLamViec)
+        {
+            var tongsogio =   _taskDbContext.ChiTietTuans.Where(t => t.MaThangLamViec == MaThangLamViec);
+
+            if (tongsogio != null)
+            {
+                return tongsogio.Sum(t => t.SoGioLam);
+            }
+
+            await Task.Delay(100);
+            return 0;          
+        }
     }
 }

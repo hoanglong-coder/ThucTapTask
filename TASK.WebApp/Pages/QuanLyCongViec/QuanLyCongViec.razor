@@ -28,12 +28,12 @@ else
 
                 @if (Role == 1)
                 {
-                    <RadzenButton Text="Khóa mở tuần" Icon="lock" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Text="Khóa mở tuần" Icon="lock" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" Click="KhoaMoTuan" />
                 }
 
                 @if (Role == 1 | Role == 2)
                 {
-                    <RadzenButton Text="Dời công việc" Icon="east" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Text="Dời công việc" Icon="east" Style="margin-bottom: 20px; width: 245px" ButtonStyle="ButtonStyle.Primary" Click="DoiCongViec" />
                 }
                 <RadzenButton Text="Xuất excel" Icon="get_app" Style="margin-bottom: 20px; width: 250px" ButtonStyle="ButtonStyle.Primary" />
             </div>
@@ -46,14 +46,16 @@ else
                         <div class="col-md-8">
                             <RadzenDropDown AllowClear="true" Data="TuanLamViecs" Style="width: 100%"
                                             AllowFiltering="true" Placeholder="Chọn tháng" TextProperty="TenThang" ValueProperty="MaThangLamViec" @bind-Value="congViecSearch.MaThangLamViec" Change=@(args => OnChangeThang(args)) />
-                            
+
 
                         </div>
                     </div>
                     <div class="row mt-4" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Module</h5></div>
-                        <div class="col-md-8"><RadzenDropDown AllowClear="true" Data="Listmodule" AllowVirtualization="true" Style="width: 100%"
-                AllowFiltering="true" Placeholder="Chọn module" TextProperty="TenModule" ValueProperty="MaModule" @bind-Value="congViecSearch.MaModule" /></div>
+                        <div class="col-md-8">
+                            <RadzenDropDown AllowClear="true" Data="Listmodule" AllowVirtualization="true" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn module" TextProperty="TenModule" ValueProperty="MaModule" @bind-Value="congViecSearch.MaModule" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -77,7 +79,7 @@ else
                     </div>
                     <div class="row mt-4" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tên công việc</h5></div>
-                        <div class="col-md-8"><RadzenTextBox Style="width: 100%"  @bind-Value="congViecSearch.TenCongViec"/></div>
+                        <div class="col-md-8"><RadzenTextBox Style="width: 100%" @bind-Value="congViecSearch.TenCongViec" /></div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -87,18 +89,20 @@ else
                     </div>
                     <div class="row" style="margin-top:65px" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Nhân sự</h5></div>
-                        <div class="col-md-8"><RadzenDropDown AllowClear="true" Data="userResponses" AllowVirtualization="true" Style="width: 100%"
-                AllowFiltering="true" Placeholder="Chọn nhân sự" Name="NhanSu" TextProperty="TenUser" ValueProperty="MaUser" @bind-Value="congViecSearch.MaUser" /></div>
+                        <div class="col-md-8">
+                            <RadzenDropDown AllowClear="true" Data="userResponses" AllowVirtualization="true" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn nhân sự" Name="NhanSu" TextProperty="TenUser" ValueProperty="MaUser" @bind-Value="congViecSearch.MaUser" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row" style="margin-top:10px">
-                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit"/></div>
+                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" /></div>
                         <div class="col-md-6"><RadzenButton Text="Tìm nâng cao" Icon="arrow_downward" Style="margin-bottom: 20px; width: 100%;margin-left:-31px" ButtonStyle="ButtonStyle.Primary" Click="change" /></div>
                     </div>
                     <div class="row" hidden="@timkiemncao">
                         <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Trạng thái</h5></div>
-                        <div class="col-md-7">  <RadzenDropDown AllowClear="true" Data="trangThaiCongViecs" TValue="int" @bind-Value="congViecSearch.TrangThai" TextProperty="Name" ValueProperty="Value"  Style="width:100%"/></div>
+                        <div class="col-md-7">  <RadzenDropDown AllowClear="true" Data="trangThaiCongViecs" TValue="int" @bind-Value="congViecSearch.TrangThai" TextProperty="Name" ValueProperty="Value" Style="width:100%" /></div>
                     </div>
                 </div>
             </div>
@@ -153,32 +157,35 @@ else
                                         @{
                                             if (todo.NoiDung.Length < 33)
                                             {
-                                                <div class="col-9" style="font-size:23px">@dem. @todo.NoiDung.ToString()</div>
+                                                <div class="col-9" style="font-size:23px">@(toDoListDTOs.IndexOf(todo)+1). @todo.NoiDung.ToString()</div>
                                             }
                                             else
                                             {
-                                                <div class="col-9" style="font-size:23px">@dem. @todo.NoiDung.Substring(0, 33)...</div>
+                                                <div class="col-9" style="font-size:23px">@(toDoListDTOs.IndexOf(todo)+1). @todo.NoiDung.Substring(0, 33)...</div>
 
                                             }
-                                            dem++;
                                         }
                                         <div class="col-3">
-                                            <RadzenButton Text="Xong" ButtonStyle="ButtonStyle.Success" />
+                                            <RadzenButton Text="Xong" ButtonStyle="ButtonStyle.Success" @onclick:stopPropagation="true" Click="@(async => XongToDo(todo.MaTodo))" />
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top:4px">
                                         <div class="col-3">@todo.TenUser</div>
                                         <div class="col-3">Ngày giao:@todo.NgayGiao.ToString("dd/MM")</div>
                                         @{
-                                            if (todo.GhiChu.Length < 20)
+                                            if (!string.IsNullOrEmpty(todo.GhiChu))
                                             {
-                                                <div class="col-6">Nội dung: @todo.GhiChu.ToString()</div>
-                                            }
-                                            else
-                                            {
-                                                <div class="col-6">Nội dung: @todo.GhiChu.Substring(0, 20)...</div>
+                                                if (todo.GhiChu.Length < 20)
+                                                {
+                                                    <div class="col-6">Nội dung: @todo.GhiChu.ToString()</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-6">Nội dung: @todo.GhiChu.Substring(0, 20)...</div>
 
+                                                }
                                             }
+
                                         }
                                     </div>
                                 </div>
@@ -220,7 +227,26 @@ else
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
                         <div class="row">
                             <div class="col-6" style="margin-top:auto;margin-bottom:auto;font-weight:bold">TỔNG THỜI GIAN(giờ):</div>
-                            <p style="color: blue; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">@(congviec.Data.Items.Cast<CongViecResponse>().Select(t=>t).Sum(t=>t.ThoiGianLam))</p>
+                            @{
+                                int Thoigianquydinh = ChiTietTuans
+                                    .Where(t => t.MaTuanChiTiet == congviec.Data.Items.Cast<CongViecResponse>()
+                                    .Select(t => t).FirstOrDefault().MaTuanChiTiet).Count() != 0 ? ChiTietTuans
+                                    .Where(t => t.MaTuanChiTiet == congviec.Data.Items.Cast<CongViecResponse>()
+                                    .Select(t => t).FirstOrDefault().MaTuanChiTiet).FirstOrDefault().SoGioLam : 0;
+
+                                int thoigiandangky = congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).Sum(t => t.ThoiGianLam);
+
+                                if (thoigiandangky < Thoigianquydinh)
+                                {
+                                    <p style="color: red; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">@thoigiandangky</p>
+                                }
+                                else
+                                {
+                                    <p style="color: blue; font-weight: bold;margin-top:1px;margin-bottom:auto;font-size:20px;margin-left:3px">@thoigiandangky</p>
+                                }
+
+                            }
+
                         </div>
                     </div>
                     <div class="col-md-2" style="margin-top:auto;margin-bottom:auto">
@@ -258,7 +284,7 @@ else
                             }
                         </div>
                     </div>
-                    <div class="col-md-6"><RadzenLink href="javascript:void(0)" Icon="edit" Text="Đánh giá nhân sự" Style="float:right" @onclick="@(args=>Action())" /></div>
+                    <div class="col-md-6"><RadzenLink href="javascript:void(0)" Icon="edit" Text="Đánh giá nhân sự" Style="float:right" @onclick="@(args =>DanhGiaNhanSu(congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).FirstOrDefault().MaThangLamViec,congviec.Data.Items.Cast<CongViecResponse>().Select(t => t).FirstOrDefault().MaUser))" /></div>
                 </div>
             </GroupHeaderTemplate>
 
@@ -293,17 +319,19 @@ else
                             if (congviec.Nguon == (int)STT_NguonGoc.TAOMOI)
                             {
                                 <RadzenIcon Icon="radio_button_unchecked" MouseEnter="@(args => ShowTooltip(args,
-                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:green" />
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right ,Text="Tạo mới"}))" Style="color:green" />
                             }
                             if (congviec.Nguon == (int)STT_NguonGoc.DOIDOTRE)
                             {
+                                string text = $"Dời do trể ({congviec.CountDoiTre} lần)";
                                 <RadzenIcon Icon="arrow_right_alt" MouseEnter="@(args => ShowTooltip(args,
-                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:red" />
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right,Text=text }))" Style="color:red" />
                             }
                             if (congviec.Nguon == (int)STT_NguonGoc.DOIDOTXUAT)
                             {
+                                string text = $"Dời do task đột xuất({congviec.CountDoiDoDotXuat} lần)";
                                 <RadzenIcon Icon="sync_alt" MouseEnter="@(args => ShowTooltip(args,
-                                                                            new TooltipOptions(){ Position = TooltipPosition.Right }))" Style="color:blue" />
+                                                                            new TooltipOptions(){ Position = TooltipPosition.Right,Text=text  }))" Style="color:blue" />
                             }
                         }
 

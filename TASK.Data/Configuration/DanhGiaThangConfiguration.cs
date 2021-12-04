@@ -19,20 +19,20 @@ namespace TASK.Data.Configuration
 
             builder.Property(x => x.MaDanhGiaThang).UseIdentityColumn(1, 1);
 
-            builder.Property(x => x.KhoiLuong).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
+            builder.Property(x => x.KhoiLuong);
 
-            builder.Property(x => x.TienDo).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
+            builder.Property(x => x.TienDo);
 
-            builder.Property(x => x.ChatLuong).IsRequired().HasMaxLength(250).HasColumnType("nvarchar");
+            builder.Property(x => x.ChatLuong);
             
             builder.Property(x => x.TrungBinhThang);
 
-            builder.Property(x => x.XepLoai).IsRequired();
+            builder.Property(x => x.XepLoai);
 
             builder.Property(x => x.NhanXet).HasMaxLength(250).HasColumnType("nvarchar");
 
             builder.HasOne(t => t.TuanLamViec).WithMany(pc => pc.DanhGiaThangs)
-                .HasForeignKey(pc => pc.MaTuanLamViec);
+                .HasForeignKey(pc => pc.MaThangLamViec);
         }
     }
 }

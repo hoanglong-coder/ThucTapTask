@@ -40,10 +40,10 @@ namespace TASK.Api.Controllers
         }
 
         // GET api/<CongViecController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetCongViecByID")]
+        public async Task<IActionResult> Get(int macongviec)
         {
-            return "value";
+            return Ok(await congViecService.GetCongViecById(macongviec));
         }
 
         // POST api/<CongViecController>

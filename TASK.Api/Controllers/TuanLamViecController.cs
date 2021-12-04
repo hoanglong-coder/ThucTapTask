@@ -25,6 +25,13 @@ namespace TASK.Api.Controllers
             this.chiTietTuanService = chiTietTuanService;
         }
 
+        [HttpGet("gettonggio1thang")]
+        public async Task<IActionResult> gettonggio1thang(int mathanglamviec)
+        {
+            var lstChitiettuan = await tuanLamViecService.GetTongGio1Thang(mathanglamviec);
+
+            return Ok(lstChitiettuan);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)

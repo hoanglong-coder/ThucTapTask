@@ -83,6 +83,13 @@ namespace TASK.WebApp.Repository.Service
             return int.Parse(content);
         }
 
+        public async Task<int> KhoaKeHoachTuanToggle(int machitiettuan)
+        {
+            var lstchitiettuan = await httpClient.GetFromJsonAsync<int>($"api/ChiTietTuan/KhoaKehoachtuanToggle?matuanchitiet={machitiettuan}");
+
+            return lstchitiettuan;
+        }
+
         public async Task<bool> KiemTraKhoaTuan(int machitiettuan)
         {
             var lstchitiettuan = await httpClient.GetFromJsonAsync<bool>($"/api/ChiTietTuan/KiemTraKhoaTuan?machitiettuan={machitiettuan}");

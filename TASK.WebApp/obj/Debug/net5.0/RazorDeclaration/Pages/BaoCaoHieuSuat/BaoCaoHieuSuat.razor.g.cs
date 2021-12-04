@@ -103,6 +103,27 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\BaoCaoHieuSuat\BaoCaoHieuSuat.razor"
+using System.Globalization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\BaoCaoHieuSuat\BaoCaoHieuSuat.razor"
+using TASK.Application.MCongViec;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\BaoCaoHieuSuat\BaoCaoHieuSuat.razor"
+using TASK.Data.Enums;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/baocaohieusuat")]
     public partial class BaoCaoHieuSuat : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -111,6 +132,30 @@ using Microsoft.AspNetCore.Components.Authorization;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 163 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\BaoCaoHieuSuat\BaoCaoHieuSuat.razor"
+       
+
+    List<string> tuan = new List<string>() { "Tuần 1 (5/7-14/7) ", "Tuần 2", "Tuần 3", "Tuần 4" };
+
+    List<Chtiet> chtiets = new List<Chtiet>() {
+            new Chtiet(){SoGio=40,PhanTramHoanThanh=90},
+            new Chtiet(){SoGio=44,PhanTramHoanThanh=70},
+            new Chtiet(){SoGio=43,PhanTramHoanThanh=80},
+            new Chtiet(){SoGio=36,PhanTramHoanThanh=86},
+             new Chtiet(){SoGio=36,PhanTramHoanThanh=86},
+        };
+    class Chtiet
+    {
+        public int SoGio { get; set; }
+        public int PhanTramHoanThanh { get; set; }
+    }
+
+
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

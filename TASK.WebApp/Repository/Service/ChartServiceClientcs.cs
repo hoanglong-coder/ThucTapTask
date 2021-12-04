@@ -24,5 +24,27 @@ namespace TASK.WebApp.Repository.Service
             
             return rs;
         }
+
+        public async Task<List<ChartBaoCaoHieuSuatSoGioLam>> GetChartSoGioLam(int MaDuAn, int MaThangLamViec)
+        {
+            var rs = await httpClient.GetFromJsonAsync<List<ChartBaoCaoHieuSuatSoGioLam>>($"/api/Chart/GetSoGioLam?MaDuAn={MaDuAn}&MaThangLamViec={MaThangLamViec}");
+
+            return rs;
+        }
+
+        public async Task<List<ChartBaoCaoHieuSuatTrungbinhthang>> GetChartTrungBinhThang(int MaDuAn, int MaThangLamViec)
+        {
+            var rs = await httpClient.GetFromJsonAsync<List<ChartBaoCaoHieuSuatTrungbinhthang>>($"/api/Chart/GetTBPhanTram?MaDuAn={MaDuAn}&MaThangLamViec={MaThangLamViec}");
+
+            return rs;
+        }
+
+        public async Task<List<NhanXet>> getnhanxet(int MaDuAn, int MaThangLamViec)
+        {
+
+            var rs = await httpClient.GetFromJsonAsync<List<NhanXet>>($"/api/Chart/GetXepLoai?MaDuAn={MaDuAn}&MaThangLamViec={MaThangLamViec}");
+
+            return rs;
+        }
     }
 }

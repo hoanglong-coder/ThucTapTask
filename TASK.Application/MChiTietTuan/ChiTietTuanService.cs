@@ -137,6 +137,27 @@ namespace TASK.Application.MChiTietTuan
             
         }
 
+        public async Task<int> KhoaKeHoachTuanToggle(int machitiettuan)
+        {
+            try
+            {
+                ChiTietTuan chiTietTuan = await _taskDbContext.ChiTietTuans.FindAsync(machitiettuan);
+
+                chiTietTuan.TrangThai = !chiTietTuan.TrangThai;
+
+                await _taskDbContext.SaveChangesAsync();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+            
+
+        }
+
         public async Task<bool> KiemTraKhoaTuan(int machitiettuan)
         {
             var chitiettuan = await _taskDbContext.ChiTietTuans.FindAsync(machitiettuan);

@@ -15,5 +15,7 @@ namespace TASK.Application.MUser
         public string UserName { get; set; }
 
         public bool? TrangThai { get; set; }
+
+        public int MaQuyen { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace TASK.Data
     {
         public TaskDbContext(DbContextOptions<TaskDbContext> options) : base(options)
         {
-
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace TASK.Data
             modelBuilder.ApplyConfiguration(new DanhGiaThangConfiguration());
             modelBuilder.ApplyConfiguration(new DanhGiaTuanConfiguration());
             modelBuilder.ApplyConfiguration(new QuyenHeThongConfiguration());
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet<QuyenHeThong> QuyenHeThongs { set; get; }
         public DbSet<Quyen> Quyens { set; get; }

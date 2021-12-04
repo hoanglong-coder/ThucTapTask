@@ -78,17 +78,12 @@ namespace TASK.Api.Controllers
             int rs = await toDoListService.UpdateToDo(toDoListRequest);
             return Ok(rs);
         }
-
-        // PUT api/<ToDoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("XacNhanXongTodo")]
+        public async Task<IActionResult> XacNhanXongTodo(int matodo)
         {
-        }
+            var tododto = await toDoListService.XacNhanXongToDo(matodo);
 
-        // DELETE api/<ToDoController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok(tododto);
         }
     }
 }

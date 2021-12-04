@@ -7,9 +7,11 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\TASK.A
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\TASK.Api.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\ref\TASK.Api.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\TASK.Api.pdb
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Humanizer.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
@@ -56,7 +58,6 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.A
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.AssemblyInfoInputs.cache
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.AssemblyInfo.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.csproj.CoreCompileInputs.cache
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\scopedcss\bundle\TASK.Api.styles.css
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\staticwebassets\TASK.Api.StaticWebAssets.Manifest.cache
@@ -66,5 +67,3 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.A
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\ref\TASK.Api.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.pdb
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.genruntimeconfig.cache
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Humanizer.dll
-C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

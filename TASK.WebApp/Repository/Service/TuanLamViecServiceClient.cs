@@ -31,6 +31,13 @@ namespace TASK.WebApp.Repository.Service
             return int.Parse(content);
         }
 
+        public async Task<int> GetTongGio1Thang(int MaThangLamViec)
+        {
+            var sogio = await httpClient.GetFromJsonAsync<int>($"/api/TuanLamViec/gettonggio1thang?mathanglamviec={MaThangLamViec}");
+
+            return sogio;
+        }
+
         public async Task<List<TuanLamViecResponse>> GetTuanLamViecByDuAn(int id)
         {
             var lstTuanLamViec = await httpClient.GetFromJsonAsync<List<TuanLamViecResponse>>($"/api/TuanLamViec/{id}");

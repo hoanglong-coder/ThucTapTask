@@ -14,5 +14,7 @@ namespace TASK.Application.MUser
         Task<List<UserResponse>> GetAllByDuAn(int maduan);
 
         Task<UserResponse> GetUser(Guid idUser);
+
+        Task<int> GetQuyenDuAn(Guid idUser,int maduan);
     }
 }

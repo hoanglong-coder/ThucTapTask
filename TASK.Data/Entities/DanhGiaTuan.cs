@@ -9,15 +9,25 @@ namespace TASK.Data.Entities
     public class DanhGiaTuan
     {
         public int MaDanhGiaTuan { set; get; }
-        public float HoanThanh { set; get; }
-        public string KhoiLuong { set; get; }
-        public string TienDo { set; get; }
-        public string ChatLuong { set; get; }
+
+        public int? HoanThanh { set; get; }
+
+        public int? KhoiLuong { set; get; }
+
+        public int? TienDo { set; get; }
+
+        public int? ChatLuong { set; get; }
+
         public string LoiTrongTuan { set; get; }
+
         public string NhanXetTuan { set; get; }
-        public int? MaDanhGiaThang { get; set; }
+
+        public int MaDanhGiaThang { get; set; }
+
         public virtual DanhGiaThang DanhGiaThang { set; get; }
-        public int? MaChiTietTuan { get; set; }
+
+        public int MaChiTietTuan { get; set; }
+
         public virtual ChiTietTuan ChiTietTuan { set; get; }
     }
 }

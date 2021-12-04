@@ -15,6 +15,7 @@ using TASK.Application.MToDoList;
 using TASK.Application.MChart;
 using TASK.Application.MCongViec;
 using TASK.Data;
+using TASK.Application.MDanhGiaNhanSu;
 
 namespace TASK.Api
 {
@@ -57,6 +58,8 @@ namespace TASK.Api
             services.AddScoped<IToDoListService, ToDoListService>();
             services.AddScoped<IChartService, ChartService>();
             services.AddScoped<ICongViecService, CongViecService>();
+            services.AddScoped<IDanhGiaThangService, DanhGiaThangService>();
+            services.AddScoped<IDanhGiaTuanService, DanhGiaTuanService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TASK.Api", Version = "v1" });

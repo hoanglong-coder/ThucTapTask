@@ -19,5 +19,7 @@ namespace TASK.WebApp.Repository.Interface
         Task<TuanLamViecResponse> GetTuanLamViecByMaThangLamViec(int id);
 
         Task<int> UpdateTuanLamViec(TuanLamViecRequest tuanLamViecRequest);
+
+        Task<int> GetTongGio1Thang(int MaThangLamViec);
     }
 }

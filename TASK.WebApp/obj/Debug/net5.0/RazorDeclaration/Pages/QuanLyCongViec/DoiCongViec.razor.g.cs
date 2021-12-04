@@ -103,7 +103,15 @@ using Microsoft.AspNetCore.Components.Authorization;
 #line default
 #line hidden
 #nullable disable
-    public partial class SuaCongViec : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\Pages\QuanLyCongViec\DoiCongViec.razor"
+using TASK.Application.MCongViec;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/doicongviec/{macongviec}")]
+    public partial class DoiCongViec : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

@@ -54,6 +54,13 @@ namespace TASK.WebApp.Repository.Service
             return lst;
         }
 
+        public async Task<CongViecRequest> GetCongViecById(int MaCongViec)
+        {
+            var congviecrequest = await httpClient.GetFromJsonAsync<CongViecRequest>($"/api/CongViec/GetCongViecByID?macongviec={MaCongViec}");
+
+            return congviecrequest;
+        }
+
         public async Task<int> InsertCongViec(CongViecRequest congViecRequest)
         {
             var check = await httpClient.PostAsJsonAsync("/api/CongViec/InsertCongViec", congViecRequest);

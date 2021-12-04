@@ -24,5 +24,19 @@ namespace TASK.WebApp.Repository.Service
 
             return ListUser;
         }
+
+        public async Task<int> GetQuyenDuAn(Guid idUser, int maduan)
+        {
+            var ListUser = await httpClient.GetFromJsonAsync<int>($"/api/User/GetQuyenDuAn?mauser={idUser}&maduan={maduan}");
+
+            return ListUser;
+        }
+
+        public async Task<UserResponse> GetUser(Guid idUser)
+        {
+            var User = await httpClient.GetFromJsonAsync<UserResponse>($"/api/User/GetUser?MaUser={idUser}");
+
+            return User;
+        }
     }
 }

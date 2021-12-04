@@ -30,6 +30,25 @@ namespace TASK.Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser(Guid MaUser)
+        {
+            var User = await userService.GetUser(MaUser);
+
+            return Ok(User);
+        }
+
+
+
+        [HttpGet("GetQuyenDuAn")]
+        public async Task<IActionResult> GetQuyenDuAn(Guid mauser,int maduan)
+        {
+            var ListUser = await userService.GetQuyenDuAn(mauser,maduan);
+
+            return Ok(ListUser);
+        }
+
+
         // GET api/<UserController>/5
         [HttpGet("getallbyduan")]
         public async Task<IActionResult> GetAllUserByDuAn(int maduan)

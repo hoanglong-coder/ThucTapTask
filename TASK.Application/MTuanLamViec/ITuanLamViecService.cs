@@ -19,5 +19,7 @@ namespace TASK.Application.MTuanLamViec
         Task<TuanLamViecResponse> GetTuanLamViecByMaThangLamViec(int id);
 
         Task<int> UpdateTuanLamViec(TuanLamViecRequest tuanLamViecRequest);
+
+        Task<int> GetTongGio1Thang(int MaThangLamViec);
     }
 }

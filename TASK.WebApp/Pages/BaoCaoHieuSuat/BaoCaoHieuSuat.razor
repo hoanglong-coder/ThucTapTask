@@ -1,7 +1,181 @@
 ﻿@page "/baocaohieusuat"
+@using System.Globalization
+@using TASK.Application.MCongViec
+@using TASK.Data.Enums
+@if (chartBaoCaoHieuSuatSoGioLams == null || chartBaoCaoHieuSuatTrungbinhthangs == null)
+{
+    <PageLoading />
+}
+else
+{
+    <div class="container" style="max-width: 100%">
+        <RadzenMenu Style="background-color: #EDEFF1;margin-top:6px">
+            <h1>BÁO CÁO HIỆU SUẤT CÔNG VIỆC THÁNG </h1>
+        </RadzenMenu>
+        <RadzenTemplateForm TItem="CongViecSearch" Data="congViecSearch" Submit=Search Style="width: 100%; border: 2px solid; height:max-content; background-color: #EDEFF1">
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Năm</h5></div>
+                        <div class="col-md-8">
+                            <RadzenNumeric TValue="int" Min="@DateTime.Now.Year" Value="@DateTime.Now.Year" Max="2030" />
 
-<h1>Trang Báo cáo hiệu suất</h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-4"><h5 style="margin:auto;text-align:center;padding:5px">Tháng</h5></div>
+                        <div class="col-md-7">
+                            <RadzenDropDown AllowClear="true" Data="TuanLamViecs" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn tháng" TextProperty="TenThang" ValueProperty="MaThangLamViec" @bind-Value="congViecSearch.MaThangLamViec" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6"><RadzenButton Text="Tìm" Icon="search" Style="margin-bottom: 20px; width: 81%" ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" /></div>
+
+                    </div>
+                </div>
+            </div>
+        </RadzenTemplateForm>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 my-5">
+                <RadzenChart>
+                    <RadzenColumnSeries Data="chartBaoCaoHieuSuatSoGioLams" CategoryProperty="TenUser" Title="Số giờ làm của nhân sự trong 1 tháng " LineType="LineType.Dashed" ValueProperty="SoGiolam" />
+                    <RadzenColumnSeries Data="chartBaoCaoHieuSuatTrungbinhthangs" CategoryProperty="TenUser" Title="Trung bình % hoàn thành của tháng" ValueProperty="PhanTramLamViec" />
+                    <RadzenColumnOptions Radius="5" />
+                    <RadzenValueAxis Min="0" Max="TongGio" Step="30" />
+                </RadzenChart>
+            </div>
+        </div>
+    </div>
+    <table border="1" class="table">
+        <thead style="background-color: #d6dbed">
+            <tr style="text-align:center">
+                <th scope="col" colspan="5"></th>
+                @foreach (var item in tuan)
+                {
+                    <th scope="col" colspan="2">@item</th>
+                }
+            </tr>
+        </thead>
+        <thead style="background-color: #d6dbed">
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Nhân sự</th>
+                <th scope="col">H.Thành</th>
+                <th scope="col">Xếp loại</th>
+                <th scope="col">Nhận xét tháng</th>
+                @foreach (var item in tuan)
+                {
+                    <th scope="col">Số giờ</th>
+                    <th scope="col">% hoàn thành</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in nhanXets)
+            {
+            <tr>
+                <th scope="row">@(nhanXets.IndexOf(item)+1)</th>
+                <td>@item.TenUser</td>
+                @{
+                    if (item.HoanThanh.HasValue)
+                    {
+                        if (item.HoanThanh.Value >= 90)
+                        {
+                            <td> <RadzenBadge BadgeStyle="BadgeStyle.Success" Text=@(item.HoanThanh.Value.ToString()+"%") Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" /></td>
+                        }
+                        else if (item.HoanThanh.Value > 75)
+                        {
+                            <td><RadzenBadge BadgeStyle="BadgeStyle.Warning" Text=@(item.HoanThanh.Value.ToString()+"%") Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" /></td>
+                        }
+                        else if (item.HoanThanh.Value > 60)
+                        {
+                            <td><RadzenBadge BadgeStyle="BadgeStyle.Primary" Text=@(item.HoanThanh.Value.ToString()+"%") Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" /></td>
+                        }
+                        else
+                        {
+                            <td><RadzenBadge BadgeStyle="BadgeStyle.Danger" Text=@(item.HoanThanh.Value.ToString()+"%") Style="font-size: 17px ;margin-top: 2px;border-radius:6px;margin-left:9px" /></td>
+                        }
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+
+                }
+
+                @{
+                    if (item.XepLoai.HasValue)
+                    {
+                        XepLoai xl = (XepLoai)item.XepLoai;
+                        <td>@xl.ToString()</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                <td>@item.NhanXetThang</td>
+                @if (item.chitietNhanXets != null)
+                {
+                    @foreach (var item1 in item.chitietNhanXets)
+                    {
+                        if (item1.SoGioLam < 44)
+                        {
+                            <td style="background-color:orange;color:black"> @item1.SoGioLam</td>
+                        }
+                        else
+                        {
+                            <td> @item1.SoGioLam</td>
+                        }
+
+                        if (item1.HoanThanh < 80)
+                        {
+                            <td style="background-color: orange; color: black">@item1.HoanThanh <RadzenIcon Icon="insert_comment" Style="float:right" MouseEnter="@(args => ShowTooltip(args, new TooltipOptions(){ Duration = 10000 ,Text=item1.LoiTrongTuan +"+"+item1.NhanXetTuan}))" /></td>
+                        }
+                        else
+                        {
+                            <td>@item1.HoanThanh <RadzenIcon Icon="insert_comment" Style="float:right"  MouseEnter="@(args => ShowTooltip(args, new TooltipOptions(){ Duration = 10000 ,Text=item1.LoiTrongTuan +"+"+item1.NhanXetTuan}))"  /> </td>
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    <td> </td>
+                    <td></td>
+                }
+
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
 
 @code {
+
+    List<string> tuan = new List<string>() { "Tuần 1 (5/7-14/7) ", "Tuần 2", "Tuần 3", "Tuần 4" };
+
+    List<Chtiet> chtiets = new List<Chtiet>() {
+            new Chtiet(){SoGio=40,PhanTramHoanThanh=90},
+            new Chtiet(){SoGio=44,PhanTramHoanThanh=70},
+            new Chtiet(){SoGio=43,PhanTramHoanThanh=80},
+            new Chtiet(){SoGio=36,PhanTramHoanThanh=86},
+             new Chtiet(){SoGio=36,PhanTramHoanThanh=86},
+        };
+    class Chtiet
+    {
+        public int SoGio { get; set; }
+        public int PhanTramHoanThanh { get; set; }
+    }
+
 
 }

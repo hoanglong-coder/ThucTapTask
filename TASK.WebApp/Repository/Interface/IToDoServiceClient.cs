@@ -19,5 +19,7 @@ namespace TASK.WebApp.Repository.Interface
         Task<int> UpdateToDo(ToDoListRequest toDoListRequest);
 
         Task<ToDoListDTO> GetTodoById(int MaToDo);
+
+        Task<int> XacNhanXongToDo(int MaToDo);
     }
 }

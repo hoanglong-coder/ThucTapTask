@@ -15,7 +15,7 @@
             <Template Context="todo">
                 <RadzenCard Style="width:320px;">
                     <div class="d-flex flex-row align-items-center">
-                        <h2 style="margin-right:26px;text-align:center">@dem</h2>
+                        <h2 style="margin-right:26px;text-align:center">@(toDoListDTOs.IndexOf(todo)+1)</h2>
                         <div class="row">
                             @{
                                 DateTime hientai = DateTime.Now;
@@ -48,7 +48,6 @@
                                     }
 
                                 }
-                                dem++;
                             }
                             <div class="col-6"><h4 class="mb-0">@todo.NgayDenHang.ToString("dd/MM/yyyy")</h4></div>
                             @{

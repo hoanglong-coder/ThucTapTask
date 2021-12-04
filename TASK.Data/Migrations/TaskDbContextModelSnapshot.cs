@@ -87,6 +87,12 @@ namespace TASK.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CountDoiDoDotXuat")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CountDoiTre")
+                        .HasColumnType("int");
+
                     b.Property<bool>("DaDuyet")
                         .HasColumnType("bit");
 
@@ -152,38 +158,34 @@ namespace TASK.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ChatLuong")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("KhoiLuong")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int?>("MaTuanLamViec")
+                    b.Property<int?>("ChatLuong")
                         .HasColumnType("int");
+
+                    b.Property<int?>("KhoiLuong")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaThangLamViec")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("MaUser")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NhanXet")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("TienDo")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int?>("TienDo")
+                        .HasColumnType("int");
 
-                    b.Property<float>("TrungBinhThang")
-                        .HasColumnType("real");
+                    b.Property<int?>("TrungBinhThang")
+                        .HasColumnType("int");
 
-                    b.Property<string>("XepLoai")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                    b.Property<int?>("XepLoai")
+                        .HasColumnType("int");
 
                     b.HasKey("MaDanhGiaThang");
 
-                    b.HasIndex("MaTuanLamViec");
+                    b.HasIndex("MaThangLamViec");
 
                     b.ToTable("DanhGiaThangs");
                 });
@@ -197,37 +199,31 @@ namespace TASK.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ChatLuong")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int?>("ChatLuong")
+                        .HasColumnType("int");
 
-                    b.Property<float>("HoanThanh")
-                        .HasColumnType("real");
+                    b.Property<int?>("HoanThanh")
+                        .HasColumnType("int");
 
-                    b.Property<string>("KhoiLuong")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int?>("KhoiLuong")
+                        .HasColumnType("int");
 
                     b.Property<string>("LoiTrongTuan")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("MaChiTietTuan")
+                    b.Property<int>("MaChiTietTuan")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MaDanhGiaThang")
+                    b.Property<int>("MaDanhGiaThang")
                         .HasColumnType("int");
 
                     b.Property<string>("NhanXetTuan")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("TienDo")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int?>("TienDo")
+                        .HasColumnType("int");
 
                     b.HasKey("MaDanhGiaTuan");
 
@@ -480,7 +476,9 @@ namespace TASK.Data.Migrations
                 {
                     b.HasOne("TASK.Data.Entities.TuanLamViec", "TuanLamViec")
                         .WithMany("DanhGiaThangs")
-                        .HasForeignKey("MaTuanLamViec");
+                        .HasForeignKey("MaThangLamViec")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TuanLamViec");
                 });
@@ -489,11 +487,15 @@ namespace TASK.Data.Migrations
                 {
                     b.HasOne("TASK.Data.Entities.ChiTietTuan", "ChiTietTuan")
                         .WithMany("DanhGiaTuans")
-                        .HasForeignKey("MaChiTietTuan");
+                        .HasForeignKey("MaChiTietTuan")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TASK.Data.Entities.DanhGiaThang", "DanhGiaThang")
                         .WithMany("DanhGiaTuans")
-                        .HasForeignKey("MaDanhGiaThang");
+                        .HasForeignKey("MaDanhGiaThang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ChiTietTuan");
 

@@ -27,10 +27,25 @@ namespace TASK.Api.Controllers
             var chart = await chartService.GetChartDashboards(mauser,maduan);
             return Ok(chart);
         }
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        [HttpGet("GetXepLoai")]
+        public async Task<IActionResult> GetXepLoai(int MaDuAn, int MaThangLamViec)
         {
-            return "value";
+            var chart = await chartService.getnhanxet(MaDuAn, MaThangLamViec);
+            return Ok(chart);
+        }
+
+        [HttpGet("GetSoGioLam")]
+        public async Task<IActionResult>  GetSoGioLam(int MaDuAn, int MaThangLamViec)
+        {
+            var chart = await chartService.GetChartSoGioLam(MaDuAn, MaThangLamViec);
+            return Ok(chart);
+        }
+        [HttpGet("GetTBPhanTram")]
+        public async Task<IActionResult> GetTBPhanTram(int MaDuAn, int MaThangLamViec)
+        {
+            var chart = await chartService.GetChartTrungBinhThang(MaDuAn, MaThangLamViec);
+            return Ok(chart);
         }
     }
 }

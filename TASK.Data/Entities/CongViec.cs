@@ -27,6 +27,8 @@ namespace TASK.Data.Entities
         public virtual User User { set; get; }
         public string GhiChu { set; get; }
         public int TrangThai { set; get; }
+        public int? CountDoiTre { get; set; }
+        public int? CountDoiDoDotXuat { get; set; }
         public bool DaDuyet { get; set; }
     }
 }

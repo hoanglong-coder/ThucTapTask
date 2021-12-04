@@ -71,8 +71,6 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         bool pushpin { get; set; } = true;
 
-        int dem = 1;
-
         string chuoipush;
 
         bool checkpush;
@@ -81,16 +79,27 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         Guid MaUser;
 
+        int MaDuAn;
+
         protected override async Task OnInitializedAsync()
         {
 
             Role = await localstorage.GetItemAsync<int>("Role");
 
-            trangThaiCongViecs = ((STT_CongViec[])Enum.GetValues(typeof(STT_CongViec))).Select(c => new TrangThaiCongViec() { Value = (int)c, Name = GetNameTrangThai(c) }).ToList();
-
+            int RoleDuAn = await localstorage.GetItemAsync<int>("RoleDuAn");
+            
+            if (RoleDuAn == 1||Role==1)
+            {
+                trangThaiCongViecs = ((STT_CongViec[])Enum.GetValues(typeof(STT_CongViec))).Select(c => new TrangThaiCongViec() { Value = (int)c, Name = GetNameTrangThai(c) }).ToList();
+            }
+            else
+            {
+                trangThaiCongViecs = ((STT_CongViec[])Enum.GetValues(typeof(STT_CongViec))).Where(c => c != STT_CongViec.ChuaXongBanTaskKhacDaDuyet).Select(c => new TrangThaiCongViec() { Value = (int)c, Name = GetNameTrangThai(c) }).ToList();
+            }
+           
             dialogService.OnClose += Close;
 
-            int MaDuAn = await localstorage.GetItemAsync<int>("MaDuAn");
+            MaDuAn = await localstorage.GetItemAsync<int>("MaDuAn");
 
             MaUser = await localstorage.GetItemAsync<Guid>("UserID");
 
@@ -116,7 +125,6 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         void changepush()
         {
-            dem = 1;
             pushpin = !pushpin;
         }
 
@@ -143,9 +151,11 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                 StateHasChanged();
             }
         }
-        void Action()
+        async Task DanhGiaNhanSu(int MaThangLamViec, Guid MaUser)
         {
-            Console.WriteLine("Thực thi");
+            await dialogService.OpenAsync<DanhGiaNhanSu>($"Đánh giá nhân sự",
+                                                      new Dictionary<string, object>() { { "MaThangLamViec", MaThangLamViec }, { "MaUser", MaUser } },
+                                                      new DialogOptions() { Width = "1300px", Height = "700px", Resizable = true, Draggable = true });
         }
 
         void EditRow(CongViecResponse order)
@@ -164,8 +174,7 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
             congviecsGrid.CancelEditRow(order);
         }
 
-        void ShowTooltip(ElementReference elementReference, TooltipOptions options = null) => tooltipService.Open(elementReference, "Dời do trể 3 lần", options);
-
+        void ShowTooltip(ElementReference elementReference, TooltipOptions options = null) => tooltipService.Open(elementReference, options.Text, options);
 
         async Task InsertCongViec()
         {
@@ -226,9 +235,9 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         async Task UpdateCongViec()
         {
-            Guid MaUser = await localstorage.GetItemAsync<Guid>("UserID");          
-
-            if (Role == 2 || Role == 3)
+            Guid MaUser = await localstorage.GetItemAsync<Guid>("UserID");
+            int RoleDuAn = await localstorage.GetItemAsync<int>("RoleDuAn");
+            if ((Role == 2 || Role == 3)&&RoleDuAn!=1)
             {
                 var congViecRequests = congViecResponses.Where(t=>t.MaUser==MaUser).Select(t => new CongViecRequest() {
 
@@ -246,7 +255,9 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                     DenNgay = t.DenNgay,
                     GhiChu = t.GhiChu,
                     Nguon = t.Nguon,
-                    DaDuyet = t.DaDuyet
+                    DaDuyet = t.DaDuyet,
+                    CountDoiTre = t.CountDoiTre,
+                    CountDoiDoDotXuat = t.CountDoiDoDotXuat
                     
                 }).ToList();
 
@@ -265,7 +276,7 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                 }
 
             }
-            else
+            else if(RoleDuAn==1||Role==1)
             {
                 var congViecRequests = congViecResponses.Select(t => new CongViecRequest()
                 {
@@ -284,7 +295,9 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                     DenNgay = t.DenNgay,
                     GhiChu = t.GhiChu,
                     Nguon = t.Nguon,
-                    DaDuyet = t.DaDuyet
+                    DaDuyet = t.DaDuyet,
+                    CountDoiTre = t.CountDoiTre,
+                    CountDoiDoDotXuat = t.CountDoiDoDotXuat
                 }).ToList();
 
                 int check = await congViecServiceClient.UpdateCongViecRange(congViecRequests);
@@ -394,6 +407,49 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
             }
         }
 
+        async Task DoiCongViec()
+        {
+            if (selectedCongViec != null)
+            {
+                if (selectedCongViec.Count == 1)
+                {
+                    if(selectedCongViec.SingleOrDefault().TrangThai==(int)STT_CongViec.ChuaXong ||  selectedCongViec.SingleOrDefault().TrangThai== (int)STT_CongViec.ChuaXongBanTaskKhacDaDuyet)
+                    {
+
+                        await dialogService.OpenAsync<DoiCongViec>($"DỜI CÔNG VIỆC",
+                                                        new Dictionary<string, object>() { { "MaCongViec", selectedCongViec.FirstOrDefault().MaCongViec } },
+                                                        new DialogOptions() { Width = "772px", Height = "300px", Resizable = true, Draggable = true });
+
+                        selectedCongViec = selectedCongViec = new List<CongViecResponse>();
+                    }
+                    else
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Chỉ được dời trong trạng thái cho phép", Duration = 2000 };
+                        await ShowNotification(noti);
+                        selectedCongViec = selectedCongViec = new List<CongViecResponse>();
+                    }
+                        
+                } else if (selectedCongViec.Count >1)
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Bạn chỉ chọn được 1 công việc để dời", Duration = 2000 };
+                    await ShowNotification(noti);
+                    selectedCongViec = selectedCongViec = new List<CongViecResponse>();
+                }
+                else
+                {
+                    NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Bạn chưa chọn công việc", Duration = 2000 };
+                    await ShowNotification(noti);
+                    selectedCongViec = selectedCongViec = new List<CongViecResponse>();
+                }
+            }else
+            {
+                NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Bạn chưa chọn công việc dời", Duration = 2000 };
+                await ShowNotification(noti);
+                selectedCongViec = selectedCongViec = new List<CongViecResponse>();
+            }
+            
+        }
+        
         async void Close(dynamic result)
         {
            await Reset();
@@ -500,14 +556,57 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
         async Task OnChangeThang(object value)
         {
             ChiTietTuans = new List<ChiTietTuanResponse>();
+            congViecSearch.MaTuanChiTiet = 0;
             ChiTietTuans = await ChiTietTuanServiceClient.GetChiTietTuanByTuanLamViec((int)value);
             StateHasChanged();
         }
+       
         async Task OnChangeChitiettuan(object value)
         {
             isKhoaTuan = await ChiTietTuanServiceClient.KiemTraKhoaTuan((int)value);
         }
 
+        async Task KhoaMoTuan()
+        {
+            if (congViecSearch.MaTuanChiTiet == 0)
+            {
+                await dialogService.Confirm("Bạn chưa chọn tuần để khóa/mở khóa", "Khóa/Mở khóa kế hoạch tuần", new ConfirmOptions() { OkButtonText = "OK", CancelButtonText = "No" });
+            }else
+            {
+                await ChiTietTuanServiceClient.KhoaKeHoachTuanToggle(congViecSearch.MaTuanChiTiet);
+
+                isKhoaTuan = !isKhoaTuan;
+            }
+
+        }
+
+        async Task XongToDo(object value)
+        {
+            var result = await dialogService.Confirm("Đánh dấu công việc thành \"Đã xong\" ", "Xác nhận TO-DO", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+
+            if (result == true)
+            {
+                await toDoServiceClient.XacNhanXongToDo((int)value);
+                toDoList = await toDoServiceClient.GetAllToDoByDuAn(MaDuAn, MaUser);
+                
+
+                if (toDoList.Count > 0)
+                {
+                    toDoListDTOs = new List<ToDoListDTO>();
+                    checkpush = false;
+                    
+                    toDoListDTOs = toDoList.ListToDo;
+                    chuoipush = $"Có {toDoList.Count} to do đang được ghim | Đến hạn: {toDoListDTOs.Take(1).FirstOrDefault().NgayDenHang.ToString("dd/MM/yyy")} " + sub(toDoListDTOs.Take(1).FirstOrDefault().NoiDung);
+                }
+                else
+                {
+                    checkpush = true;
+                    pushpin = true;
+                }
+            }
+        }
+    
         
+    
     }
 }

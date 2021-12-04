@@ -15,6 +15,8 @@ namespace TASK.WebApp.Pages.ChooseTask
 
         [Inject] IDuAnServiceClient DuAnServiceClient { get; set; }
 
+        [Inject] IUserServiceClient userServiceClient { get; set; }
+
         [Inject] ILocalStorageService LocalStorage { get; set; }
 
         [Inject] ILocalStorageService localStorageService { get; set; }
@@ -30,11 +32,22 @@ namespace TASK.WebApp.Pages.ChooseTask
             DuAns = await DuAnServiceClient.GetDuAnByUser(id);
 
             await localStorageService.RemoveItemAsync("MaDuAn");
+
+            await localStorageService.RemoveItemAsync("RoleDuAn");
         }
 
         public async Task OnClick(string ma)
         {
+            Guid id = await LocalStorage.GetItemAsync<Guid>("UserID");
+
+
+            int MaQuyen = await userServiceClient.GetQuyenDuAn(id, int.Parse(ma));
+
+            await localStorageService.SetItemAsync<int>("RoleDuAn", MaQuyen);
+
             await localStorageService.SetItemAsStringAsync("MaDuAn", ma);
+
+
             NavigationManager.NavigateTo("/Dashboard");
         }
     }

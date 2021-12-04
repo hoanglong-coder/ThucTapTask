@@ -1,0 +1,237 @@
+﻿@page "/danhgianhansu/{MaThangLamViec}/{MaUser}"
+@using TASK.Application.MDanhGiaNhanSu
+@using TASK.Data.Enums
+@if (TuanLamViecs == null)
+{
+    <PageLoading />
+}
+else
+{
+    <RadzenTemplateForm TItem="DanhGiaThangResponse" Data="DanhGiaThangRequest" Submit="Update">
+        <div class="row">
+            <div class="col-2">Tháng*</div>
+            <div class="col-4">
+                <RadzenDropDown AllowClear="true" Data="TuanLamViecs" Style="width: 100%"
+                                AllowFiltering="true" Placeholder="Chọn tháng" TextProperty="TenThang" ValueProperty="MaThangLamViec" Disabled="true" @bind-Value="DanhGiaThangRequest.MaThangLamViec" />
+            </div>
+            <div class="col-2">Nhân sự: </div>
+            <div class="col-4" style="color:blue">@TenUser</div>
+        </div>
+        <RadzenFieldset Text="Đánh giá công việc tuần" Style="margin-top:15px">
+            <RadzenDataGrid TItem="DanhGiaTuanResponse" Data="danhGiaTuanResponses" @ref="danhgiatuangird">
+                <Columns>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="TenTuan" Title="Tuần">
+                        <Template Context="danhgiatuan">
+                            @{
+                                DateTime datenow = DateTime.Now.Date;
+
+                                DateTime tungay = danhgiatuan.TuNgay.Date;
+
+                                DateTime denngay = danhgiatuan.Denngay.Date;
+
+                                if (DateTime.Compare(tungay, datenow) < 0 && DateTime.Compare(datenow, denngay) < 0)
+                                {
+                                    <p style="color:blue;margin-top:auto;margin-bottom:auto">@danhgiatuan.TenTuan</p>
+                                }
+                                else
+                                {
+                                    <p style="margin-top:auto;margin-bottom:auto">@danhgiatuan.TenTuan</p>
+                                }
+
+                            }
+                        </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Title="Khóa" Width="50px">
+                        <Template Context="danhgiatuan">
+                            @{
+                                if (danhgiatuan.DaKhoa)
+                                {
+                                    <RadzenIcon Icon="lock" />
+                                }
+                            }
+
+                        </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="FirstName" Title="Hoàn thành" Width="70px">
+                        <Template Context="danhgiatuan">
+                            @{
+                                if (danhgiatuan.HoanThanh.HasValue)
+                                {
+                                    string txt = danhgiatuan.HoanThanh.Value + "%";
+                                    @if (danhgiatuan.HoanThanh.Value >= 90)
+                                    {
+                                        <RadzenBadge BadgeStyle="BadgeStyle.Success" Style="font-size:18px" Text=@txt />
+                                    }
+                                    else if (danhgiatuan.HoanThanh.Value > 75)
+                                    {
+                                        <RadzenBadge BadgeStyle="BadgeStyle.Warning" Style="font-size:18px" Text=@txt />
+                                    }
+                                    else if (danhgiatuan.HoanThanh.Value > 60)
+                                    {
+                                        <RadzenBadge BadgeStyle="BadgeStyle.Primary" Style="font-size:18px" Text=@txt />
+                                    }
+                                    else
+                                    {
+                                        <RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size:18px" Text=@txt />
+                                    }
+
+                                }
+                                else
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size:18px" Text="0%" />
+                                }
+
+                            }
+
+                        </Template>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="KhoiLuong" Title="Khối lượng" Width="100px">
+                        <Template Context="danhgiatuan">
+                            @if (danhgiatuan.KhoiLuong.HasValue && danhgiatuan.KhoiLuong.Value != 0)
+                            {
+                                <p style="margin-top:auto;margin-bottom:auto">@GetNameKhoiLuong((STT_KhoiLuong)danhgiatuan.KhoiLuong)</p>
+                            }
+                        </Template>
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenDropDown AllowClear="true" Data="KhoiLuongGird" @bind-Value="danhgiatuan.KhoiLuong" Change="@(args => OnChangeKhoiLuong(args,danhgiatuan.MaDanhGiaTuan))" TextProperty="Name" ValueProperty="Value" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="TienDo" Title="Tiến độ" Width="130px">
+                        <Template Context="danhgiatuan">
+                            @if (danhgiatuan.TienDo.HasValue && danhgiatuan.TienDo.Value != 0)
+                            {
+                                <p style="margin-top:auto;margin-bottom:auto">@GetNameTienDo((STT_TienDo)danhgiatuan.TienDo)</p>
+                            }
+                        </Template>
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenDropDown AllowClear="true" Data="TienDoGird" @bind-Value="danhgiatuan.TienDo" Change="@(args => OnChangeTienDo(args,danhgiatuan.MaDanhGiaTuan))" TextProperty="Name" ValueProperty="Value" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="ChatLuong" Title="Chất lượng" Width="300px">
+                        <Template Context="danhgiatuan">
+                            @if (danhgiatuan.ChatLuong.HasValue && danhgiatuan.ChatLuong.Value != 0)
+                            {
+                                <p style="margin-top:auto;margin-bottom:auto">@GetNameChatLuongGird((ChatLuongGird)danhgiatuan.ChatLuong)</p>
+                            }
+                        </Template>
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenDropDown AllowClear="true" Data="ChatLuongGirddanhgia" @bind-Value="danhgiatuan.ChatLuong" Change="@(args => OnChangeChatLuong(args,danhgiatuan.MaDanhGiaTuan))" TextProperty="Name" ValueProperty="Value" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="LoiTrongTuan" Title="Lỗi trong tuần">
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenTextBox @bind-Value="danhgiatuan.LoiTrongTuan" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Property="NhanXetTuan" Title="Nhận xét tuần">
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenTextBox @bind-Value="danhgiatuan.NhanXetTuan" Style="width:100%" />
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+
+                    <RadzenDataGridColumn TItem="DanhGiaTuanResponse" Context="sampleBlazorModelsSampleOrder" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px">
+                        <Template Context="danhgiatuan">
+                            @{
+                                if (!danhgiatuan.DaKhoa)
+                                {
+                                    <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@(args => EditRow(danhgiatuan))" @onclick:stopPropagation="true">
+                                    </RadzenButton>
+                                }
+                            }
+                        </Template>
+                        <EditTemplate Context="danhgiatuan">
+                            <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((args) => SaveRow(danhgiatuan))">
+                            </RadzenButton>
+                            <RadzenButton Icon="cancel" Size="ButtonSize.Small" ButtonStyle="ButtonStyle.Secondary" Click="@((args) => CancelEdit(danhgiatuan))">
+                            </RadzenButton>
+                        </EditTemplate>
+                    </RadzenDataGridColumn>
+                </Columns>
+
+            </RadzenDataGrid>
+        </RadzenFieldset>
+
+        <RadzenFieldset Text="Đánh giá công việc tháng" Style="margin-top:15px">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">Khối lượng</div>
+                        <div class="col-8">
+                            <RadzenDropDown AllowClear="true" Data="KhoiLuong" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn khối lượng" TextProperty="Name" ValueProperty="Value" @bind-Value="DanhGiaThangRequest.KhoiLuong" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-4">Tiến độ</div>
+                        <div class="col-8">
+                            <RadzenDropDown AllowClear="true" Data="TienDo" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn tiến độ" TextProperty="Name" ValueProperty="Value" @bind-Value="DanhGiaThangRequest.TienDo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">Chất lượng</div>
+                        <div class="col-8">
+                            <RadzenDropDown AllowClear="true" Data="ChatLuongcombodanhgia" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn chất lượng" TextProperty="Name" ValueProperty="Value" @bind-Value="DanhGiaThangRequest.ChatLuong" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-4">
+                            Trung bình cả tháng
+                        </div>
+                        <div class="col-3">
+                            @{
+                                @if (TrungBinhThang >= 90)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Success" Style="font-size: 15px ;margin-top: 3px" IsPill="false" Text=@(TrungBinhThang+"%") />
+                                }
+                                else if (TrungBinhThang > 75)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Warning" Style="font-size: 15px ;margin-top: 3px" IsPill="false" Text=@(TrungBinhThang+"%") />
+                                }
+                                else if (TrungBinhThang > 60)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Primary" Style="font-size: 15px ;margin-top: 3px" IsPill="false" Text=@(TrungBinhThang+"%") />
+                                }
+                                else
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Danger" Style="font-size: 15px ;margin-top: 3px" IsPill="false" Text=@(TrungBinhThang+"%") />
+                                }
+                            }
+
+                        </div>
+                        <div class="col-2">
+                            Xếp loại
+                        </div>
+                        <div class="col-3">
+                            <RadzenDropDown AllowClear="true" Data="XepLoaidanhgia" Style="width: 100%"
+                                            AllowFiltering="true" Placeholder="Chọn loại" TextProperty="Name" ValueProperty="Value" @bind-Value="DanhGiaThangRequest.XepLoai" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-2">Nhận xét cả tháng</div>
+                <div class="col-8"> <RadzenTextArea Style="width:100%" Name="TenCongViec" @bind-Value="DanhGiaThangRequest.NhanXet" /></div>
+            </div>
+        </RadzenFieldset>
+        @{
+            if (Role == 1 || Role == 2)
+            {
+                <center>
+                    <div class="row" style="margin-left:auto;margin-right:auto;margin-top:37px">
+                        <div class="col-md-6">
+                            <RadzenButton Text="Lưu" ButtonStyle="ButtonStyle.Secondary" Icon="save" Style="float:right" ButtonType="ButtonType.Submit" />
+                        </div>
+                        <div class="col-md-6">
+                            <RadzenButton Text="Hủy bỏ" ButtonStyle="ButtonStyle.Secondary" Click="@(args=>dialogService.Close(true))" Style="float: left " Icon="cancel" />
+                        </div>
+                    </div>
+                </center>
+            }
+        }
+
+    </RadzenTemplateForm>
+}

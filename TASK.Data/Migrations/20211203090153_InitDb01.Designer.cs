@@ -10,8 +10,8 @@ using TASK.Data;
 namespace TASK.Data.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    [Migration("20211201130435_InitDb")]
-    partial class InitDb
+    [Migration("20211203090153_InitDb01")]
+    partial class InitDb01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,6 +89,15 @@ namespace TASK.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CountDoiDoDotXuat")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CountDoiTre")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("DaDuyet")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("DenNgay")
                         .HasColumnType("datetime2");
 
@@ -163,6 +172,9 @@ namespace TASK.Data.Migrations
 
                     b.Property<int?>("MaTuanLamViec")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("MaUser")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NhanXet")
                         .HasMaxLength(250)

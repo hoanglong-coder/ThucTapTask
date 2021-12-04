@@ -65,5 +65,12 @@ namespace TASK.WebApp.Repository.Service
 
             return int.Parse(content);
         }
+
+        public async Task<int> XacNhanXongToDo(int MaToDo)
+        {
+            var todo = await httpClient.GetFromJsonAsync<int>($"/api/ToDo/XacNhanXongTodo?matodo={MaToDo}");
+
+            return todo;
+        }
     }
 }

@@ -20,5 +20,7 @@ namespace TASK.Application.MCongViec
         Task<int> UpdateCongViecRange(List<CongViecRequest> congViecRequests);
 
         Task<int> DuyetKeHoachTuan(List<CongViecRequest> congViecRequests);
+
+        Task<CongViecRequest> GetCongViecById(int MaCongViec);
     }
 }

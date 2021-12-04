@@ -77,8 +77,9 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
         async Task OnChange(object value)
         {
             chiTietTuanResponses = new List<ChiTietTuanResponse>();
+            congViecRequest.MaTuanChiTiet = 0;
             chiTietTuanResponses = await ChiTietTuanServiceClient.GetChiTietTuanByTuanLamViec((int)value);
-            StateHasChanged();            
+            StateHasChanged();
         }
 
         public string GetNameTrangThai(Enum key)
@@ -131,11 +132,17 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                     {
                         NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
                         await ShowNotification(noti);
-                        //ClearTodo();
+                        ClearCongViecInsert();
+
+                    }
+                    else if(check==0)
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã duyệt", Duration = 2000 };
+                        await ShowNotification(noti);
                     }
                     else
                     {
-                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã duyệt", Duration = 2000 };
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã khóa", Duration = 2000 };
                         await ShowNotification(noti);
                     }
                 }else
@@ -158,13 +165,18 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                     {
                         NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Thêm thành công", Duration = 2000 };
                         await ShowNotification(noti);
-                        //ClearTodo();
+                        ClearCongViecInsert();
                         dialogService.Close(true);
 
                     }
-                    else
+                    else if (check == 0)
                     {
                         NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã duyệt", Duration = 2000 };
+                        await ShowNotification(noti);
+                    }
+                    else
+                    {
+                        NotificationMessage noti = new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Không thể thêm do đã khóa", Duration = 2000 };
                         await ShowNotification(noti);
                     }
                 }
@@ -177,7 +189,7 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
                
             }
         }
-        async Task OnInvalidSubmit()
+        void OnInvalidSubmit()
         {
         }
         void changesave()
@@ -197,5 +209,21 @@ namespace TASK.WebApp.Pages.QuanLyCongViec
 
         }
 
+        void ClearCongViecInsert()
+        {
+            congViecRequest.MaUser = Guid.Empty;
+            congViecRequest.MaThangLamViec = 0;
+            congViecRequest.MaTuanChiTiet = 0;
+            congViecRequest.MaModule = 0;
+            congViecRequest.TenIssue = string.Empty;
+            congViecRequest.IssueURL = string.Empty;
+            congViecRequest.TenCongViec = string.Empty;
+            congViecRequest.ThoiGianLam = 0;
+            congViecRequest.TrangThai = 0;
+            congViecRequest.TuNgay = new DateTime();
+            congViecRequest.DenNgay = new DateTime();
+            congViecRequest.GhiChu = string.Empty;
+
+        }
     }
 }

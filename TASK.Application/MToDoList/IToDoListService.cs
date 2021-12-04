@@ -19,5 +19,7 @@ namespace TASK.Application.MToDoList
         Task<int> DeleteTodo(List<ToDoListDTO> MaToDo);
 
         Task<ToDoListDTO> GetTodoById(int MaToDo);
+
+        Task<int> XacNhanXongToDo(int MaToDo);
     }
 }

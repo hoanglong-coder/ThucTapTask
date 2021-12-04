@@ -235,7 +235,10 @@ namespace TASK.Data.Migrations
                     MaTuanChiTiet = table.Column<int>(type: "int", nullable: true),
                     MaUser = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrangThai = table.Column<int>(type: "int", nullable: false)
+                    TrangThai = table.Column<int>(type: "int", nullable: false),
+                    CountDoiTre = table.Column<int>(type: "int", nullable: true),
+                    CountDoiDoDotXuat = table.Column<int>(type: "int", nullable: true),
+                    DaDuyet = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

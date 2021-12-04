@@ -28,6 +28,7 @@ namespace TASK.Api.Controllers
 
             return Ok(lstChitiettuan);
         }
+      
 
         [HttpGet("KiemTraKhoaTuan")]
         public async Task<IActionResult> KiemTraKhoaTuan(int machitiettuan)
@@ -101,6 +102,18 @@ namespace TASK.Api.Controllers
             if (check != 1)
             {
                 return Ok(2);
+            }
+            return Ok(check);
+        }
+
+        [HttpGet("KhoaKehoachtuanToggle")]
+        public async Task<IActionResult> KhoaKeHoachTuanToggle(int matuanchitiet)
+        {
+            var check = await chiTietTuanService.KhoaKeHoachTuanToggle(matuanchitiet);
+
+            if (check != 1)
+            {
+                return Ok(0);
             }
             return Ok(check);
         }

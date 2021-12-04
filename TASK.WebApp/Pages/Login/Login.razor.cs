@@ -32,7 +32,8 @@ namespace TASK.WebApp.Pages.Login
             localstorage.RemoveItem("UserID");
             localstorage.RemoveItem("Username");
             localstorage.RemoveItem("FullName");
-            localstorage.RemoveItem("MaDuAn");
+            localstorage.RemoveItem("Role");
+            localstorage.RemoveItem("RoleDuAn");
         }
 
         public async Task OnLogin()
