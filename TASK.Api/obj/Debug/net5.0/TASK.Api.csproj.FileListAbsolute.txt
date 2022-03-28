@@ -67,3 +67,4 @@ C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.A
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\ref\TASK.Api.dll
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.pdb
 C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.genruntimeconfig.cache
+C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.Api\obj\Debug\net5.0\TASK.Api.MvcApplicationPartsAssemblyInfo.cs

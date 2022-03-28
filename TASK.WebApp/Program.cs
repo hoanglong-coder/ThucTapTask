@@ -28,7 +28,7 @@ namespace TASK.WebApp
 
             builder.Services.AddScoped<DialogService>();
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44380") });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://hoanglongapi.tk") });
 
             builder.Services.AddOptions();
 

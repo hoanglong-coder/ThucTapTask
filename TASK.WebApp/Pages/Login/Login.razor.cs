@@ -34,6 +34,9 @@ namespace TASK.WebApp.Pages.Login
             localstorage.RemoveItem("FullName");
             localstorage.RemoveItem("Role");
             localstorage.RemoveItem("RoleDuAn");
+
+            loginRequest.UserName = "Hoanglong";
+            loginRequest.Password = "123456789";
         }
 
         public async Task OnLogin()

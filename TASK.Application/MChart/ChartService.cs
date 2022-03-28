@@ -207,6 +207,7 @@ namespace TASK.Application.MChart
         }
         public int? GetTrungBinhThang(int MaThangLamViec, Guid MaUser)
         {
+            MaThangLamViec = 4;
             var nhanxet = _taskDbContext.DanhGiaThangs.Where(t => t.MaThangLamViec == MaThangLamViec && t.MaUser == MaUser).Count();
 
             if (nhanxet != 0)

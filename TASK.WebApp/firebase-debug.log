@@ -1,0 +1,96 @@
+[debug] [2022-01-29T13:16:35.350Z] ----------------------------------------------------------------------
+[debug] [2022-01-29T13:16:35.353Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HoangLong\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-01-29T13:16:35.353Z] CLI Version:   10.1.2
+[debug] [2022-01-29T13:16:35.354Z] Platform:      win32
+[debug] [2022-01-29T13:16:35.354Z] Node Version:  v14.17.4
+[debug] [2022-01-29T13:16:35.355Z] Time:          Sat Jan 29 2022 20:16:35 GMT+0700 (Indochina Time)
+[debug] [2022-01-29T13:16:35.355Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-01-29T13:16:35.361Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-01-29T13:16:35.361Z] > authorizing via signed-in user (lehoanglong9220142015@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2022-01-29T13:17:58.195Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-29T13:17:58.195Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-29T13:17:58.432Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Sat, 29 Jan 2022 13:17:58 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:17:58.452Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects  
+ {"projectId":"hoanglong-blazorwebapp","name":"hoanglong-blazorwebapp"}
+[debug] [2022-01-29T13:17:59.872Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 29 Jan 2022 13:17:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1280","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:17:59.874Z] > refreshing access token with scopes: []
+[debug] [2022-01-29T13:17:59.874Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-29T13:18:00.026Z] <<< HTTP RESPONSE 200 {"date":"Sat, 29 Jan 2022 13:18:00 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:18:00.034Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 [none]
+[debug] [2022-01-29T13:18:01.686Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 200
+[debug] [2022-01-29T13:18:01.686Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 {"name":"operations/cp.7228234476110641012","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true}}
+[debug] [2022-01-29T13:18:02.191Z] [Project Creation Poller] Retrying task index 0
+[debug] [2022-01-29T13:18:02.191Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 [none]
+[debug] [2022-01-29T13:18:03.830Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 200
+[debug] [2022-01-29T13:18:03.831Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7228234476110641012 {"name":"operations/cp.7228234476110641012","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"139714123935","projectId":"hoanglong-blazorwebapp","lifecycleState":"ACTIVE","name":"hoanglong-blazorwebapp","createTime":"2022-01-29T13:17:59.740Z"}}
+[debug] [2022-01-29T13:18:03.832Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-29T13:18:03.832Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-29T13:18:04.025Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 29 Jan 2022 13:18:04 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:18:04.032Z] >>> HTTP REQUEST POST https://firebase.googleapis.com/v1beta1/projects/hoanglong-blazorwebapp:addFirebase  
+ 
+[debug] [2022-01-29T13:18:07.011Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 29 Jan 2022 13:18:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:18:07.012Z] > refreshing access token with scopes: []
+[debug] [2022-01-29T13:18:07.012Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-29T13:18:07.199Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Sat, 29 Jan 2022 13:18:07 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-29T13:18:07.243Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj [none]
+[debug] [2022-01-29T13:18:08.297Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj 200
+[debug] [2022-01-29T13:18:08.297Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj {"name":"operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj"}
+[debug] [2022-01-29T13:18:08.811Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2022-01-29T13:18:08.811Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj [none]
+[debug] [2022-01-29T13:18:09.898Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj 200
+[debug] [2022-01-29T13:18:09.898Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj {"name":"operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj"}
+[debug] [2022-01-29T13:18:10.911Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2022-01-29T13:18:10.911Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj [none]
+[debug] [2022-01-29T13:18:11.765Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj 200
+[debug] [2022-01-29T13:18:11.766Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj {"name":"operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj"}
+[debug] [2022-01-29T13:18:13.771Z] [Add Firebase Poller] Retrying task index 0
+[debug] [2022-01-29T13:18:13.772Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj [none]
+[debug] [2022-01-29T13:18:14.917Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj 200
+[debug] [2022-01-29T13:18:14.917Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj {"name":"operations/workflows/MGEzZjdhNjEtYTVkNi00NjdkLWE5YTUtZGFmMmRiZjZhNjBj","done":true,"response":{"@type":"type.googleapis.com/google.firebase.service.v1beta1.FirebaseProject","projectId":"hoanglong-blazorwebapp","projectNumber":"139714123935","displayName":"hoanglong-blazorwebapp","name":"projects/hoanglong-blazorwebapp","resources":{"hostingSite":"hoanglong-blazorwebapp"}}}
+[info] 
+[info] === Your Firebase project is ready! ===
+[info] 
+[info] Project information:
+[info]    - Project ID: hoanglong-blazorwebapp
+[info]    - Project Name: hoanglong-blazorwebapp
+[info] 
+[info] Firebase console is available at
+[info] https://console.firebase.google.com/project/hoanglong-blazorwebapp/overview
+[info] i  Using project hoanglong-blazorwebapp (hoanglong-blazorwebapp) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2022-01-29T13:22:28.317Z] Error: kill ENOSYS
+    at process.kill (internal/process/per_thread.js:200:13)
+    at process.listener (C:\Users\HoangLong\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\signal-exit\index.js:95:15)
+    at process.emit (events.js:400:28)
+[error] 
+[error] Error: An unexpected error has occurred.

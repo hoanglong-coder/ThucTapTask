@@ -1,0 +1,9 @@
+.content[b-ddu2sm3c4m] {
+    min-height: calc(100vh - 120px);
+}
+.footer[b-ddu2sm3c4m] {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

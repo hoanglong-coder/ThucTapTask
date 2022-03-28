@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\bin\Release\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\HoangLong\Documents\GitHub\ThucTapTask\TASK.WebApp\obj\Release\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\HoangLong\.nuget\packages\radzen.blazor\3.12.2\build\..\staticwebassets\" />
+</StaticWebAssets>

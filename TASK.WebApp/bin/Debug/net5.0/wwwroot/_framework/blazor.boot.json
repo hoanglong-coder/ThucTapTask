@@ -222,17 +222,17 @@
       "mscorlib.dll": "sha256-+dB3Q0YubUPF1oZDMVZn6ZCiRkzRomtLoq51T5FocJk=",
       "netstandard.dll": "sha256-dOHF0zANIyA4WS496iWrAkTuEFWSWrXJjZj2pQQHrMA=",
       "System.Private.CoreLib.dll": "sha256-C96+zv+mWW0XzMG520oRgAG1lHVY8xzWGc6oc6rFjws=",
-      "TASK.Application.dll": "sha256-6xrZbmhueLJ39ZRDNy5G0g\/eEuCOefgZEpc6Z8z1u48=",
+      "TASK.Application.dll": "sha256-WD57jzp2UcKXlvfsWmEmVZWB++jKWE2NpPI8prdjM5g=",
       "TASK.Data.dll": "sha256-OHAl\/SLx4HUJulnsdFeQ38xLQSa95gz1yPdXeGy1npY=",
-      "TASK.WebApp.dll": "sha256-TQC1gDcU5xEK092ttlOj3PAEDjmFsC3qyIn1mz3T\/Dc="
+      "TASK.WebApp.dll": "sha256-qktU8ggQrjOuL2GXYYv+Gpir\/mIFXsIIgCaEiEMkIos="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "TASK.Application.pdb": "sha256-uWIK37XyltDziusKB7o\/dcjosp6w\/DmXi37wcXbCjKI=",
+      "TASK.Application.pdb": "sha256-dVwAnKOBzkzgl4n46BelGJ4bDul66jJbCBCUdykRaEA=",
       "TASK.Data.pdb": "sha256-IVT8ypAkkrMJaOb0+mRR8BDJJCn3Y6nasWJ+9XkTbEc=",
-      "TASK.WebApp.pdb": "sha256-w+OFa9yUwnFljVnB0nE7jGaGBFWywsH79BJljrFzT9Y="
+      "TASK.WebApp.pdb": "sha256-jLNzI3D6lbWiF1gd347F\/NinVWFeO0mA\/BI\/T89tlsU="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-ir9YCVnnk7popgsYUkvitfGA4WpkP1ydPh\/ENHnxGys=",
